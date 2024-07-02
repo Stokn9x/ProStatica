@@ -27,10 +27,15 @@
 
     }
 
+/*.btn {
+    color: #c3f309;
+}*/
+
+
 .menu-btn {
-    background-color: #5C6BC0; /* Lysere, mere livlig farve */
+    background-color: #00000000; /* Ser ikke ud til at virke */
+    color: #697d8f;
     border: none;
-    color: white;
     padding: 10px;
     text-align: center;
     text-decoration: none;
