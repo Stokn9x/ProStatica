@@ -18,13 +18,13 @@ function MenuBar() {
             <div className="menu-section-title" onClick={() => setPersonalInfoOpen(!isPersonalInfoOpen)}>Personal info</div>
             {isPersonalInfoOpen && (
                 <>
-                    <Link to="/matches" className="menu-btn">Matches</Link>
-                    <button type="button" className="menu-btn">General</button>
-                    <button type="button" className="menu-btn">Maps</button>
+                    <Link to="/matches" className="menu-btn">Played Matches</Link>
+                    <button type="button" className="menu-btn">General stats</button>
+                    <button type="button" className="menu-btn">Maps stats</button>
                 </>
             )}
 
-            <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team Info</div>
+            <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team Info(Needs reworkd)</div>
             {isTeamInfoOpen && (
                 <>
                     <button type="button" className="menu-btn">Team person info</button>
