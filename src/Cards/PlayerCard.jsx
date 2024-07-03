@@ -1,4 +1,4 @@
-import ProfilPic from './assets/Placeholder.jpg'
+import ProfilPic from './../assets/Placeholder.jpg'
 
 function PlayerCard(props) {
     return (
