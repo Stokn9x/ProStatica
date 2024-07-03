@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './MenuBar.css'; // Tilføj en CSS-fil for yderligere styling
+import './Css/MenuBar.css'; // Tilføj en CSS-fil for yderligere styling
 
 function MenuBar() {
 

@@ -8,7 +8,7 @@ import MenuBar from "./MenuBar.jsx";
 import Matches from './Matches';
 import Home from './Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './Css/App.css';
 
 function App() {
 
