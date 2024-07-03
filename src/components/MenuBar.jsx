@@ -35,7 +35,7 @@ function MenuBar() {
 
             <div className="menu-footer">
                 <a href="#"><i className="fab fa-facebook"></i></a>
-                <a href="#"><i className="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/casper-jensen-783650145/"><i className="fab fa-linkedin"></i></a>
                 <a href="#"><i className="fab fa-youtube"></i></a>
                 <a href="#"><i className="fab fa-discord"></i></a>
                 <a href="#"><i className="fas fa-envelope"></i></a>
