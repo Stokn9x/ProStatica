@@ -1,4 +1,5 @@
 import ProfilPic from './../assets/Placeholder.jpg'
+import './../Css/PlayerCard.css';
 
 function PlayerCard(props) {
     return (

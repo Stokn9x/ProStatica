@@ -2,6 +2,10 @@
     display: flex;
 }
 
+body {
+    background-color: #21212d;
+}
+
 .content {
     margin-left: 220px; /* For at give plads til MenuBar */
     padding: 20px;

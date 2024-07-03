@@ -1,7 +1,14 @@
 import React from 'react';
-import './Css/Matches.css';
+import { useNavigate } from 'react-router-dom';
+import './../Css/Matches.css';
 
 function Matches() {
+    const navigate = useNavigate();
+
+    const handleRowClick = (matchId) => {
+        navigate(`/match/${matchId}`);
+    };
+
     return (
         <div className="matches">
             <h2>Matches</h2>
@@ -18,8 +25,8 @@ function Matches() {
                     <label htmlFor="maps">Maps</label>
                     <select id="maps">
                         <option value="">Select Map</option>
-                        <option value="map1">Map 1</option>
-                        <option value="map2">Map 2</option>
+                        <option value="map1">Anubis</option>
+                        <option value="map2">Inferno</option>
                     </select>
                 </div>
             </div>
@@ -42,8 +49,23 @@ function Matches() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr onClick={() => handleRowClick('1')}>
                         <td><img src="path-to-your-map-icon.png" alt="Map Icon" /> Anubis</td>
+                        <td>Defeat</td>
+                        <td>12/03/2024 20:21</td>
+                        <td>21:02</td>
+                        <td>12:16</td>
+                        <td>???</td>
+                        <td>8</td>
+                        <td>22</td>
+                        <td>0.36</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Red team (based on stats)</td>
+                    </tr>
+                    <tr onClick={() => handleRowClick('2')}>
+                        <td><img src="\src\assets\Map-Icons\32px-De_anubis.png" alt="Map Icon" /> Anubis</td>
                         <td>Defeat</td>
                         <td>12/03/2024 20:21</td>
                         <td>21:02</td>

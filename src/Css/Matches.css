@@ -5,7 +5,8 @@
     border-radius: 10px;
     margin: 0 auto;
     max-width: 100%; /* Fjern breddebegrænsning */
-    width: 100%; /* Fyld hele skærmen */
+    width: auto; /* Fyld hele skærmen */
+    height: auto;
     box-sizing: border-box; /* Sørg for padding og border er inkluderet i bredden */
 }
 
@@ -45,6 +46,13 @@ table {
     border-collapse: collapse;
     margin-top: 20px;
 }
+    table tr {
+        cursor: pointer;
+    }
+
+        table tr:hover {
+            background-color: #555; /* Highlight row on hover */
+        }
 
     table th,
     table td {
