@@ -179,3 +179,11 @@ $RECYCLE.BIN/
 # Icon?
 Icon?
 
+# Ignore Visual Studio extension files
+*.vsix
+*.vsixmanifest
+
+# Ignore additional Visual Studio-related files
+.vs/
+.vscode/
+.vscode-test/
