@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import matchesData from './../Data/matches.json';
 import './../Css/Matches.css';
 
 function Matches() {
@@ -14,70 +15,34 @@ function Matches() {
     };
 
     const getMapIcon = (type) => {
-        switch (type) {
-            case "Anubis":
+        switch (type.toLowerCase()) {
+            case "anubis":
                 return "/src/assets/Map-Icons/32px-De_anubis.png";
-            case "Inferno":
+            case "inferno":
                 return "/src/assets/Map-Icons/32px-De_inferno.png";
-            case "Nuke":
+            case "nuke":
                 return "/src/assets/Map-Icons/32px-De_nuke.png";
-            case "Vertigo":
+            case "vertigo":
                 return "/src/assets/Map-Icons/32px-De_vertigo.png";
-            case "Dust2":
+            case "dust2":
                 return "/src/assets/Map-Icons/32px-De_dust2.png";
-            case "Mirage":
+            case "mirage":
                 return "/src/assets/Map-Icons/32px-De_mirage.png";
-            case "Ancient":
+            case "ancient":
                 return "/src/assets/Map-Icons/32px-De_ancient.png";
             default:
-                return "/src/assets/Map-Icons/default.png"; //Findes ik hehe
+                return "/src/assets/Map-Icons/default.png"; // Default ikon hvis ikke fundet
         }
     };
 
-    const recentMatches = [
-        {
-            id: 1,
-            map: "Anubis",
-            result: "Defeat",
-            date: "12/03/2024 20:21",
-            gameLength: "21:02",
-            mvp: "12:16",
-            hltv: "",
-            rank: "???",
-            kills: 8,
-            deaths: 23,
-            kd: 0.36,
-            aim: "",
-            utility: "",
-            rating: "",
-            shouldHaveWon: "Red team (based on stats)"
-        },
-        {
-            id: 2,
-            map: "Inferno",
-            result: "Defeat",
-            date: "12/03/2024 20:21",
-            gameLength: "21:02",
-            mvp: "12:16",
-            hltv: "",
-            rank: "???",
-            kills: 8,
-            deaths: 22,
-            kd: 0.36,
-            aim: "",
-            utility: "",
-            rating: "",
-            shouldHaveWon: "Red team (based on stats)"
-        }
-
-    ];
-
-
-    const filteredMatches = recentMatches.filter(match => {
-        const matchDate = new Date(match.date);
+    const filteredMatches = Object.keys(matchesData).map(matchId => ({
+        id: matchId,
+        ...matchesData[matchId]
+    })).filter(match => {
+        const matchDate = new Date(match.time);
         if (dateFrom && new Date(dateFrom) > matchDate) return false;
         if (dateTo && new Date(dateTo) < matchDate) return false;
-        if (selectedMap && match.map !== selectedMap) return false;
+        if (selectedMap && match.map.toLowerCase() !== selectedMap.toLowerCase()) return false;
 
         return true;
     });
@@ -88,15 +53,15 @@ function Matches() {
             <div className="filter">
                 <div>
                     <label htmlFor="date-from">From</label>
-                    <input type="date" id="date-from" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
+                    <input type="date" id="date-from" onChange={(e) => setDateFrom(e.target.value)} value={dateFrom} />
                 </div>
                 <div>
                     <label htmlFor="date-to">To</label>
-                    <input type="date" id="date-to" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
+                    <input type="date" id="date-to" onChange={(e) => setDateTo(e.target.value)} value={dateTo} />
                 </div>
                 <div>
                     <label htmlFor="maps">Maps</label>
-                    <select id="maps" value={selectedMap} onChange={(e) => setSelectedMap(e.target.value)}>
+                    <select id="maps" onChange={(e) => setSelectedMap(e.target.value)} value={selectedMap}>
                         <option value="">Any</option>
                         <option value="Anubis">Anubis</option>
                         <option value="Inferno">Inferno</option>
@@ -111,6 +76,7 @@ function Matches() {
             <table>
                 <thead>
                     <tr>
+                    {/*Der skal tilføjes en hel mere data her, såsom scoren på kampen. */}
                         <th>Map</th>
                         <th>Win?</th>
                         <th>Date</th>
@@ -131,7 +97,7 @@ function Matches() {
                     {filteredMatches.map((match, index) => (
                         <tr key={index} onClick={() => handleRowClick(match.id)}>
                             <td><img src={getMapIcon(match.map)} alt="Map Icon" /> {match.map}</td>
-                            <td>{match.result}</td>
+                            <td>{match.win}</td>
                             <td>{match.date}</td>
                             <td>{match.gameLength}</td>
                             <td>{match.mvp}</td>

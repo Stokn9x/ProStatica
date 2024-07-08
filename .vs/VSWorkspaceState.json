@@ -1,8 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\assets",
+    "\\src\\assets\\Logo",
+    "\\src\\assets\\Map-Icons",
+    "\\src\\Cards",
+    "\\src\\components",
+    "\\src\\Css",
+    "\\src\\Data"
   ],
-  "SelectedNode": "\\src\\main.jsx",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }

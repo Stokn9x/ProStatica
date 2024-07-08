@@ -1,0 +1,110 @@
+.match-detail {
+    background-color: #2c2c38;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.match-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3a3a47;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.match-info {
+    display: flex;
+    align-items: center;
+}
+
+.map-icon {
+    max-width: 50px;
+    margin-right: 10px;
+}
+
+.match-result {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.defeat {
+    color: red;
+}
+
+.match-meta div {
+    margin-bottom: 5px;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tab {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .tab.active {
+        background-color: #666;
+    }
+
+.match-stats {
+    background-color: #3a3a47;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.stat-categories {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat-category {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+    text-align: center;
+}
+
+.team-stats {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+    .team-stats th,
+    .team-stats td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #555;
+    }
+
+    .team-stats th {
+        background-color: #444;
+        color: #ddd;
+    }
+
+    .team-stats tr:nth-child(even) {
+        background-color: #444;
+    }
+
+    .team-stats tr:nth-child(odd) {
+        background-color: #3a3a47;
+    }
+
+    .team-stats td img {
+        max-width: 40px;
+        border-radius: 5px;
+    }
