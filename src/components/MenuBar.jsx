@@ -19,7 +19,7 @@ function MenuBar() {
             {isPersonalInfoOpen && (
                 <>
                     <Link to="/matches" className="menu-btn">Played Matches</Link>
-                    <button type="button" className="menu-btn">General stats</button>
+                    <Link to="/playerStats" className="menu-btn">General Stats</Link>
                     <button type="button" className="menu-btn">Maps stats</button>
                 </>
             )}

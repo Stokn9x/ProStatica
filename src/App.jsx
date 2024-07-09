@@ -7,6 +7,7 @@ import MenuBar from './components/MenuBar';
 import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
 import Home from './components/Home';
+import PlayerStats from './components/PlayerStats';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/match/:id" element={<MatchDetail />} />
+                    <Route path="/playerStats" element={<PlayerStats />} />
                 </Routes>
             </div>
         </div>

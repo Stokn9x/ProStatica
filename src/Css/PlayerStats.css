@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.player-stats {
+    color: white;
+    background-color: #1E1E2F;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.player-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filters label {
+    margin-bottom: 5px;
+}
+
+.filters select, .filters input {
+    padding: 5px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2A2A3D;
+    color: white;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.stats-overview {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.stat-button {
+    background-color: #3E3E55;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .stat-button:hover {
+        background-color: #505070;
+    }
+
+.stat-sections {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.stat-section {
+    background-color: #2A2A3D;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+    .stat-section h2 {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #555;
+        padding-bottom: 5px;
+        font-size: 1.5em;
+        color: #00BFFF;
+    }
+
+.stat-category {
+    background-color: #3E3E55;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.stat-description {
+    font-size: 0.9em;
+    color: #BBB;
+}
