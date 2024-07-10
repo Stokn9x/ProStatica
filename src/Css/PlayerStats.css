@@ -2,16 +2,23 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #1E1E2F;
+    color: white;
+    margin: 0;
+    padding: 0;
 }
 
 .player-stats {
-    color: white;
-    background-color: #1E1E2F;
     padding: 20px;
-    border-radius: 10px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #3E3E55;
+    border-radius: 10px;
+    background-color: #1E1E2F;
 }
 
 .player-info {
@@ -28,13 +35,15 @@ body {
 
 .filters {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    width: 100%;
     margin-bottom: 20px;
 }
 
 .filter-group {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .filters label {
@@ -57,6 +66,7 @@ body {
 .stats-overview {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .stat-group {
@@ -84,6 +94,7 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
 .stat-section {
@@ -91,6 +102,8 @@ body {
     padding: 20px;
     border-radius: 10px;
     flex: 1;
+    border: 1px solid #3E3E55;
+    width: 380px;
 }
 
     .stat-section h2 {
@@ -108,9 +121,37 @@ body {
     border-radius: 5px;
     text-align: left;
     font-size: 1.1em;
+    position: relative;
 }
 
-.stat-description {
+    .stat-category:hover .tooltip {
+        display: block;
+    }
+
+.tooltip {
+    display: none;
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #2A2A3D;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1;
     font-size: 0.9em;
-    color: #BBB;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid #3E3E55;
 }
+
+    .tooltip::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -10px;
+        transform: translateY(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent #2A2A3D transparent transparent;
+    }

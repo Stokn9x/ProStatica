@@ -5,6 +5,23 @@ import playerStatsData from './../Data/playerStats.json';
 const PlayerStats = () => {
     const { playerName, mapStats } = playerStatsData;
 
+    const statDescriptions = {
+        winrate: "Procentdel af vundne kampe.",
+        kda: "Kill/Death/Assist forhold.",
+        trounds: "Antal spillet runder på T-side.",
+        ctrounds: "Antal spillet runder på CT-side.",
+        gamesPlayed: "Antal spillet kampe.",
+        kills: "Antal kills.",
+        killr: "Kill rate per runde.",
+        adr: "Average damage per runde.",
+        wins: "Antal vundne kampe.",
+        deaths: "Antal døde.",
+        gunround: "Antal vundne gun rounds.",
+        headshots: "Antal headshots.",
+        losses: "Antal tabte kampe.",
+        assist: "Antal assists."
+    };
+
     return (
         <div className="player-stats">
             <div className="player-info">
@@ -29,19 +46,19 @@ const PlayerStats = () => {
                     </div>
                 </div>
             </div>
+            <div className="stat-group">
+                <button className="stat-button">All</button>
+                <button className="stat-button">T-side</button>
+                <button className="stat-button">CT-side</button>
+            </div>
             <div className="stats-overview">
-                <div className="stat-group">
-                    <button className="stat-button">All</button>
-                    <button className="stat-button">T-side</button>
-                    <button className="stat-button">CT-side</button>
-                </div>
                 <div className="stat-sections">
                     <div className="stat-section">
                         <h2>Overall Stats</h2>
                         {Object.keys(mapStats.overall).map((key, index) => (
                             <div className="stat-category" key={index}>
                                 <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {mapStats.overall[key]}
-                                <p className="stat-description">Beskrivelse af {key}</p>
+                                <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
                     </div>
@@ -50,7 +67,7 @@ const PlayerStats = () => {
                         {Object.keys(mapStats.tSide).map((key, index) => (
                             <div className="stat-category" key={index}>
                                 <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {mapStats.tSide[key]}
-                                <p className="stat-description">Beskrivelse af {key}</p>
+                                <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
                     </div>
@@ -59,7 +76,7 @@ const PlayerStats = () => {
                         {Object.keys(mapStats.ctSide).map((key, index) => (
                             <div className="stat-category" key={index}>
                                 <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {mapStats.ctSide[key]}
-                                <p className="stat-description">Beskrivelse af {key}</p>
+                                <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
                     </div>
