@@ -46,12 +46,14 @@ function MatchDetail() {
     const yourTeamFilled = ensureFivePlayers(yourTeam);
     const enemyTeamFilled = ensureFivePlayers(enemyTeam);
 
+    const resultClass = result.toLowerCase() === 'victory' ? 'victory' : 'defeat';
+
     return (
         <div className="match-detail">
             <div className="match-summary">
                 <div className="match-info">
                     <img src={mapIcons[map]} alt="Map Icon" className="map-icon" />
-                    <div className="match-result defeat">{result} {score}</div>
+                    <div className={`match-result ${resultClass}`}>{result} {score}</div>
                     <div className="match-meta">
                         <div>{map.charAt(0).toUpperCase() + map.slice(1)}</div>
                         <div>Game Time {time}</div>
@@ -73,7 +75,7 @@ function MatchDetail() {
                 <table className="team-stats">
                     <thead>
                         <tr>
-                            <th>Your Team - Lost</th>
+                            <th>Your Team - {result === 'Win' ? 'Won' : 'Lost'}</th>
                             <th>Kills</th>
                             <th>Deaths</th>
                             <th>K/D</th>
@@ -111,7 +113,7 @@ function MatchDetail() {
                 <table className="team-stats">
                     <thead>
                         <tr>
-                            <th>Enemy Team - Win</th>
+                            <th>Enemy Team - {result === 'Win' ? 'Lost' : 'Won'}</th>
                             <th>Kills</th>
                             <th>Deaths</th>
                             <th>K/D</th>

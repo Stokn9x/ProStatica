@@ -36,6 +36,10 @@
     color: red;
 }
 
+.victory {
+    color: green;
+}
+
 .match-meta div {
     margin-bottom: 5px;
 }
