@@ -8,17 +8,25 @@ import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
 import LoggedInHome from './components/LoggedInHome';
 import PlayerStats from './components/PlayerStats';
+import Homepage from './components/HomePage';
+import LoginPage from './components/LoginPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
+
+
+
+
 
 function App() {
     return (
 
         <div className="App">
-            <MenuBar />
+            {window.location.pathname !== '/' && <MenuBar />}
             <div className="content">
                 <Routes>
-                    <Route path="/" element={<LoggedInHome />} />
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="Login" element={<LoginPage /> } />
+                    <Route path="/Home" element={<LoggedInHome />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/match/:id" element={<MatchDetail />} />
                     <Route path="/playerStats" element={<PlayerStats />} />

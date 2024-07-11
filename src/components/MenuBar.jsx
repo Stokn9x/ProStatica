@@ -13,7 +13,7 @@ function MenuBar() {
                 <img src="path-to-your-logo.png" alt="Logo" className="logo" />
                 <h3>SideBar Frame</h3>
             </div>
-            <Link to="/" className="btn menu-btn active">Home</Link>
+            <Link to="/Home" className="btn menu-btn active">Home</Link>
 
             <div className="menu-section-title" onClick={() => setPersonalInfoOpen(!isPersonalInfoOpen)}>Personal info</div>
             {isPersonalInfoOpen && (
