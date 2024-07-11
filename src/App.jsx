@@ -26,7 +26,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Homepage />} />
                     <Route path="Login" element={<LoginPage /> } />
-                    <Route path="/Home" element={<LoggedInHome />} />
+                    <Route path="/home" element={<LoggedInHome />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/match/:id" element={<MatchDetail />} />
                     <Route path="/playerStats" element={<PlayerStats />} />

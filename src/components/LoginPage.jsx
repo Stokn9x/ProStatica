@@ -6,7 +6,7 @@ const LoginPage = () => {
     return (
         <div className="homepage">
             <div className="topbar">
-                <Link to="/HomePage" className="topbar-link">About</Link>
+                <Link to="/home" className="topbar-link">About</Link>
             </div>
         </div>
     );
