@@ -1,7 +1,7 @@
 import React from 'react';
-import './../Css/Home.css';
+import './../Css/LoggedInHome.css';
 
-function Home() {
+function LoggedInHome() {
     return (
         <div className="HomePage">
             <div className="stats-header">
@@ -22,4 +22,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default LoggedInHome;

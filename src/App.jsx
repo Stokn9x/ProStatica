@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MenuBar from './components/MenuBar';
 import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
-import Home from './components/Home';
+import LoggedInHome from './components/LoggedInHome';
 import PlayerStats from './components/PlayerStats';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
@@ -18,7 +18,7 @@ function App() {
             <MenuBar />
             <div className="content">
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<LoggedInHome />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/match/:id" element={<MatchDetail />} />
                     <Route path="/playerStats" element={<PlayerStats />} />
