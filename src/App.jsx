@@ -1,7 +1,7 @@
 //import Header from "./Header.jsx"
 //import Footer from "./Footer.jsx"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MenuBar from './components/MenuBar';
 import Matches from './components/Matches';
@@ -10,14 +10,23 @@ import LoggedInHome from './components/LoggedInHome';
 import PlayerStats from './components/PlayerStats';
 import Homepage from './components/HomePage';
 import LoginPage from './components/LoginPage';
+import authService from './Services/authServices';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 
 
 
-
-
 function App() {
+    const [isAuthenticated, setIsAuthenticated] = useState(authService.getAuthStatus());
+
+    useEffect(() => {
+        setIsAuthenticated(authService.getAuthStatus());
+    }, []);
+
+
+
+
     return (
 
         <div className="App">
