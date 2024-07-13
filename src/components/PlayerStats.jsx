@@ -31,11 +31,11 @@ const PlayerStats = () => {
             </div>
             <div className="filters">
                 <div className="filter-group">
-                    <label>Side (All/T/CT)</label>
+                    <label>Time filter</label>
                     <select>
-                        <option value="all">All</option>
-                        <option value="t">T-side</option>
-                        <option value="ct">CT-side</option>
+                        <option value="all">Current Week</option>
+                        <option value="t">Last 2 weeks</option>
+                        <option value="ct">Last 30 days</option>
                     </select>
                 </div>
                 <div className="filter-group">

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import matchesData from './../Data/matches.json';
 import './../Css/Matches.css';
 
-function Matches() {
+function Matches({ currentUser }) {
     const navigate = useNavigate();
 
     const [dateFrom, setDateFrom] = useState('');
@@ -31,7 +31,7 @@ function Matches() {
             case "ancient":
                 return "/src/assets/Map-Icons/32px-De_ancient.png";
             default:
-                return "/src/assets/Map-Icons/default.png"; // Default ikon hvis ikke fundet
+                return "/src/assets/Map-Icons/default.png";
         }
     };
 
@@ -39,7 +39,10 @@ function Matches() {
         id: matchId,
         ...matchesData[matchId]
     })).filter(match => {
-        const matchDate = new Date(match.time);
+        const matchDate = new Date(match.date);
+        const isUserInMatch = match.yourTeam.some(player => player.name === currentUser.username);
+
+        if (!isUserInMatch) return false;
         if (dateFrom && new Date(dateFrom) > matchDate) return false;
         if (dateTo && new Date(dateTo) < matchDate) return false;
         if (selectedMap && match.map.toLowerCase() !== selectedMap.toLowerCase()) return false;
@@ -76,9 +79,9 @@ function Matches() {
             <table>
                 <thead>
                     <tr>
-                    {/*Der skal tilføjes en hel mere data her, såsom scoren på kampen. */}
                         <th>Map</th>
-                        <th>Win?</th>
+                        <th>Result</th>
+                        <th>Score</th>
                         <th>Date</th>
                         <th>Game Length</th>
                         <th>MVP</th>
@@ -87,17 +90,17 @@ function Matches() {
                         <th>Kills</th>
                         <th>Deaths</th>
                         <th>K/D</th>
-                        <th>Aim?</th>
-                        <th>Utility?</th>
-                        <th>Rating?</th>
-                        <th>Should have won?</th>
+                        <th>Aim</th>
+                        <th>Utility</th>
+                        <th>Rating</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredMatches.map((match, index) => (
                         <tr key={index} onClick={() => handleRowClick(match.id)}>
                             <td><img src={getMapIcon(match.map)} alt="Map Icon" /> {match.map}</td>
-                            <td>{match.win}</td>
+                            <td>{match.result}</td>
+                            <td>{match.score}</td>
                             <td>{match.date}</td>
                             <td>{match.gameLength}</td>
                             <td>{match.mvp}</td>
@@ -109,7 +112,6 @@ function Matches() {
                             <td>{match.aim}</td>
                             <td>{match.utility}</td>
                             <td>{match.rating}</td>
-                            <td>{match.shouldHaveWon}</td>
                         </tr>
                     ))}
                 </tbody>
