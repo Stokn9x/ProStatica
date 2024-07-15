@@ -11,11 +11,14 @@ function Login({ handleLogin }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (handleLogin(email, password)) {
-            navigate('/');
+            navigate('/home');
+        }
+        else {
+            alert("Invalid creds")
         }
     };
 
-    return (
+   return (
         <div className="login-container">
             <div className="login-box">
                 <div className="logo">

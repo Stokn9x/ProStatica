@@ -1,0 +1,16 @@
+{
+	"users": [
+		{
+			"email": "user@example.com",
+			"password": "password", 
+			"username": "Stokn9x",
+			"rank": "Gold Nova III"
+		},
+		{
+			"email": "anotheruser@example.com",
+			"password": "anotherpassword", 
+			"username": "Player2",
+			"rank": "Gold Nova II"
+		}
+	]
+}

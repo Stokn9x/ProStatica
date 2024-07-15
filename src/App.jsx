@@ -43,21 +43,19 @@ function App() {
     };
 
     return (
-
-        <div className="App">
-            {window.location.pathname !== '/' && <MenuBar />}
-            <div className="content">
-                <Routes>
-                    <Route path="Login" element={<Login handleLogin={handleLogin } />} />
-                    <Route path="/" element={<Homepage />} />
-                    <Route path="/home" element={isAuthenticated ? <LoggedInHome currentUser={currentUser} /> : <Navigate to="/login" /> } />
-                    <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
-                    <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
-                    <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />
-                </Routes>
+            <div className="App">
+                {window.location.pathname !== '/' && <MenuBar />}
+                <div className="content">
+                    <Routes>
+                        <Route path="login" element={<Login handleLogin={handleLogin} />} />
+                        <Route path="/" element={<Homepage />} />
+                        <Route path="/home" element={isAuthenticated ? <LoggedInHome currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />
+                    </Routes>
+                </div>
             </div>
-        </div>
-
     );
 }
 

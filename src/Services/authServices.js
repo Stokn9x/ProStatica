@@ -1,17 +1,18 @@
 // services/authService.js
 
+import users from './../Data/users.json';
+
 const authService = {
     isAuthenticated: false,
     currentUser: null,
 
     login(email, password) {
-        // In a real application, you would make an API request here.
-        // For now, we'll just simulate a successful login.
-        if (email === "user@example.com" && password === "password") {
+        const user = users.users.find(user => user.email === email && user.password === password);
+        if (user) {
             this.isAuthenticated = true;
-            this.currentUser = { email };
+            this.currentUser = { email: user.email, username: user.username, rank: user.rank };
             localStorage.setItem("isAuthenticated", "true");
-            localStorage.setItem("userEmail", email);
+            localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
             return true;
         }
         return false;
@@ -21,7 +22,7 @@ const authService = {
         this.isAuthenticated = false;
         this.currentUser = null;
         localStorage.removeItem("isAuthenticated");
-        localStorage.removeItem("userEmail");
+        localStorage.removeItem("currentUser");
     },
 
     getAuthStatus() {
@@ -29,7 +30,8 @@ const authService = {
     },
 
     getCurrentUser() {
-        return localStorage.getItem("userEmail");
+        const user = localStorage.getItem("currentUser");
+        return user ? JSON.parse(user) : null;
     }
 };
 
