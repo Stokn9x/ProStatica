@@ -35,12 +35,20 @@ function Matches({ currentUser }) {
         }
     };
 
+    // Check if currentUser exists and has the username property
+    if (!currentUser || !currentUser.username) {
+        return <div>Error: Current user data is not available.</div>;
+    }
+
     const filteredMatches = Object.keys(matchesData).map(matchId => ({
         id: matchId,
         ...matchesData[matchId]
     })).filter(match => {
         const matchDate = new Date(match.date);
-        const isUserInMatch = match.yourTeam.some(player => player.name === currentUser.username);
+        const yourTeamNormalized = match.yourTeam.map(player => player.name.toLowerCase());
+        const currentUserNormalized = currentUser.username.toLowerCase(); 
+
+        const isUserInMatch = yourTeamNormalized.includes(currentUserNormalized);
 
         if (!isUserInMatch) return false;
         if (dateFrom && new Date(dateFrom) > matchDate) return false;

@@ -27,13 +27,16 @@ function App() {
     }, []);
 
     const handleLogin = (email, password) => {
-        if (authService.login(email, password)) {
+        console.log("Handling login with", email, password);
+        const result = authService.login(email, password);
+        console.log("Login result:", result);
+        if (result) {
             setIsAuthenticated(true);
-            setCurrentUser(authService.getCurrentUser())
+            setCurrentUser(authService.getCurrentUser());
+        } else {
+            alert("Invalid creds");
         }
-        else {
-            alert("Invalid creds ");
-        }
+        return result;
     };
 
     const handleLogout = () => {

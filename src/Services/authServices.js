@@ -7,7 +7,9 @@ const authService = {
     currentUser: null,
 
     login(email, password) {
+        console.log('Login Attempt:', email, password);
         const user = users.users.find(user => user.email === email && user.password === password);
+        console.log('Found User:', user);
         if (user) {
             this.isAuthenticated = true;
             this.currentUser = { email: user.email, username: user.username, rank: user.rank };
