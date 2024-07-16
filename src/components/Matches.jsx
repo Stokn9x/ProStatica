@@ -40,13 +40,19 @@ function Matches({ currentUser }) {
         return <div>Error: Current user data is not available.</div>;
     }
 
-    const filteredMatches = Object.keys(matchesData).map(matchId => ({
-        id: matchId,
-        ...matchesData[matchId]
-    })).filter(match => {
+    console.log('Filtered Matches:');
+
+    const filteredMatches = Object.keys(matchesData)
+        .map(matchId => ({
+            id: matchId,
+            ...matchesData[matchId]
+        }))
+        .filter(match => isUserInMatch(match));   
+
+    function isUserInMatch(match) {
         const matchDate = new Date(match.date);
         const yourTeamNormalized = match.yourTeam.map(player => player.name.toLowerCase());
-        const currentUserNormalized = currentUser.username.toLowerCase(); 
+        const currentUserNormalized = currentUser.username.toLowerCase();
 
         const isUserInMatch = yourTeamNormalized.includes(currentUserNormalized);
 
@@ -56,7 +62,7 @@ function Matches({ currentUser }) {
         if (selectedMap && match.map.toLowerCase() !== selectedMap.toLowerCase()) return false;
 
         return true;
-    });
+    }
 
     return (
         <div className="matches">
