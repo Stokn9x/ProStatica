@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import matchesData from './../Data/matches.json';
-import './../Css/Matches.css';
+import matchesData from '../Data/matches.json';
+import '../Css/Matches.css';
 
 function Matches({ currentUser }) {
     const navigate = useNavigate();
@@ -14,8 +14,8 @@ function Matches({ currentUser }) {
         navigate(`/match/${matchId}`);
     };
 
-    const getMapIcon = (type) => {
-        switch (type.toLowerCase()) {
+    const getMapIcon = (map) => {
+        switch (map.toLowerCase()) {
             case "anubis":
                 return "/src/assets/Map-Icons/32px-De_anubis.png";
             case "inferno":
@@ -35,26 +35,23 @@ function Matches({ currentUser }) {
         }
     };
 
-    // Check if currentUser exists and has the username property
     if (!currentUser || !currentUser.username) {
         return <div>Error: Current user data is not available.</div>;
     }
 
-    console.log('Filtered Matches:');
-
-    const filteredMatches = Object.keys(matchesData)
+    const filteredMatches = Object.keys(matchesData.matches)
         .map(matchId => ({
             id: matchId,
-            ...matchesData[matchId]
+            ...matchesData.matches[matchId]
         }))
-        .filter(match => isUserInMatch(match));   
+        .filter(filterMatchesByUser);
 
-    function isUserInMatch(match) {
+    function filterMatchesByUser(match) {
         const matchDate = new Date(match.date);
+        const userNormalized = currentUser.username.toLowerCase();
         const yourTeamNormalized = match.yourTeam.map(player => player.name.toLowerCase());
-        const currentUserNormalized = currentUser.username.toLowerCase();
 
-        const isUserInMatch = yourTeamNormalized.includes(currentUserNormalized);
+        const isUserInMatch = yourTeamNormalized.includes(userNormalized);
 
         if (!isUserInMatch) return false;
         if (dateFrom && new Date(dateFrom) > matchDate) return false;
