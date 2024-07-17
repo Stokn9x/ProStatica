@@ -2,8 +2,19 @@ import React from 'react';
 import './../Css/PlayerStats.css';
 import playerStatsData from './../Data/playerStats.json';
 
-const PlayerStats = () => {
-    const { playerName, mapStats } = playerStatsData;
+const PlayerStats = ({ currentUser }) => {
+    if (!currentUser) {
+        return <div>Loading ....</div>;
+    }
+
+    const currentUserData = playerStatsData.players.find(player => player.playerName == currentUser.username);
+    console.log(currentUserData);
+
+    if (!currentUserData) {
+        return <div className="NoDataFound">No data available for this user.</div>;
+    }
+
+    const { playerName, mapStats, profilePicture } = currentUserData;
 
     const statDescriptions = {
         winrate: "Procentdel af vundne kampe.",
@@ -25,7 +36,7 @@ const PlayerStats = () => {
     return (
         <div className="player-stats">
             <div className="player-info">
-                <img src={playerStatsData.profilePicture} alt="Profile" className="profile-picture" />
+                <img src={profilePicture} alt="Profile" className="profile-picture" />
                 <h1>{playerName}</h1>
                 <p>Pro Gamer</p>
             </div>

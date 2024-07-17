@@ -75,6 +75,10 @@ body {
     margin-bottom: 20px;
 }
 
+.NoDataFound{
+    color: blueviolet;
+}
+
 .stat-button {
     background-color: #3E3E55;
     color: white;
