@@ -27,11 +27,11 @@ function MenuBar() {
             <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team(Needs reworkd)</div>
             {isTeamInfoOpen && (
                 <>
-                    <button type="button" className="menu-btn">Team Info</button>
-                    <button type="button" className="menu-btn">Team Stats</button>
-                    <button type="button" className="menu-btn">Team Map Stats</button>
-                    <button type="button" className="menu-btn">Team Matches</button>
-                    <button type="button" className="menu-btn">Team Calendar</button>
+                    <Link to="/TeamInfo" className="menu-btn">Team Info</Link>
+                    <Link to="/TeamStats" className="menu-btn">Team Stats</Link>
+                    <Link to="/TeamMapStats" className="menu-btn">Team Map Stats</Link>
+                    <Link to="/TeamMatches" className="menu-btn">Team Matches</Link>
+                    <Link to="/TeamCalendar" className="menu-btn">Team Calendar</Link>
                 </>
             )}
 

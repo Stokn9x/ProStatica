@@ -12,6 +12,12 @@ import Homepage from './components/HomePage';
 import Login from './/components/Login';
 import authService from './Services/authServices';
 
+import TeamInfo from './components/teamComponets/TeamInfo';
+import TeamCalendar from './components/teamComponets/TeamCalendar';
+import TeamMapStats from './components/teamComponets/TeamMapStats';
+import TeamMatches from './components/teamComponets/TeamMatches';
+import TeamStats from './components/teamComponets/TeamStats';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 
@@ -56,6 +62,12 @@ function App() {
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />
+
+                        <Route path="/TeamInfo" element={isAuthenticated ? <TeamInfo currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/TeamStats" element={isAuthenticated ? <TeamStats currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/TeamMapStats" element={isAuthenticated ? <TeamMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/TeamMatches" element={isAuthenticated ? <TeamMatches currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/TeamCalendar" element={isAuthenticated ? <TeamCalendar currentUser={currentUser} /> : <Navigate to="/login" />} />
                     </Routes>
                 </div>
             </div>
