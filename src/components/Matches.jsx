@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import matchesData from './../Data/matches.json';
-import './../Css/Matches.css';
+import matchesData from '../Data/matches.json';
+import '../Css/Matches.css';
 
-function Matches() {
+function Matches({ currentUser }) {
     const navigate = useNavigate();
 
     const [dateFrom, setDateFrom] = useState('');
@@ -14,8 +14,8 @@ function Matches() {
         navigate(`/match/${matchId}`);
     };
 
-    const getMapIcon = (type) => {
-        switch (type.toLowerCase()) {
+    const getMapIcon = (map) => {
+        switch (map.toLowerCase()) {
             case "anubis":
                 return "/src/assets/Map-Icons/32px-De_anubis.png";
             case "inferno":
@@ -31,21 +31,35 @@ function Matches() {
             case "ancient":
                 return "/src/assets/Map-Icons/32px-De_ancient.png";
             default:
-                return "/src/assets/Map-Icons/default.png"; // Default ikon hvis ikke fundet
+                return "/src/assets/Map-Icons/default.png";
         }
     };
 
-    const filteredMatches = Object.keys(matchesData).map(matchId => ({
-        id: matchId,
-        ...matchesData[matchId]
-    })).filter(match => {
-        const matchDate = new Date(match.time);
+    if (!currentUser || !currentUser.username) {
+        return <div>Error: Current user data is not available.</div>;
+    }
+
+    const filteredMatches = Object.keys(matchesData.matches)
+        .map(matchId => ({
+            id: matchId,
+            ...matchesData.matches[matchId]
+        }))
+        .filter(filterMatchesByUser);
+
+    function filterMatchesByUser(match) {
+        const matchDate = new Date(match.date);
+        const userNormalized = currentUser.username.toLowerCase();
+        const yourTeamNormalized = match.yourTeam.map(player => player.name.toLowerCase());
+
+        const isUserInMatch = yourTeamNormalized.includes(userNormalized);
+
+        if (!isUserInMatch) return false;
         if (dateFrom && new Date(dateFrom) > matchDate) return false;
         if (dateTo && new Date(dateTo) < matchDate) return false;
         if (selectedMap && match.map.toLowerCase() !== selectedMap.toLowerCase()) return false;
 
         return true;
-    });
+    }
 
     return (
         <div className="matches">
@@ -76,9 +90,9 @@ function Matches() {
             <table>
                 <thead>
                     <tr>
-                    {/*Der skal tilføjes en hel mere data her, såsom scoren på kampen. */}
                         <th>Map</th>
-                        <th>Win?</th>
+                        <th>Result</th>
+                        <th>Score</th>
                         <th>Date</th>
                         <th>Game Length</th>
                         <th>MVP</th>
@@ -87,17 +101,17 @@ function Matches() {
                         <th>Kills</th>
                         <th>Deaths</th>
                         <th>K/D</th>
-                        <th>Aim?</th>
-                        <th>Utility?</th>
-                        <th>Rating?</th>
-                        <th>Should have won?</th>
+                        <th>Aim</th>
+                        <th>Utility</th>
+                        <th>Rating</th>
                     </tr>
                 </thead>
                 <tbody>
                     {filteredMatches.map((match, index) => (
                         <tr key={index} onClick={() => handleRowClick(match.id)}>
                             <td><img src={getMapIcon(match.map)} alt="Map Icon" /> {match.map}</td>
-                            <td>{match.win}</td>
+                            <td>{match.result}</td>
+                            <td>{match.score}</td>
                             <td>{match.date}</td>
                             <td>{match.gameLength}</td>
                             <td>{match.mvp}</td>
@@ -109,7 +123,6 @@ function Matches() {
                             <td>{match.aim}</td>
                             <td>{match.utility}</td>
                             <td>{match.rating}</td>
-                            <td>{match.shouldHaveWon}</td>
                         </tr>
                     ))}
                 </tbody>
