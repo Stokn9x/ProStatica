@@ -24,12 +24,14 @@ function MenuBar() {
                 </>
             )}
 
-            <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team Info(Needs reworkd)</div>
+            <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team(Needs reworkd)</div>
             {isTeamInfoOpen && (
                 <>
-                    <button type="button" className="menu-btn">Team person info</button>
-                    <button type="button" className="menu-btn">Team stats</button>
-                    <button type="button" className="menu-btn">Calendar</button>
+                    <button type="button" className="menu-btn">Team Info</button>
+                    <button type="button" className="menu-btn">Team Stats</button>
+                    <button type="button" className="menu-btn">Team Map Stats</button>
+                    <button type="button" className="menu-btn">Team Matches</button>
+                    <button type="button" className="menu-btn">Team Calendar</button>
                 </>
             )}
 
