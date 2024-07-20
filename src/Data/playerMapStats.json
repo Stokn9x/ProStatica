@@ -1,0 +1,58 @@
+{
+  "players": [
+    {
+      "playerName": "Stokn9x",
+      "profilePicture": "/path-to-profile-picture.png",
+      "maps": {
+        "inferno": {
+
+        },
+        "vertigo": {
+
+        },
+        "anubis": {
+
+        },
+        "mirage": {
+
+        },
+        "dust2": {
+
+        },
+        "ancient": {
+
+        },
+        "nuke": {
+
+        }
+      }
+    },
+    {
+      "playerName": "Storm",
+      "profilePicture": "/path-to-profile-picture.png",
+      "maps": {
+        "inferno": {
+
+        },
+        "vertigo": {
+
+        },
+        "anubis": {
+
+        },
+        "mirage": {
+
+        },
+        "dust2": {
+
+        },
+        "ancient": {
+
+        },
+        "nuke": {
+
+        }
+      }
+    }
+  ]
+}

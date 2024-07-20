@@ -20,7 +20,7 @@ function MenuBar() {
                 <>
                     <Link to="/matches" className="menu-btn">Played Matches</Link>
                     <Link to="/playerStats" className="menu-btn">General Stats</Link>
-                    <button type="button" className="menu-btn">Maps stats</button>
+                    <Link to="/playerMapStats" className="menu-btn">Maps stats</Link>
                 </>
             )}
 

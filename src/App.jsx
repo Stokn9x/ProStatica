@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import authService from './Services/authServices';
 import MenuBar from './components/MenuBar';
 import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
@@ -10,7 +11,7 @@ import LoggedInHome from './components/LoggedInHome';
 import PlayerStats from './components/PlayerStats';
 import Homepage from './components/HomePage';
 import Login from './/components/Login';
-import authService from './Services/authServices';
+import PlayerMapStats from './components/PlayerMapStats';
 
 import TeamInfo from './components/teamComponets/TeamInfo';
 import TeamCalendar from './components/teamComponets/TeamCalendar';
@@ -20,6 +21,8 @@ import TeamStats from './components/teamComponets/TeamStats';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
+
+
 
 
 
@@ -62,6 +65,7 @@ function App() {
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/playerMapStats" element={isAuthenticated ? <PlayerMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
 
                         <Route path="/TeamInfo" element={isAuthenticated ? <TeamInfo currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/TeamStats" element={isAuthenticated ? <TeamStats currentUser={currentUser} /> : <Navigate to="/login" />} />
