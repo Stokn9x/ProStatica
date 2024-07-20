@@ -1,24 +1,20 @@
-import React, { useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '/src/Css/LoginPage.css';
+import React from 'react';
+import './../Css/SignUp.css';
 
-function Login({ handleLogin }) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+
+function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (handleLogin(email, password)) {
-            navigate('/home');
+            navigate('/login');
         }
         else {
             alert("Invalid creds")
         }
     };
 
-   return (
+    return (
         <div className="login-container">
             <div className="login-box">
                 <div className="logo">
@@ -29,30 +25,30 @@ function Login({ handleLogin }) {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <input
+                        type="name"
+                        placeholder="Full Name"
+                        className="login-input"
+                    />
+                    <input
                         type="email"
                         placeholder="Email"
                         className="login-input"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <input
                         type="password"
                         placeholder="Password"
                         className="login-input"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button type="submit" className="login-button">Log in</button>
+                    <input
+                        type="password"
+                        placeholder="Retype Password"
+                        className="login-input"
+                    />
+                    <button type="submit" className="login-button">Sign up</button>
                 </form>
-                <div className="forgot-password">
-                    <Link to="/forgot-password">Forgot your password?</Link>
-                </div>
-                <div className="signup">
-                   Don’t have an account? <Link to="/sign-Up">Sign up for free</Link>
-                </div>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default SignUp;

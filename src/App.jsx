@@ -12,6 +12,7 @@ import PlayerStats from './components/PlayerStats';
 import Homepage from './components/HomePage';
 import Login from './/components/Login';
 import PlayerMapStats from './components/PlayerMapStats';
+import SignUp from './components/Signup';
 
 import TeamInfo from './components/teamComponets/TeamInfo';
 import TeamCalendar from './components/teamComponets/TeamCalendar';
@@ -21,6 +22,7 @@ import TeamStats from './components/teamComponets/TeamStats';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
+
 
 
 
@@ -59,7 +61,8 @@ function App() {
                 {window.location.pathname !== '/' && <MenuBar />}
                 <div className="content">
                     <Routes>
-                        <Route path="login" element={<Login handleLogin={handleLogin} />} />
+                        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+                        <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
                         <Route path="/home" element={isAuthenticated ? <LoggedInHome currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
