@@ -8,8 +8,9 @@
     "\\src\\Cards",
     "\\src\\components",
     "\\src\\Css",
-    "\\src\\Data"
+    "\\src\\Data",
+    "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Data\\matches.json",
+  "SelectedNode": "\\src\\App.jsx",
   "PreviewInSolutionExplorer": false
 }
