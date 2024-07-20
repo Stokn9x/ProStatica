@@ -1,28 +1,60 @@
 {
-  "playerName": "Stokn9x",
-  "profilePicture": "/path-to-profile-picture.png",
-  "mapStats": {
-    "overall": {
-      "winrate": "60%",
-      "kda": "1.2",
-      "gamePlayed": "10",
-      "kills": "150",
-      "deaths": "100",
-      "headshots": "75",
-      "adr": "80",
-      "wins": "6",
-      "loses": "4",
-      "assist": "50"
+  "players": [
+    {
+      "playerName": "Stokn9x",
+      "profilePicture": "/path-to-profile-picture.png",
+      "mapStats": {
+        "overall": {
+          "winrate": "60%",
+          "kda": "1.2",
+          "gamePlayed": "10",
+          "kills": "150",
+          "deaths": "100",
+          "headshots": "75",
+          "adr": "80",
+          "wins": "6",
+          "loses": "4",
+          "assist": "50"
+        },
+        "tSide": {
+          "tRounds": "30",
+          "killR": "1.5",
+          "gunRound": "40"
+        },
+        "ctSide": {
+          "ctRounds": "25",
+          "killR": "1.2",
+          "gunRound": "35"
+        }
+      }
     },
-    "tSide": {
-      "tRounds": "30",
-      "killR": "1.5",
-      "gunRound": "40"
-    },
-    "ctSide": {
-      "ctRounds": "25",
-      "killR": "1.2",
-      "gunRound": "35"
+    {
+      "playerName": "Storm",
+      "profilePicture": "/path-to-profile-picture-2.png",
+      "mapStats": {
+        "overall": {
+          "winrate": "70%",
+          "kda": "1.5",
+          "gamePlayed": "20",
+          "kills": "300",
+          "deaths": "200",
+          "headshots": "150",
+          "adr": "90",
+          "wins": "14",
+          "loses": "6",
+          "assist": "60"
+        },
+        "tSide": {
+          "tRounds": "50",
+          "killR": "1.7",
+          "gunRound": "60"
+        },
+        "ctSide": {
+          "ctRounds": "45",
+          "killR": "1.4",
+          "gunRound": "55"
+        }
+      }
     }
-  }
+  ]
 }

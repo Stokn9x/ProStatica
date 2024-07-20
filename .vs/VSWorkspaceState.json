@@ -2,15 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\assets",
-    "\\src\\assets\\Logo",
-    "\\src\\assets\\Map-Icons",
-    "\\src\\Cards",
     "\\src\\components",
     "\\src\\Css",
     "\\src\\Data",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\App.jsx",
+  "SelectedNode": "\\src\\components\\Matches.jsx",
   "PreviewInSolutionExplorer": false
 }

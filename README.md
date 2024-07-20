@@ -8,4 +8,6 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 - 
 
+
+You have to install this https://nodejs.org/en after installing restart your IDE and run the code "npm install" and now it should be ready
 Hey to start the page, go into powershell aka console, and type "npm run dev" and a localhost will launch. 

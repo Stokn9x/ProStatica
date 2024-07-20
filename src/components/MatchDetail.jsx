@@ -10,7 +10,7 @@ import de_mirage from '/src/assets/Map-Icons/32px-De_mirage.png';
 import de_nuke from '/src/assets/Map-Icons/32px-De_nuke.png';
 import de_vertigo from '/src/assets/Map-Icons/32px-De_vertigo.png';
 
-import matchData from '/src/Data/matches.json';
+import matchesData from '/src/Data/matches.json';
 
 const mapIcons = {
     anubis: de_anubis,
@@ -20,14 +20,13 @@ const mapIcons = {
     mirage: de_mirage,
     nuke: de_nuke,
     vertigo: de_vertigo
-    // Tilføj flere mappings her
 };
 
 function MatchDetail() {
     const { id } = useParams();
 
     // Fetch match details based on the id
-    const match = matchData[id];
+    const match = matchesData.matches[id];
     if (!match) {
         return <div>Match not found</div>;
     }
@@ -52,7 +51,7 @@ function MatchDetail() {
         <div className="match-detail">
             <div className="match-summary">
                 <div className="match-info">
-                    <img src={mapIcons[map]} alt="Map Icon" className="map-icon" />
+                    <img src={mapIcons[map.toLowerCase()]} alt="Map Icon" className="map-icon" />
                     <div className={`match-result ${resultClass}`}>{result} {score}</div>
                     <div className="match-meta">
                         <div>{map.charAt(0).toUpperCase() + map.slice(1)}</div>
@@ -62,7 +61,6 @@ function MatchDetail() {
                 </div>
                 <div className="tabs">
                     <button className="tab active">Overview</button>
-                    <button className="tab">Rounds</button>
                     <button className="tab">Rounds</button>
                 </div>
             </div>
@@ -81,13 +79,6 @@ function MatchDetail() {
                             <th>K/D</th>
                             <th>Headshots</th>
                             <th>ADR</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,13 +90,6 @@ function MatchDetail() {
                                 <td>{player.kd}</td>
                                 <td>{player.headshots}</td>
                                 <td>{player.adr}</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
                             </tr>
                         ))}
                     </tbody>
@@ -119,31 +103,17 @@ function MatchDetail() {
                             <th>K/D</th>
                             <th>Headshots</th>
                             <th>ADR</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
-                            <th>????</th>
                         </tr>
                     </thead>
                     <tbody>
                         {enemyTeamFilled.map((player, index) => (
                             <tr key={index}>
-                                <td><img src={mapIcons[map]} alt="Player Icon" /> {player.name}</td>
+                                <td><img src={mapIcons[map.toLowerCase()]} alt="Player Icon" /> {player.name}</td>
                                 <td>{player.kills}</td>
                                 <td>{player.deaths}</td>
                                 <td>{player.kd}</td>
                                 <td>{player.headshots}</td>
                                 <td>{player.adr}</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
-                                <td>???</td>
                             </tr>
                         ))}
                     </tbody>

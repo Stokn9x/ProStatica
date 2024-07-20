@@ -1,320 +1,216 @@
 {
-  "1": {
-    "map": "anubis",
-    "result": "Defeat",
-    "score": "12:16",
-    "time": "20:21",
-    "mode": "MR12",
-    "dateFrom": "2024-07-01",
-    "dateTo": "2024-07-01",
-    "selectedMap": "Anubis",
-    "yourTeam": [
-      {
-        "name": "Stokn9x",
-        "kills": 8,
-        "deaths": 22,
-        "kd": 0.36,
-        "headshots": 1,
-        "adr": 32
-      },
-      {
-        "name": "Player2",
-        "kills": 10,
-        "deaths": 20,
-        "kd": 0.5,
-        "headshots": 3,
-        "adr": 45
-      },
-      {
-        "name": "Player3",
-        "kills": 15,
-        "deaths": 18,
-        "kd": 0.83,
-        "headshots": 4,
-        "adr": 60
-      },
-      {
-        "name": "Player4",
-        "kills": 5,
-        "deaths": 25,
-        "kd": 0.2,
-        "headshots": 2,
-        "adr": 20
-      },
-      {
-        "name": "Player5",
-        "kills": 7,
-        "deaths": 22,
-        "kd": 0.31,
-        "headshots": 1,
-        "adr": 30
-      }
-    ],
-    "enemyTeam": [
-      {
-        "name": "EnemyPlayer1",
-        "kills": 53,
-        "deaths": 15,
-        "kd": 3.53,
-        "headshots": 100,
-        "adr": 191
-      },
-      {
-        "name": "EnemyPlayer2",
-        "kills": 30,
-        "deaths": 20,
-        "kd": 1.5,
-        "headshots": 50,
-        "adr": 150
-      },
-      {
-        "name": "EnemyPlayer3",
-        "kills": 25,
-        "deaths": 18,
-        "kd": 1.39,
-        "headshots": 40,
-        "adr": 120
-      },
-      {
-        "name": "EnemyPlayer4",
-        "kills": 20,
-        "deaths": 22,
-        "kd": 0.91,
-        "headshots": 30,
-        "adr": 100
-      },
-      {
-        "name": "EnemyPlayer5",
-        "kills": 15,
-        "deaths": 25,
-        "kd": 0.6,
-        "headshots": 20,
-        "adr": 90
-      }
-    ],
-    "win": "lose",
-    "date": "2024-07-05",
-    "gameLength": "20:21",
-    "mvp": "EnemyPlayer1",
-    "hltv": 1.2,
-    "rank": "Gold Nova III",
-    "kills": 8,
-    "deaths": 22,
-    "kd": 0.36,
-    "aim": "Poor",
-    "utility": "Low",
-    "rating": "Below Average"
-  },
-  "2": {
-    "map": "inferno",
-    "result": "Victory",
-    "score": "16:14",
-    "time": "18:45",
-    "mode": "MR15",
-    "dateFrom": "2024-07-02",
-    "dateTo": "2024-07-02",
-    "selectedMap": "Inferno",
-    "yourTeam": [
-      {
-        "name": "Stokn9x",
-        "kills": 25,
-        "deaths": 18,
-        "kd": 1.39,
-        "headshots": 10,
-        "adr": 85
-      },
-      {
-        "name": "Player2",
-        "kills": 20,
-        "deaths": 15,
-        "kd": 1.33,
-        "headshots": 8,
-        "adr": 78
-      },
-      {
-        "name": "Player3",
-        "kills": 15,
-        "deaths": 20,
-        "kd": 0.75,
-        "headshots": 6,
-        "adr": 65
-      },
-      {
-        "name": "Player4",
-        "kills": 18,
-        "deaths": 17,
-        "kd": 1.06,
-        "headshots": 7,
-        "adr": 70
-      },
-      {
-        "name": "Player5",
-        "kills": 12,
-        "deaths": 22,
-        "kd": 0.55,
-        "headshots": 5,
-        "adr": 55
-      }
-    ],
-    "enemyTeam": [
-      {
-        "name": "EnemyPlayer1",
-        "kills": 20,
-        "deaths": 25,
-        "kd": 0.8,
-        "headshots": 9,
-        "adr": 80
-      },
-      {
-        "name": "EnemyPlayer2",
-        "kills": 18,
-        "deaths": 18,
-        "kd": 1.0,
-        "headshots": 7,
-        "adr": 70
-      },
-      {
-        "name": "EnemyPlayer3",
-        "kills": 22,
-        "deaths": 15,
-        "kd": 1.47,
-        "headshots": 10,
-        "adr": 90
-      },
-      {
-        "name": "EnemyPlayer4",
-        "kills": 17,
-        "deaths": 18,
-        "kd": 0.94,
-        "headshots": 6,
-        "adr": 65
-      },
-      {
-        "name": "EnemyPlayer5",
-        "kills": 15,
-        "deaths": 20,
-        "kd": 0.75,
-        "headshots": 5,
-        "adr": 60
-      }
-    ],
-    "win": "win",
-    "date": "2024-07-04",
-    "gameLength": "18:45",
-    "mvp": "Stokn9x",
-    "hltv": 1.4,
-    "rank": "Gold Nova III",
-    "kills": 25,
-    "deaths": 18,
-    "kd": 1.39,
-    "aim": "Good",
-    "utility": "Medium",
-    "rating": "Good"
-  },
-  "3": {
-    "map": "dust2",
-    "result": "Defeat",
-    "score": "10:16",
-    "time": "15:30",
-    "mode": "MR15",
-    "dateFrom": "2024-07-03",
-    "dateTo": "2024-07-03",
-    "selectedMap": "Dust2",
-    "yourTeam": [
-      {
-        "name": "Stokn9x",
-        "kills": 10,
-        "deaths": 20,
-        "kd": 0.5,
-        "headshots": 2,
-        "adr": 45
-      },
-      {
-        "name": "Player2",
-        "kills": 15,
-        "deaths": 19,
-        "kd": 0.79,
-        "headshots": 4,
-        "adr": 50
-      },
-      {
-        "name": "Player3",
-        "kills": 8,
-        "deaths": 22,
-        "kd": 0.36,
-        "headshots": 1,
-        "adr": 30
-      },
-      {
-        "name": "Player4",
-        "kills": 12,
-        "deaths": 18,
-        "kd": 0.67,
-        "headshots": 3,
-        "adr": 55
-      },
-      {
-        "name": "Player5",
-        "kills": 9,
-        "deaths": 21,
-        "kd": 0.43,
-        "headshots": 2,
-        "adr": 40
-      }
-    ],
-    "enemyTeam": [
-      {
-        "name": "EnemyPlayer1",
-        "kills": 25,
-        "deaths": 15,
-        "kd": 1.67,
-        "headshots": 8,
-        "adr": 100
-      },
-      {
-        "name": "EnemyPlayer2",
-        "kills": 20,
-        "deaths": 17,
-        "kd": 1.18,
-        "headshots": 6,
-        "adr": 80
-      },
-      {
-        "name": "EnemyPlayer3",
-        "kills": 22,
-        "deaths": 16,
-        "kd": 1.38,
-        "headshots": 7,
-        "adr": 90
-      },
-      {
-        "name": "EnemyPlayer4",
-        "kills": 18,
-        "deaths": 20,
-        "kd": 0.9,
-        "headshots": 5,
-        "adr": 75
-      },
-      {
-        "name": "EnemyPlayer5",
-        "kills": 15,
-        "deaths": 18,
-        "kd": 0.83,
-        "headshots": 4,
-        "adr": 70
-      }
-    ],
-    "win": "lose",
-    "date": "2024-07-03",
-    "gameLength": "15:30",
-    "mvp": "EnemyPlayer1",
-    "hltv": 1.1,
-    "rank": "Gold Nova III",
-    "kills": 10,
-    "deaths": 20,
-    "kd": 0.5,
-    "aim": "Average",
-    "utility": "Low",
-    "rating": "Below Average"
+  "matches": {
+    "1": {
+      "map": "anubis",
+      "result": "Defeat",
+      "score": "12:16",
+      "time": "20:21",
+      "mode": "MR12",
+      "dateFrom": "2024-07-01",
+      "dateTo": "2024-07-01",
+      "selectedMap": "Anubis",
+      "yourTeam": [
+        {
+          "name": "Stokn9x",
+          "kills": 8,
+          "deaths": 22,
+          "kd": 0.36,
+          "headshots": 1,
+          "adr": 32
+        },
+        {
+          "name": "Player2",
+          "kills": 10,
+          "deaths": 20,
+          "kd": 0.5,
+          "headshots": 3,
+          "adr": 45
+        },
+        {
+          "name": "Player3",
+          "kills": 15,
+          "deaths": 18,
+          "kd": 0.83,
+          "headshots": 4,
+          "adr": 60
+        },
+        {
+          "name": "Player4",
+          "kills": 5,
+          "deaths": 25,
+          "kd": 0.2,
+          "headshots": 2,
+          "adr": 20
+        },
+        {
+          "name": "Player5",
+          "kills": 7,
+          "deaths": 22,
+          "kd": 0.31,
+          "headshots": 1,
+          "adr": 30
+        }
+      ],
+      "enemyTeam": [
+        {
+          "name": "EnemyPlayer1",
+          "kills": 53,
+          "deaths": 15,
+          "kd": 3.53,
+          "headshots": 100,
+          "adr": 191
+        },
+        {
+          "name": "EnemyPlayer2",
+          "kills": 30,
+          "deaths": 20,
+          "kd": 1.5,
+          "headshots": 50,
+          "adr": 150
+        },
+        {
+          "name": "EnemyPlayer3",
+          "kills": 25,
+          "deaths": 18,
+          "kd": 1.39,
+          "headshots": 40,
+          "adr": 120
+        },
+        {
+          "name": "EnemyPlayer4",
+          "kills": 20,
+          "deaths": 22,
+          "kd": 0.91,
+          "headshots": 30,
+          "adr": 100
+        },
+        {
+          "name": "EnemyPlayer5",
+          "kills": 15,
+          "deaths": 25,
+          "kd": 0.6,
+          "headshots": 20,
+          "adr": 90
+        }
+      ],
+      "win": "lose",
+      "date": "2024-07-05",
+      "gameLength": "20:21",
+      "mvp": "EnemyPlayer1",
+      "hltv": 1.2,
+      "rank": "Gold Nova III",
+      "kills": 8,
+      "deaths": 22,
+      "kd": 0.36,
+      "aim": "Poor",
+      "utility": "Low",
+      "rating": "Below Average"
+    },
+    "2": {
+      "map": "inferno",
+      "result": "Victory",
+      "score": "16:14",
+      "time": "18:45",
+      "mode": "MR15",
+      "dateFrom": "2024-07-02",
+      "dateTo": "2024-07-02",
+      "selectedMap": "Inferno",
+      "yourTeam": [
+        {
+          "name": "Stokn9x",
+          "kills": 25,
+          "deaths": 18,
+          "kd": 1.39,
+          "headshots": 10,
+          "adr": 85
+        },
+        {
+          "name": "Player2",
+          "kills": 20,
+          "deaths": 15,
+          "kd": 1.33,
+          "headshots": 8,
+          "adr": 78
+        },
+        {
+          "name": "Player3",
+          "kills": 15,
+          "deaths": 20,
+          "kd": 0.75,
+          "headshots": 6,
+          "adr": 65
+        },
+        {
+          "name": "Player4",
+          "kills": 18,
+          "deaths": 17,
+          "kd": 1.06,
+          "headshots": 7,
+          "adr": 70
+        },
+        {
+          "name": "Player5",
+          "kills": 12,
+          "deaths": 22,
+          "kd": 0.55,
+          "headshots": 5,
+          "adr": 55
+        }
+      ],
+      "enemyTeam": [
+        {
+          "name": "EnemyPlayer1",
+          "kills": 20,
+          "deaths": 25,
+          "kd": 0.8,
+          "headshots": 9,
+          "adr": 80
+        },
+        {
+          "name": "EnemyPlayer2",
+          "kills": 18,
+          "deaths": 18,
+          "kd": 1.0,
+          "headshots": 7,
+          "adr": 70
+        },
+        {
+          "name": "EnemyPlayer3",
+          "kills": 22,
+          "deaths": 15,
+          "kd": 1.47,
+          "headshots": 10,
+          "adr": 90
+        },
+        {
+          "name": "EnemyPlayer4",
+          "kills": 17,
+          "deaths": 18,
+          "kd": 0.94,
+          "headshots": 6,
+          "adr": 65
+        },
+        {
+          "name": "EnemyPlayer5",
+          "kills": 15,
+          "deaths": 20,
+          "kd": 0.75,
+          "headshots": 5,
+          "adr": 60
+        }
+      ],
+      "win": "win",
+      "date": "2024-07-04",
+      "gameLength": "18:45",
+      "mvp": "Stokn9x",
+      "hltv": 1.4,
+      "rank": "Gold Nova III",
+      "kills": 25,
+      "deaths": 18,
+      "kd": 1.39,
+      "aim": "Good",
+      "utility": "Medium",
+      "rating": "Good"
+    }
   }
 }
