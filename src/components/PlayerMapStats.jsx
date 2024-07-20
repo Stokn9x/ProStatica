@@ -18,6 +18,7 @@ const PlayerMapStats = ({ currentUser }) => {
         
     return (
         <div className="playerMapStats">
+            <img src={profilePicture} alt="Profile" className="profile-picture" />
             <h1>{playerName}'s Map Stats</h1>
             <div className="searchFilters">
             {/*Make your filters here plz */}

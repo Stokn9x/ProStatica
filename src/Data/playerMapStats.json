@@ -2,7 +2,7 @@
   "players": [
     {
       "playerName": "Stokn9x",
-      "profilePicture": "/path-to-profile-picture.png",
+      "profilePicture": "/src/assets/Logo/Stokn9x-Logo.jpg",
       "maps": {
         "inferno": {
 
@@ -29,7 +29,7 @@
     },
     {
       "playerName": "Storm",
-      "profilePicture": "/path-to-profile-picture.png",
+      "profilePicture": "/src/assets/Logo/Storm-Logo.jpg",
       "maps": {
         "inferno": {
 

@@ -84,7 +84,7 @@ function MatchDetail() {
                     <tbody>
                         {yourTeamFilled.map((player, index) => (
                             <tr key={index}>
-                                <td><img src="/src/assets/Logo/2733b5102a8189a8f1e78d33440ed68e216c7be4_full.jpg" alt="Player Icon" /> {player.name}</td>
+                                <td><img src="/src/assets/Logo/Storm-Logo.jpg" alt="Player Icon" /> {player.name}</td>
                                 <td>{player.kills}</td>
                                 <td>{player.deaths}</td>
                                 <td>{player.kd}</td>
@@ -108,7 +108,7 @@ function MatchDetail() {
                     <tbody>
                         {enemyTeamFilled.map((player, index) => (
                             <tr key={index}>
-                                <td><img src={mapIcons[map.toLowerCase()]} alt="Player Icon" /> {player.name}</td>
+                                <td><img src="/src/assets/Logo/Stokn9x-Logo.jpg" alt="Player Icon" /> {player.name}</td>
                                 <td>{player.kills}</td>
                                 <td>{player.deaths}</td>
                                 <td>{player.kd}</td>

@@ -2,7 +2,7 @@
   "players": [
     {
       "playerName": "Stokn9x",
-      "profilePicture": "/path-to-profile-picture.png",
+      "profilePicture": "/src/assets/Logo/Stokn9x-Logo.jpg",
       "mapStats": {
         "overall": {
           "winrate": "60%",
@@ -30,7 +30,7 @@
     },
     {
       "playerName": "Storm",
-      "profilePicture": "/path-to-profile-picture-2.png",
+      "profilePicture": "/src/assets/Logo/Storm-Logo.jpg",
       "mapStats": {
         "overall": {
           "winrate": "70%",
