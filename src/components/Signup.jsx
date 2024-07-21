@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './../Css/SignUp.css';
 
-
 function SignUp() {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [retypePassword, setRetypePassword] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (handleLogin(email, password)) {
-            navigate('/login');
+        if (password !== retypePassword) {
+            alert('Passwords do not match');
+            return;
         }
-        else {
-            alert("Invalid creds")
+
+        const newUser = { username, email, password, rank: "Unranked", name: "none", age: "none", role: "none"};
+
+        try {
+            const response = await fetch('http://localhost:5001/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newUser),
+            });
+
+            if (response.ok) {
+                alert('Signup successful!');
+                navigate('/login');
+            } else {
+                alert('Signup failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred during signup');
         }
     };
 
@@ -25,24 +50,32 @@ function SignUp() {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <input
-                        type="name"
-                        placeholder="Full Name"
+                        type="text"
+                        placeholder="Username"
                         className="login-input"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <input
                         type="email"
                         placeholder="Email"
                         className="login-input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <input
                         type="password"
                         placeholder="Password"
                         className="login-input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <input
                         type="password"
                         placeholder="Retype Password"
                         className="login-input"
+                        value={retypePassword}
+                        onChange={(e) => setRetypePassword(e.target.value)}
                     />
                     <button type="submit" className="login-button">Sign up</button>
                 </form>

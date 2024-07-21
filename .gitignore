@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+*.wsuo
 # Runtime data
 pids
 *.pid
@@ -187,5 +187,4 @@ Icon?
 .vs/
 .vscode/
 .vscode-test/
-.wsuo
 .sqlite

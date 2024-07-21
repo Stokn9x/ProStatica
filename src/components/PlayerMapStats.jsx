@@ -28,8 +28,14 @@ const PlayerMapStats = ({ currentUser }) => {
                         Cause else you shuld only get some bulletpoint stats, on the front page of the mapstats*/}
                     <button className="mapButtons">All maps</button>
                     <button className="mapButtons">Inferno</button>
+                    <button className="mapButtons">Vertigo</button>
+                    <button className="mapButtons">Mirage</button>
+                    <button className="mapButtons">Anubis</button>
+                    <button className="mapButtons">Nuke</button>
+                    <button className="mapButtons">Dust2</button>
+                    <button className="mapButtons">Ancient</button>
                     <div className="mapStats">
-                        {/*So this is where all the stats would be :)*/}
+                        {/*Maybe make the buttons not be so close to the bottom of the div*/}
                     </div>
 
 

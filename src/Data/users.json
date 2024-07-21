@@ -1,16 +1,22 @@
 {
-	"users": [
-		{
-			"email": "user@example.com",
-			"password": "password",
-			"username": "Stokn9x",
-			"rank": "Gold Nova III"
-		},
-		{
-			"email": "anotheruser@example.com",
-			"password": "anotherpassword",
-			"username": "Storm",
-			"rank": "Gold Nova II"
-		}
-	]
+  "users": [
+    {
+      "email": "user@example.com",
+      "password": "password",
+      "username": "Stokn9x",
+      "rank": "Gold Nova III",
+      "name": "none",
+      "age": "none",
+      "role": "none"
+    },
+    {
+      "email": "anotheruser@example.com",
+      "password": "anotherpassword",
+      "username": "Storm",
+      "rank": "Gold Nova II",
+      "name": "none",
+      "age": "none",
+      "role": "none"
+    }
+  ]
 }

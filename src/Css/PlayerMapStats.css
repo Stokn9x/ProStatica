@@ -19,7 +19,7 @@ body {
     align-items: center;
 }
 
-.content h1{
+.content h1 {
     color: white;
 }
 
@@ -28,9 +28,18 @@ body {
     border: 2px solid #3E3E55;
     border-radius: 10px;
     background-color: #1E1E2F;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 100px;
+    align-content: end;    
+}
+
+.mapButtons:hover {
+    background-color: #7986CB;
 }
 
 .mapButtons {
+    transition: background-color 0.3s, color 0.3s;
     background-color: #3E3E55;
     color: white;
     padding: 10px 20px;
@@ -38,9 +47,8 @@ body {
     border-radius: 5px;
     margin: 0 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    height: 57.79px;
-    width: 44px;
+    height: auto;
+    width: auto;
 }
 
 .profile-picture {
