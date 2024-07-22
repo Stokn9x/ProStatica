@@ -7,7 +7,7 @@ import authService from './Services/authServices';
 import MenuBar from './components/MenuBar';
 import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
-import LoggedInHome from './components/LoggedInHome';
+import Profile from './components/Profile';
 import PlayerStats from './components/PlayerStats';
 import Homepage from './components/HomePage';
 import Login from './/components/Login';
@@ -64,7 +64,7 @@ function App() {
                         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
                         <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
-                        <Route path="/home" element={isAuthenticated ? <LoggedInHome currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/home" element={isAuthenticated ? <Profile currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />

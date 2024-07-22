@@ -1,23 +1,35 @@
-# React + Vite
+React + Vite
+Denne skabelon giver en grundlæggende opsætning for at komme i gang med React og Vite, inklusiv Hot Module Replacement (HMR) og nogle grundlæggende ESLint-regler.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tilgængelige Plugins
+Der er to officielle plugins til React:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-- 
+@vitejs/plugin-react: Bruger Babel til Fast Refresh.
+@vitejs/plugin-react-swc: Bruger SWC til Fast Refresh.
 
 
-You have to install this https://nodejs.org/en after installing restart your IDE and run the code "npm install" and now it should be ready
-Hey to start the page, go into powershell aka console, and type "npm run dev" and a localhost will launch. 
+Kom i gang
+Forudsætninger
+Node.js: Først skal du installere Node.js fra nodejs.org. Når installationen er færdig, skal du genstarte din IDE.
 
-Server side setup. 
-If you want to use the server for sign-up page do this
-npm install express body-parser
-npm install cors
+Opsætning af Projektet
+Installer Afhængigheder: Kør følgende kommando for at installere de nødvendige afhængigheder: npm install
 
-then navigate to the server folder "cd src" then "cd server" 
-When you are in the server folder type "node server.js" 
-Then the server is running 
-Obs to also have to run the normal web page to use the server so aka launch both ones.
+Start Udviklingsserveren: For at starte udviklingsserveren og se dit projekt lokalt, skal du køre: npm run dev
+Dette vil starte Vite-serveren, og du kan se dit projekt på http://localhost:3000 (eller en anden port, hvis angivet).
+
+Server-Side Opsætning
+Hvis du vil bruge en server-side funktion, som f.eks. en tilmeldingsside, skal du gøre følgende: npm install express body-parser cors
+
+Naviger til Server-mappen: cd src/server
+
+Start Serveren: node server.js
+Serveren kører nu.
+
+Bemærk: Sørg for, at både klientapplikationen og serveren kører samtidig, så alt fungerer korrekt.
+
+Bidrag
+Hvis du støder på problemer eller har forslag til forbedringer, er du velkommen til at åbne en issue eller sende en pull request.
+
+Licens
+Dette projekt er licenseret under MIT License. Se LICENSE filen for detaljer.

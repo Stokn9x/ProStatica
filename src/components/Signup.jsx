@@ -16,7 +16,7 @@ function SignUp() {
             return;
         }
 
-        const newUser = { username, email, password, rank: "Unranked", name: "none", age: "none", role: "none"};
+        const newUser = { username, email, password, rank: "Unranked", name: "none", age: "none", role: "none", profilePic: "/src/assets/Logo/Placeholder.jpg", bannerPic: "/src/assets/Banner/placeholder-banner.jpg"};
 
         try {
             const response = await fetch('http://localhost:5001/signup', {
