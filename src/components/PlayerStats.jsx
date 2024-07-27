@@ -36,7 +36,7 @@ const PlayerStats = ({ currentUser }) => {
     return (
         <div className="player-stats">
             <div className="player-info">
-                <img src={profilePicture} alt="Profile" className="profile-picture" />
+                <img src={profilePicture} alt="Profile" className="profile-picture-playerStats" />
                 <h1>{playerName}</h1>
                 <p>Pro Gamer</p>
             </div>
