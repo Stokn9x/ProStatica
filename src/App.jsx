@@ -64,7 +64,7 @@ function App() {
                         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
                         <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
-                        <Route path="/home" element={isAuthenticated ? <Profile currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/profile" element={isAuthenticated ? <Profile currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />

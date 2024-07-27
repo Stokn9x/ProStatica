@@ -2,12 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\assets",
+    "\\src\\assets\\Logo",
     "\\src\\components",
+    "\\src\\components\\teamComponets",
     "\\src\\Css",
     "\\src\\Data",
     "\\src\\Server",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Data\\playerStats.json",
   "PreviewInSolutionExplorer": false
 }
