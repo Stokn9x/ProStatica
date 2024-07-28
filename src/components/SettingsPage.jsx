@@ -2,7 +2,33 @@ import React, { useState } from 'react';
 import './../Css/SettingsPage.css';
 import { useNavigate } from 'react-router-dom';
 import userData from './../Data/users.json';
+import axios from 'axios';
 
+//Ja ved godt det skal laves om og hentes fra en api, men gad jeg ik lige til, så den får en fremtidige person lov til :).
+const countries = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
+    "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
+    "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+    "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad",
+    "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+    "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea",
+    "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia",
+    "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras",
+    "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan",
+    "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
+    "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
+    "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco",
+    "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands",
+    "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan",
+    "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+    "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines",
+    "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
+    "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan",
+    "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania",
+    "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu",
+    "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+];
 
 const SettingsPage = ({ currentUser }) => {
     if (!currentUser) {
@@ -16,7 +42,52 @@ const SettingsPage = ({ currentUser }) => {
         return <div className="NoDataFound">No data available for this user.</div>;
     }
 
-    const { profilePic, bannerPic, name, age } = currentUserData;
+    const [formData, setFormData] = useState({
+        profilePic: currentUserData.profilePic,
+        bannerPic: currentUserData.bannerPic,
+        username: currentUserData.username,
+        name: currentUserData.name,
+        age: currentUserData.age,
+        bio: currentUserData.bio || '',
+        location: currentUserData.location || '',
+        socialMedia: {
+            faceit: currentUserData.socialMedia?.faceit || '',
+            twitter: currentUserData.socialMedia?.twitter || '',
+            instagram: currentUserData.socialMedia?.instagram || ''
+        }
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const handleSocialMediaChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            socialMedia: {
+                ...formData.socialMedia,
+                [name]: value
+            }
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:5001/updateProfile', formData)
+            .then(response => {
+                alert('Profile updated successfully!');
+            })
+            .catch(error => {
+                console.error('There was an error updating the profile!', error);
+            });
+    };
+
+    const { profilePic, bannerPic, username, name, age, bio, location, socialMedia } = formData;
 
     const [selectedSection, setSelectedSection] = useState('publicProfile');
     const navigate = useNavigate();
@@ -27,43 +98,50 @@ const SettingsPage = ({ currentUser }) => {
                 return (
                     <div className="section-content">
                         <h2>Public Profile</h2>
-                        <div className="form-group">
-                            <label>Profile Picture</label>
-                            <input type="file" accept="image/*" />
-                            <img src={profilePic} alt="Profile" className="preview-image" />
-                        </div>
-                        <div className="form-group">
-                            <label>Banner Picture</label>
-                            <input type="file" accept="image/*" />
-                            <img src={bannerPic} alt="Banner" className="preview-image" />
-                        </div>
-                        <div className="form-group">
-                            <label>Username</label>
-                            <input type="text" defaultValue={currentUser.username} />
-                        </div>
-                        <div className="form-group">
-                            <label>Name</label>
-                            <input type="text" defaultValue={name} />
-                        </div>
-                        <div className="form-group">
-                            <label>Age</label>
-                            <input type="number" defaultValue={age} />
-                        </div>
-                        <div className="form-group">
-                            <label>Bio</label>
-                            <textarea defaultValue={currentUser.bio}></textarea>
-                        </div>
-                        <div className="form-group">
-                            <label>Location</label>
-                            <input type="text" defaultValue={currentUser.location} />
-                        </div>
-                        <div className="form-group">
-                            <label>Social Media Links</label>
-                            <input type="text" placeholder="Facebook" defaultValue={currentUser.socialMedia?.facebook} />
-                            <input type="text" placeholder="Twitter" defaultValue={currentUser.socialMedia?.twitter} />
-                            <input type="text" placeholder="Instagram" defaultValue={currentUser.socialMedia?.instagram} />
-                        </div>
-                        <button>Save Changes</button>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label>Profile Picture(Don't work)</label>
+                                <input type="file" accept="image/*" />
+                                <img src={profilePic} alt="Profile" className="preview-image" />
+                            </div>
+                            <div className="form-group">
+                                <label>Banner Picture(Don't work)</label>
+                                <input type="file" accept="image/*" />
+                                <img src={bannerPic} alt="Banner" className="preview-image" />
+                            </div>
+                            <div className="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" value={username} onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" value={name} onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label>Age</label>
+                                <input type="number" name="age" value={age} onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label>Bio</label>
+                                <textarea name="bio" value={bio} onChange={handleInputChange}></textarea>
+                            </div>
+                            <div className="form-group">
+                                <label>Location</label>
+                                <select name="location" value={location} onChange={handleInputChange}>
+                                    <option value="">Select a country</option>
+                                    {countries.map(country => (
+                                        <option key={country} value={country}>{country}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label>Social Media Links</label>
+                                <input type="text" name="faceit" placeholder="Faceit" value={socialMedia.faceit} onChange={handleSocialMediaChange} />
+                                <input type="text" name="twitter" placeholder="Twitter" value={socialMedia.twitter} onChange={handleSocialMediaChange} />
+                                <input type="text" name="instagram" placeholder="Instagram" value={socialMedia.instagram} onChange={handleSocialMediaChange} />
+                            </div>
+                            <button type="submit">Save Changes</button>
+                        </form>
                     </div>
                 );
             case 'account':

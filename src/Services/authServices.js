@@ -17,10 +17,12 @@ const authService = {
                 username: user.username,
                 rank: user.rank,
                 name: user.name,
+                age: user.age,
                 bio: user.bio,
                 bannerPic: user.bannerPic,
                 profilePic: user.profilePic,
-                location: user.location
+                location: user.location,
+                socialMedia: user.socialMedia
             };
             localStorage.setItem("isAuthenticated", "true");
             localStorage.setItem("currentUser", JSON.stringify(this.currentUser));

@@ -20,7 +20,8 @@ Dette vil starte Vite-serveren, og du kan se dit projekt på http://localhost:30
 
 ## Server-Side Opsætning
 *****Forudsætninger*****
-Hvis du vil bruge en server-side funktion, som f.eks. en tilmeldingsside, skal du gøre følgende: npm install express body-parser cors
+Hvis du vil bruge en server-side funktion, som f.eks. en tilmeldingsside, skal du gøre følgende: npm install express body-parser cors samt npm install axios
+
 
 Naviger til Server-mappen: cd src/server
 
