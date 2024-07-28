@@ -1,7 +1,10 @@
 .settings-page {
     display: flex;
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
+    margin-left: 15px;
+    position: relative;
+    top: 20px;
     padding: 20px;
     background-color: #2c2c2c;
     color: #fff;
