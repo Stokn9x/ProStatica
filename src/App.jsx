@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import authService from './Services/authServices';
+import ProfileMenu from './components/ProfileMenu';
 import MenuBar from './components/MenuBar';
 import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
@@ -13,6 +14,7 @@ import Homepage from './components/HomePage';
 import Login from './/components/Login';
 import PlayerMapStats from './components/PlayerMapStats';
 import SignUp from './components/Signup';
+import SettingsPage from './components/SettingsPage';
 
 import TeamInfo from './components/teamComponets/TeamInfo';
 import TeamCalendar from './components/teamComponets/TeamCalendar';
@@ -22,9 +24,6 @@ import TeamStats from './components/teamComponets/TeamStats';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
-
-
-
 
 
 
@@ -59,6 +58,7 @@ function App() {
     return (
             <div className="App">
                 {window.location.pathname !== '/' && <MenuBar />}
+                {isAuthenticated && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
                         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
@@ -69,7 +69,9 @@ function App() {
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerMapStats" element={isAuthenticated ? <PlayerMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/settings" element={isAuthenticated ? <SettingsPage currentUser={currentUser} /> : <Navigate to="/login" />} />
 
+                        {/*All the team pages */}
                         <Route path="/TeamInfo" element={isAuthenticated ? <TeamInfo currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/TeamStats" element={isAuthenticated ? <TeamStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/TeamMapStats" element={isAuthenticated ? <TeamMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />

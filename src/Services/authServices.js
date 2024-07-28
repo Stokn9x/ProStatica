@@ -12,7 +12,16 @@ const authService = {
         console.log('Found User:', user);
         if (user) {
             this.isAuthenticated = true;
-            this.currentUser = { email: user.email, username: user.username, rank: user.rank };
+            this.currentUser = {
+                email: user.email,
+                username: user.username,
+                rank: user.rank,
+                name: user.name,
+                bio: user.bio,
+                bannerPic: user.bannerPic,
+                profilePic: user.profilePic,
+                location: user.location
+            };
             localStorage.setItem("isAuthenticated", "true");
             localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
             return true;
