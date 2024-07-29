@@ -15,7 +15,8 @@
         "faceit": "https://www.faceit.com/en/players/Stokn9x",
         "twitter": "https://x.com/Stokn9x",
         "instagram": "https://www.instagram.com/casper_ermegaard_jensen/"
-      }
+      },
+      "signupTime": "none"
     },
     {
       "email": "storm@example.com",
@@ -33,7 +34,8 @@
         "faceit": "none",
         "twitter": "none",
         "instagram": "none"
-      }
+      },
+      "signupTime": "none"
     }
   ]
 }

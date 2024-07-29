@@ -19,7 +19,6 @@ const Profile = ({ currentUser }) => {
 
     const userProfile = {
         memberSince: "January 2023",
-        bio: "This is the bio",
         stats: {
             matchesPlayed: 100,
             rating: 4.5,

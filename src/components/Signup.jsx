@@ -9,6 +9,12 @@ function SignUp() {
     const [retypePassword, setRetypePassword] = useState('');
     const navigate = useNavigate();
 
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== retypePassword) {
@@ -32,7 +38,8 @@ function SignUp() {
                 "faceit": "none",
                 "twitter": "none",
                 "instagram": "none"
-            }
+            },
+            signupTime: `${day}-${month}-${year}`
         };
 
         try {
