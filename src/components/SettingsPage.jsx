@@ -36,7 +36,8 @@ const SettingsPage = ({ currentUser }) => {
     }
 
     const currentUserData = userData.users.find(user => user.username == currentUser.username);
-    console.log(currentUserData);
+    /*console.log(currentUserData);*/
+    console.log(currentUser.name);
 
     if (!currentUserData) {
         return <div className="NoDataFound">No data available for this user.</div>;
@@ -174,8 +175,8 @@ const SettingsPage = ({ currentUser }) => {
                         <div className="form-group">
                             <label>Theme</label>
                             <select defaultValue={currentUser.theme}>
-                                <option value="light">Light</option>
-                                <option value="dark">Dark</option>
+                                <option value="light">Dark</option>
+                                <option value="dark">Light</option>
                             </select>
                         </div>
                         <button>Save Changes</button>

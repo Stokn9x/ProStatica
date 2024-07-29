@@ -4,7 +4,7 @@
     top: 0;
     width: 220px;
     height: 100%;
-    background-color: #2A2B3D; /* Lysere mørk farve */
+    background-color: #2A2B3D;
     padding: 10px;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -49,7 +49,7 @@
 }
 
 .menu-btn.active, .menu-btn:hover {
-    background-color: #7986CB; /* Lysere farve til hover */
+    background-color: #7986CB;
 }
 
 .menu-section-title {

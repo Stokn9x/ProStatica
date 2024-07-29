@@ -9,6 +9,8 @@ function Matches({ currentUser }) {
     const [dateFrom, setDateFrom] = useState('');
     const [dateTo, setDateTo] = useState('');
     const [selectedMap, setSelectedMap] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const matchesPerPage = 10;
 
     const handleRowClick = (matchId) => {
         navigate(`/match/${matchId}`);
@@ -31,7 +33,7 @@ function Matches({ currentUser }) {
             case "ancient":
                 return "/src/assets/Map-Icons/32px-De_ancient.png";
             default:
-                return "/src/assets/Map-Icons/default.png";
+                return "/src/assets/Map-Icons/default.png"; /*Findes ik*/
         }
     };
 
@@ -60,6 +62,26 @@ function Matches({ currentUser }) {
 
         return true;
     }
+
+    const indexOfLastMatch = currentPage * matchesPerPage;
+    const indexOfFirstMatch = indexOfLastMatch - matchesPerPage;
+    const currentMatches = filteredMatches.slice(indexOfFirstMatch, indexOfLastMatch);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(filteredMatches.length / matchesPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = pageNumbers.map(number => (
+        <button
+            key={number}
+            id={number}
+            onClick={() => setCurrentPage(number)}
+            className={currentPage === number ? 'active' : ''}
+        >
+            {number}
+        </button>
+    ));
 
     return (
         <div className="matches">
@@ -107,7 +129,7 @@ function Matches({ currentUser }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredMatches.map((match, index) => (
+                    {currentMatches.map((match, index) => (
                         <tr key={index} onClick={() => handleRowClick(match.id)}>
                             <td><img src={getMapIcon(match.map)} alt="Map Icon" /> {match.map}</td>
                             <td>{match.result}</td>
@@ -127,6 +149,9 @@ function Matches({ currentUser }) {
                     ))}
                 </tbody>
             </table>
+            <div className="pagination">
+                {renderPageNumbers}
+            </div>
         </div>
     );
 }

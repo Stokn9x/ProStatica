@@ -24,6 +24,7 @@ const authService = {
                 location: user.location,
                 socialMedia: user.socialMedia
             };
+            console.log('Setting currentUser:', this.currentUser);
             localStorage.setItem("isAuthenticated", "true");
             localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
             return true;

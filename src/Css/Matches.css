@@ -12,11 +12,31 @@
     margin-left: 25px;
 }
 
-    .matches h2 {
-        margin-bottom: 20px;
-        color: #ddd; /* Light gray color for header */
-        text-align: center;
+.pagination {
+    padding: 10px;
+    margin: 0px;
+    justify-content: center;
+}
+
+.pagination button {
+    margin-left: 8px;
+}
+
+    .pagination button.active {
+        background-color: #4CAF50;
+        color: white; 
+        font-weight: bold;
     }
+
+    .pagination button:hover:not(.active) {
+        background-color: #d4d4d4;
+    }
+
+.matches h2 {
+    margin-bottom: 20px;
+    color: #ddd; /* Light gray color for header */
+    text-align: center;
+}
 
 .filter {
     display: flex;

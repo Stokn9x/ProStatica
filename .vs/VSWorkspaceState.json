@@ -11,6 +11,6 @@
     "\\src\\Server",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Data\\users.json",
+  "SelectedNode": "\\src\\Services\\authServices.js",
   "PreviewInSolutionExplorer": false
 }

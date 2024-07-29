@@ -38,7 +38,7 @@ const Profile = ({ currentUser }) => {
             <div className="user-info">
                 <h1>{username}</h1>
                 <p className="member-since">Member since {userProfile.memberSince}</p>
-                <p className="bio">{userProfile.bio}</p>
+                <p className="bio">{currentUser.bio}</p>
             </div>
             <div className="stats-header">
                 <div className="stat-item">Matches Played: {userProfile.stats.matchesPlayed}</div>

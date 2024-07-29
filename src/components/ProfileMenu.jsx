@@ -11,7 +11,7 @@ const ProfileMenu = ({ currentUser, handleLogout }) => {
     const navigate = useNavigate();
 
     const currentUserData = userData.users.find(user => user.username == currentUser.username);
-    console.log(currentUserData);
+/*    console.log(currentUserData);*/
 
     if (!currentUserData) {
         return <div className="NoDataFound">No data available for this user.</div>;
