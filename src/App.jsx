@@ -2,7 +2,7 @@
 //import Footer from "./Footer.jsx"
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import authService from './Services/authServices';
 import ProfileMenu from './components/ProfileMenu';
 import MenuBar from './components/MenuBar';
@@ -31,6 +31,8 @@ function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authService.getAuthStatus());
     const [currentUser, setCurrentUser] = useState(authService.getCurrentUser());
 
+    const location = useLocation();
+
     useEffect(() => {
         setIsAuthenticated(authService.getAuthStatus());
         setCurrentUser(authService.getCurrentUser());
@@ -55,9 +57,11 @@ function App() {
         setCurrentUser(null);
     };
 
+    const hideMenuBarRoutes = ["/login", "/sign-Up", "/"];
+
     return (
             <div className="App">
-                {window.location.pathname !== '/' && <MenuBar />}
+            {!hideMenuBarRoutes.includes(location.pathname) && <MenuBar />}
                 {isAuthenticated && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>

@@ -11,7 +11,7 @@ function Login({ handleLogin }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (handleLogin(email, password)) {
-            navigate('/home');
+            navigate('/profile');
         }
         else {
             alert("Invalid creds")
