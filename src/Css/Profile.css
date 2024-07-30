@@ -1,5 +1,5 @@
 .HomePage {
-    position: center;
+    position: relative; /* Ensure the HomePage container is the reference for absolute positioning */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,12 +114,24 @@
     text-align: center;
 }
 
-.socials {
-    margin: 20px auto;
+.socials-container {
+    position: absolute;
+    left: 20px;
+    /*top: 320px;*/
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
+    margin-top: 320px;
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
     .socials a img {
         width: 30px;
-        margin: 0 10px;
+        margin: 10px 0;
     }

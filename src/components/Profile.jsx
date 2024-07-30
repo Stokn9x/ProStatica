@@ -34,6 +34,20 @@ const Profile = ({ currentUser }) => {
                 <img src={currentUser.profilePic} alt="Profile" className="profile-picture" />
                 <p className="member-since">Member since {currentUser.signupTime}</p>
             </div>
+            <div className="socials-container">
+                <div className="socials">
+                    <p>Socials</p>
+                    <a href={currentUser.socialMedia.faceit} target="_blank" rel="noopener noreferrer">
+                        <img src="/path/to/faceit-icon.png" alt="Faceit" />
+                    </a>
+                    <a href={currentUser.socialMedia.twitter} target="_blank" rel="noopener noreferrer">
+                        <img src="/path/to/twitter-icon.png" alt="Twitter" />
+                    </a>
+                    <a href={currentUser.socialMedia.instagram} target="_blank" rel="noopener noreferrer">
+                        <img src="/path/to/instagram-icon.png" alt="Instagram" />
+                    </a>
+                </div>
+            </div>
             <div className="user-info">
                 <h1>{currentUser.username}</h1>
                 <p className="bio">{currentUser.bio}</p>
@@ -68,18 +82,6 @@ const Profile = ({ currentUser }) => {
             </div>
             <div className="team-info">
                 <p>Looking for a team? <span>Yes</span> <span>No</span></p>
-            </div>
-            <div className="socials">
-                <p>Socials</p>
-                <a href={currentUser.socialMedia.faceit} target="_blank" rel="noopener noreferrer">
-                    <img src="/path/to/faceit-icon.png" alt="Faceit" />
-                </a>
-                <a href={currentUser.socialMedia.twitter} target="_blank" rel="noopener noreferrer">
-                    <img src="/path/to/twitter-icon.png" alt="Twitter" />
-                </a>
-                <a href={currentUser.socialMedia.instagram} target="_blank" rel="noopener noreferrer">
-                    <img src="/path/to/instagram-icon.png" alt="Instagram" />
-                </a>
             </div>
         </div>
     );
