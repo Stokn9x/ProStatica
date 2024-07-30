@@ -39,7 +39,8 @@ function SignUp() {
                 "twitter": "none",
                 "instagram": "none"
             },
-            signupTime: `${day}-${month}-${year}`
+            signupTime: `${day}-${month}-${year}`,
+            role: "none"
         };
 
         try {

@@ -1,11 +1,15 @@
 .HomePage {
+    position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #1b1b1b;
     color: #fff;
     min-height: 100vh;
-    width: 250%;
+    width: 200%;
+    margin-left: 30px;
+    margin-top: 20px;
+    border-radius: 15px;
 }
 
 .banner {
@@ -15,6 +19,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-radius: 15px;
 }
 
 .profile-picture {
@@ -28,6 +33,15 @@
     border: 5px solid #fff;
 }
 
+.member-since {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
 .user-info {
     margin-top: 60px;
     text-align: center;
@@ -35,10 +49,25 @@
     width: 100%;
 }
 
-.member-since,
 .bio {
     margin: 5px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    margin: 0 auto;
+    white-space: pre-line;
+    max-width: 600px;
 }
+
+.additional-info {
+    margin: 10px 0;
+}
+
+    .additional-info span {
+        display: block;
+        margin: 5px 0;
+    }
 
 .stats-header {
     display: flex;
@@ -52,6 +81,9 @@
 .stat-item {
     margin: 10px;
     flex: 1 1 30%;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .homePageMatches-header {
@@ -63,6 +95,18 @@
 .homePageMatches {
     width: 100%;
     margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.match-card {
+    width: 80%;
+    background: #333;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: left;
 }
 
 .team-info {
@@ -74,3 +118,8 @@
     margin: 20px auto;
     text-align: center;
 }
+
+    .socials a img {
+        width: 30px;
+        margin: 0 10px;
+    }

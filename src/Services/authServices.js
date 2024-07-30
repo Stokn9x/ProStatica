@@ -18,6 +18,7 @@ const authService = {
                 rank: user.rank,
                 name: user.name,
                 age: user.age,
+                role: user.role,
                 bio: user.bio,
                 bannerPic: user.bannerPic,
                 profilePic: user.profilePic,

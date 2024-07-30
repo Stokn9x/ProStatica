@@ -2,8 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\assets",
-    "\\src\\assets\\Logo",
     "\\src\\components",
     "\\src\\components\\teamComponets",
     "\\src\\Css",
@@ -11,6 +9,6 @@
     "\\src\\Server",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Services\\authServices.js",
+  "SelectedNode": "\\src\\components\\Login.jsx",
   "PreviewInSolutionExplorer": false
 }

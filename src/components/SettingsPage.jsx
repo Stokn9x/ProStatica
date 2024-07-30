@@ -30,6 +30,8 @@ const countries = [
     "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
+const roles = ["Ingame Leader", "Support", "Lurker", "Rifler", "Entry", "AWP'er", "Coach", "Stand-In"]
+
 const SettingsPage = ({ currentUser }) => {
     if (!currentUser) {
         return <div>Loading ....</div>;
@@ -49,6 +51,7 @@ const SettingsPage = ({ currentUser }) => {
         username: currentUserData.username,
         name: currentUserData.name,
         age: currentUserData.age,
+        role: currentUserData.role,
         bio: currentUserData.bio || '',
         location: currentUserData.location || '',
         socialMedia: {
@@ -56,6 +59,7 @@ const SettingsPage = ({ currentUser }) => {
             twitter: currentUserData.socialMedia?.twitter || '',
             instagram: currentUserData.socialMedia?.instagram || ''
         }
+
     });
 
     const handleInputChange = (e) => {
@@ -79,7 +83,18 @@ const SettingsPage = ({ currentUser }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5001/updateProfile', formData)
+
+        // Merge existing user data with form data
+        const updatedUserData = {
+            ...currentUserData,
+            ...formData,
+            socialMedia: {
+                ...currentUserData.socialMedia,
+                ...formData.socialMedia
+            }
+        };
+
+        axios.post('http://localhost:5001/updateProfile', updatedUserData)
             .then(response => {
                 alert('Profile updated successfully!');
             })
@@ -87,8 +102,8 @@ const SettingsPage = ({ currentUser }) => {
                 console.error('There was an error updating the profile!', error);
             });
     };
-
-    const { profilePic, bannerPic, username, name, age, bio, location, socialMedia } = formData;
+    
+    const { profilePic, bannerPic, username, name, age, role, bio, location, socialMedia } = formData;
 
     const [selectedSection, setSelectedSection] = useState('publicProfile');
     const navigate = useNavigate();
@@ -121,6 +136,15 @@ const SettingsPage = ({ currentUser }) => {
                             <div className="form-group">
                                 <label>Age</label>
                                 <input type="number" name="age" value={age} onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label>Role</label>
+                                <select name="role" value={role} onChange={handleInputChange}>
+                                    <option value="">Select your role</option>
+                                    {roles.map(role => (
+                                        <option key={role} value={role}>{role}</option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label>Bio</label>
