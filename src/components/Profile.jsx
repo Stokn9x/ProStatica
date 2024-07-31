@@ -25,7 +25,6 @@ const Profile = ({ currentUser }) => {
             adr: 85
         }
     };
-
     const latestMatches = Object.values(matchData.matches).slice(0, 5);
 
     return (

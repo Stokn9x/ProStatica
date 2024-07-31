@@ -1,0 +1,74 @@
+.teamInfo {
+    border: 2px solid #3E3E55;
+    border-radius: 10px;
+    background-color: #1E1E2F;
+    width: 1400px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+    padding: 20px;
+}
+
+.teamContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.createTeam, .joinTeam {
+    display: flex;
+    width: 48%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #2E2E3F;
+    padding: 20px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #3E3E55;
+    background-color: #1E1E2F;
+    color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #3E3E55;
+    color: #fff;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #575775;
+    }
+
+.teamSeparator {
+    width: 100%;
+    border: 1px solid #3E3E55;
+    margin: 20px 0;
+}
+
+.teamCode {
+    margin-top: 20px;
+    color: #fff;
+}

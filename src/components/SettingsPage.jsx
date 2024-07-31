@@ -84,7 +84,6 @@ const SettingsPage = ({ currentUser }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Merge existing user data with form data
         const updatedUserData = {
             ...currentUserData,
             ...formData,

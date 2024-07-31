@@ -5,9 +5,11 @@
     "\\src\\components",
     "\\src\\components\\teamComponets",
     "\\src\\Css",
+    "\\src\\Css\\TeamCss",
     "\\src\\Data",
     "\\src\\Server",
     "\\src\\Services"
   ],
+  "SelectedNode": "\\src\\Data\\users.json",
   "PreviewInSolutionExplorer": false
 }
