@@ -20,9 +20,7 @@
       "signupTime": "none",
       "currentTeam": "none",
       "previousTeams": [
-        "none",
-        "Syntox Serpants",
-        "Vortex Gaming Talent"
+        "Syntox Serpants"
       ]
     },
     {
@@ -43,29 +41,6 @@
         "instagram": "none"
       },
       "signupTime": "none",
-      "currentTeam": "none",
-      "previousTeams": [
-        "none"
-      ]
-    },
-    {
-      "username": "test",
-      "email": "test@gmail.com",
-      "password": "321",
-      "rank": "Unranked",
-      "name": "none",
-      "age": "none",
-      "role": "none",
-      "profilePic": "/src/assets/Logo/Placeholder.jpg",
-      "bannerPic": "/src/assets/Banner/placeholder-banner.jpg",
-      "bio": "none",
-      "location": "none",
-      "socialMedia": {
-        "faceit": "none",
-        "twitter": "none",
-        "instagram": "none"
-      },
-      "signupTime": "1-8-2024",
       "currentTeam": "none",
       "previousTeams": [
         "none"

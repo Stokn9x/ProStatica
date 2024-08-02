@@ -28,7 +28,7 @@ const Profile = ({ currentUser }) => {
     const latestMatches = Object.values(matchData.matches).slice(0, 5);
 
     return (
-        <div className="HomePage">
+        <div className="ProfilePage">
             <div className="banner" style={{ backgroundImage: `url(${currentUser.bannerPic})` }}>
                 <img src={currentUser.profilePic} alt="Profile" className="profile-picture" />
                 <p className="member-since">Member since {currentUser.signupTime}</p>

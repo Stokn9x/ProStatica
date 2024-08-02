@@ -1,9 +1,9 @@
-.HomePage {
-    position: relative; /* Ensure the HomePage container is the reference for absolute positioning */
+.ProfilePage {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #1b1b1b;
+    background-color: #2a2a33;
     color: #fff;
     min-height: 100vh;
     width: 200%;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './../../Css/TeamCss/TeamInfo.css';
+import authService from '../../Services/authServices';
 
 const TeamInfo = ({ currentUser, updateUser }) => {
     const [teamName, setTeamName] = useState('');
@@ -115,10 +116,8 @@ const TeamInfo = ({ currentUser, updateUser }) => {
                     currentTeam: 'none',
                     previousTeams: [...currentUser.previousTeams, responseData.teamName]
                 };
-                updateUser(updatedUser);
-                localStorage.setItem('currentUser', JSON.stringify(updatedUser)); // Update local storage
-                setForceUpdate(!forceUpdate); // Force component re-render
-                navigate('/CreateOrJoinTeam'); // Navigate to CreateOrJoinTeam page
+                authService.updateCurrentUser();
+                navigate('/TeamInfo');
             } else {
                 alert('Leaving the team failed');
             }
@@ -126,6 +125,8 @@ const TeamInfo = ({ currentUser, updateUser }) => {
             console.error('Error:', error);
         }
     };
+
+    console.log(currentUser);
 
     /*This page might be cut into 2 instead of one, casue it might be a bit too long and fucked to look at*/
     return (
