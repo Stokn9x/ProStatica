@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './../../Css/TeamCss/TeamInfo.css';
 
-const TeamInfo = ({ currentUser }) => {
+const TeamInfo = ({ currentUser, updateUser }) => {
     const [teamName, setTeamName] = useState('');
     const [teamTag, setTeamTag] = useState('');
     const [joinTeamCode, setJoinTeamCode] = useState('');
+    const [forceUpdate, setForceUpdate] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!storedUser || !storedUser.currentTeam || storedUser.currentTeam === 'none') {
+            navigate('/TeamInfo');
+        }
+    }, [navigate, forceUpdate]);
 
     const handleTeamNameChange = (event) => {
         setTeamName(event.target.value);
@@ -46,6 +56,7 @@ const TeamInfo = ({ currentUser }) => {
 
             if (response.ok) {
                 alert('Team creation was successful!');
+                updateUser({ ...currentUser, currentTeam: teamName });
             } else {
                 alert('Team creation failed');
             }
@@ -64,8 +75,6 @@ const TeamInfo = ({ currentUser }) => {
             role: 'rifler'
         };
 
-        console.log('User to join:', user);
-
         try {
             const response = await fetch('http://localhost:5001/joinTeam', {
                 method: 'POST',
@@ -77,6 +86,7 @@ const TeamInfo = ({ currentUser }) => {
 
             if (response.ok) {
                 alert('Team joining was successful!');
+                updateUser({ ...currentUser, currentTeam: responseData.teamName });
             } else {
                 alert('Team joining failed');
             }
@@ -85,51 +95,94 @@ const TeamInfo = ({ currentUser }) => {
         }
     };
 
+    const handleLeaveTeam = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await fetch('http://localhost:5001/leaveTeam', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: currentUser.username })
+            });
+
+            if (response.ok) {
+                const responseData = await response.json(); // Get team name from response
+                alert('You have successfully left the team.');
+                const updatedUser = {
+                    ...currentUser,
+                    currentTeam: 'none',
+                    previousTeams: [...currentUser.previousTeams, responseData.teamName]
+                };
+                updateUser(updatedUser);
+                localStorage.setItem('currentUser', JSON.stringify(updatedUser)); // Update local storage
+                setForceUpdate(!forceUpdate); // Force component re-render
+                navigate('/CreateOrJoinTeam'); // Navigate to CreateOrJoinTeam page
+            } else {
+                alert('Leaving the team failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    /*This page might be cut into 2 instead of one, casue it might be a bit too long and fucked to look at*/
     return (
         <div className="teamInfo">
             <div className="teamContainer">
-                <div className="createTeam">
-                    <form onSubmit={handleCreateTeam}>
-                        <h1>Create Team</h1>
-                        <div className="formGroup">
-                            <label htmlFor="teamName">Team Name:</label>
-                            <input
-                                type="text"
-                                id="teamName"
-                                value={teamName}
-                                onChange={handleTeamNameChange}
-                                required
-                            />
+                {(currentUser.currentTeam === 'none' || currentUser.currentTeam === '') ? (
+                    <>
+                        <div className="createTeam">
+                            <form onSubmit={handleCreateTeam}>
+                                <h1>Create Team</h1>
+                                <div className="formGroup">
+                                    <label htmlFor="teamName">Team Name:</label>
+                                    <input
+                                        type="text"
+                                        id="teamName"
+                                        value={teamName}
+                                        onChange={handleTeamNameChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="formGroup">
+                                    <label htmlFor="teamTag">Team Tag:</label>
+                                    <input
+                                        type="text"
+                                        id="teamTag"
+                                        value={teamTag}
+                                        onChange={handleTeamTagChange}
+                                        required
+                                    />
+                                </div>
+                                <button type="submit">Create</button>
+                            </form>
                         </div>
-                        <div className="formGroup">
-                            <label htmlFor="teamTag">Team Tag:</label>
-                            <input
-                                type="text"
-                                id="teamTag"
-                                value={teamTag}
-                                onChange={handleTeamTagChange}
-                                required
-                            />
+                        <div className="joinTeam">
+                            <h1>Join Team</h1>
+                            <form onSubmit={handleJoinTeam}>
+                                <div className="formGroup">
+                                    <label htmlFor="joinTeamCode">Team Code:</label>
+                                    <input
+                                        type="text"
+                                        id="joinTeamCode"
+                                        value={joinTeamCode}
+                                        onChange={handleJoinTeamCodeChange}
+                                        required
+                                    />
+                                </div>
+                                <button type="submit">Join</button>
+                            </form>
                         </div>
-                        <button type="submit">Create</button>
-                    </form>
-                </div>
-                <div className="joinTeam">
-                    <h1>Join Team</h1>
-                    <form onSubmit={handleJoinTeam}>
-                        <div className="formGroup">
-                            <label htmlFor="joinTeamCode">Team Code:</label>
-                            <input
-                                type="text"
-                                id="joinTeamCode"
-                                value={joinTeamCode}
-                                onChange={handleJoinTeamCodeChange}
-                                required
-                            />
-                        </div>
-                        <button type="submit">Join</button>
-                    </form>
-                </div>
+                    </>
+                ) : (
+                    <div className="teamDashboard">
+                        <h1>Welcome to Team {currentUser.currentTeam}</h1>
+                        <p>Team details will be displayed here.</p>
+                        <button onClick={handleLeaveTeam}>Leave Team</button>
+                    </div>
+                )}
             </div>
             <hr className="teamSeparator" />
         </div>

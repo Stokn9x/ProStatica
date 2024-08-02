@@ -30,6 +30,9 @@ Serveren kører nu.
 
 Bemærk: Sørg for, at både klientapplikationen og serveren kører samtidig, så alt fungerer korrekt.
 
+***opsætning af live update server.js***
+Hvis du vil have live update af serveren skal du benytte dig af en pakke kaldet nodemon. For at installere nodemon skal du køre npm install -g nodemon. Herefter kan du starte serveren med nodemon server.js.
+
 ## Bidrag
 Hvis du støder på problemer eller har forslag til forbedringer, er du velkommen til at åbne en issue eller sende en pull request.
 

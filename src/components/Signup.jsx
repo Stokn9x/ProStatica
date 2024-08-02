@@ -40,7 +40,10 @@ function SignUp() {
                 "instagram": "none"
             },
             signupTime: `${day}-${month}-${year}`,
-            role: "none"
+            "currentTeam": "none",
+            "previousTeams": [
+                "none"
+            ]
         };
 
         try {

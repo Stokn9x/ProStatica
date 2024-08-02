@@ -1,19 +1,6 @@
 {
   "teams": [
     {
-      "teamName": "Syntox Talent",
-      "teamTag": "123",
-      "teamCode": "0ib7d4wo",
-      "members": [
-        {
-          "username": "Stokn9x",
-          "name": "Casper Jensen",
-          "age": "24",
-          "role": "admin"
-        }
-      ]
-    },
-    {
       "teamName": "Syntox Serpants",
       "teamTag": "321",
       "teamCode": "lf1gv1f4",

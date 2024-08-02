@@ -24,7 +24,9 @@ const authService = {
                 profilePic: user.profilePic,
                 location: user.location,
                 socialMedia: user.socialMedia,
-                signupTime: user.signupTime
+                signupTime: user.signupTime,
+                currentTeam: user.currentTeam,
+                previousTeams: user.previousTeams
             };
             console.log('Setting currentUser:', this.currentUser);
             localStorage.setItem("isAuthenticated", "true");

@@ -9,7 +9,7 @@
       "username": "Stokn9x",
       "name": "Casper Jensen",
       "age": "24",
-      "role": "Ingame Leader",
+      "role": "Support",
       "bio": "Erfaren FPS-spiller med en passion for konkurrencepræget gaming. Jeg nyder at finpudse mine færdigheder og lære nye taktikker. I min fritid kan jeg godt lide at programmere og se esport.",
       "location": "Denmark",
       "socialMedia": {
@@ -17,7 +17,13 @@
         "twitter": "https://x.com/Stokn9x",
         "instagram": "https://www.instagram.com/casper_ermegaard_jensen/"
       },
-      "signupTime": "none"
+      "signupTime": "none",
+      "currentTeam": "none",
+      "previousTeams": [
+        "none",
+        "Syntox Serpants",
+        "Vortex Gaming Talent"
+      ]
     },
     {
       "email": "storm@example.com",
@@ -36,7 +42,34 @@
         "twitter": "none",
         "instagram": "none"
       },
-      "signupTime": "none"
+      "signupTime": "none",
+      "currentTeam": "none",
+      "previousTeams": [
+        "none"
+      ]
+    },
+    {
+      "username": "test",
+      "email": "test@gmail.com",
+      "password": "321",
+      "rank": "Unranked",
+      "name": "none",
+      "age": "none",
+      "role": "none",
+      "profilePic": "/src/assets/Logo/Placeholder.jpg",
+      "bannerPic": "/src/assets/Banner/placeholder-banner.jpg",
+      "bio": "none",
+      "location": "none",
+      "socialMedia": {
+        "faceit": "none",
+        "twitter": "none",
+        "instagram": "none"
+      },
+      "signupTime": "1-8-2024",
+      "currentTeam": "none",
+      "previousTeams": [
+        "none"
+      ]
     }
   ]
 }
