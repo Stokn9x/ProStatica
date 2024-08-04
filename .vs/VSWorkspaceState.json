@@ -8,8 +8,9 @@
     "\\src\\Css\\TeamCss",
     "\\src\\Data",
     "\\src\\Server",
+    "\\src\\Server\\API",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Data\\teams.json",
+  "SelectedNode": "\\src\\Services\\authServices.js",
   "PreviewInSolutionExplorer": false
 }

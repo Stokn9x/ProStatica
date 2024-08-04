@@ -21,6 +21,8 @@ import TeamCalendar from './components/teamComponets/TeamCalendar';
 import TeamMapStats from './components/teamComponets/TeamMapStats';
 import TeamMatches from './components/teamComponets/TeamMatches';
 import TeamStats from './components/teamComponets/TeamStats';
+import TeamCreateJoin from './components/teamComponets/TeamCreateJoin';
+import TeamInfoDashboard from './components/teamComponets/TeamInfoDashboard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
@@ -57,6 +59,11 @@ function App() {
         setCurrentUser(null);
     };
 
+    const updateUser = (updatedUser) => {
+        authService.updateCurrentUser(updatedUser);
+        setCurrentUser(authService.getCurrentUser());
+    };
+
     const hideMenuBarRoutes = ["/login", "/sign-Up", "/"];
 
     return (
@@ -75,8 +82,10 @@ function App() {
                         <Route path="/playerMapStats" element={isAuthenticated ? <PlayerMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/settings" element={isAuthenticated ? <SettingsPage currentUser={currentUser} /> : <Navigate to="/login" />} />
 
-                        {/*All the team pages */}
-                        <Route path="/TeamInfo" element={isAuthenticated ? <TeamInfo currentUser={currentUser} /> : <Navigate to="/login" />} />
+                    {/*All the team pages */}
+                        <Route path="/TeamInfoDashboard" element={isAuthenticated ? <TeamInfoDashboard currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
+                        <Route path="/TeamCreateJoin" element={isAuthenticated ? <TeamCreateJoin currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
+                        <Route path="/TeamInfo" element={isAuthenticated ? <TeamInfo currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
                         <Route path="/TeamStats" element={isAuthenticated ? <TeamStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/TeamMapStats" element={isAuthenticated ? <TeamMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/TeamMatches" element={isAuthenticated ? <TeamMatches currentUser={currentUser} /> : <Navigate to="/login" />} />

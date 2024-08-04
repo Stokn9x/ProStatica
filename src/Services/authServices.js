@@ -51,27 +51,11 @@ const authService = {
 		const user = localStorage.getItem("currentUser");
 		return user ? JSON.parse(user) : null;
 	},
-	/*This should update the CurrentUser*/
-	updateCurrentUser() {
 
-		this.currentUser = {
-			email: user.email,
-			username: user.username,
-			rank: user.rank,
-			name: user.name,
-			age: user.age,
-			role: user.role,
-			bio: user.bio,
-			bannerPic: user.bannerPic,
-			profilePic: user.profilePic,
-			location: user.location,
-			socialMedia: user.socialMedia,
-			signupTime: user.signupTime,
-			currentTeam: user.currentTeam,
-			previousTeams: user.previousTeams
-		};
-		localStorage.removeItem("currentUser");
-		localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
-	},
+	updateCurrentUser(updatedUser) {
+		this.currentUser = updatedUser;
+		localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+	}
 };
+
 export default authService;

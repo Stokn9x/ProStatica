@@ -26,6 +26,28 @@ const updateUser = (usersData, username, updateCallback) => {
 	}
 };
 
+app.get('/getUser/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			res.status(500).send('An error occurred while reading user data.');
+			return;
+		}
+
+		const usersData = JSON.parse(data);
+		const user = usersData.users.find(user => user.username === username);
+
+		if (!user) {
+			res.status(404).send('User not found.');
+			return;
+		}
+
+		res.status(200).json(user);
+	});
+});
+
 app.post('/signup', (req, res) => {
 	const newUser = req.body;
 
@@ -186,7 +208,7 @@ app.post('/joinTeam', (req, res) => {
 						return;
 					}
 
-					res.status(200).send('You joined the team successfully!');
+					res.status(200).json({ message: 'You joined the team successfully!', team });
 				});
 			});
 		});
