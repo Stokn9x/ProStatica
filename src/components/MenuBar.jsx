@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './../Css/MenuBar.css'; // Tilføj en CSS-fil for yderligere styling
+import './../Css/MenuBar.css';
 
-function MenuBar() {
-
+function MenuBar({ currentUser }) {
     const [isPersonalInfoOpen, setPersonalInfoOpen] = useState(false);
     const [isTeamInfoOpen, setTeamInfoOpen] = useState(false);
+
+    const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
 
     return (
         <div className="vertical-menu">
@@ -28,10 +29,21 @@ function MenuBar() {
             {isTeamInfoOpen && (
                 <>
                     <Link to="/TeamInfo" className="menu-btn">Team Info</Link>
-                    <Link to="/TeamStats" className="menu-btn">Team Stats</Link>
-                    <Link to="/TeamMapStats" className="menu-btn">Team Map Stats</Link>
-                    <Link to="/TeamMatches" className="menu-btn">Team Matches</Link>
-                    <Link to="/TeamCalendar" className="menu-btn">Team Calendar</Link>
+                    {isUserInTeam ? (
+                        <>
+                            <Link to="/TeamStats" className="menu-btn">Team Stats</Link>
+                            <Link to="/TeamMapStats" className="menu-btn">Team Map Stats</Link>
+                            <Link to="/TeamMatches" className="menu-btn">Team Matches</Link>
+                            <Link to="/TeamCalendar" className="menu-btn">Team Calendar</Link>
+                        </>
+                    ) : (
+                        <>
+                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Stats</div>
+                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Map Stats</div>
+                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Matches</div>
+                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Calendar</div>
+                        </>
+                    )}
                 </>
             )}
 

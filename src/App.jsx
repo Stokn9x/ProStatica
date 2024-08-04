@@ -68,7 +68,7 @@ function App() {
 
     return (
             <div className="App">
-            {!hideMenuBarRoutes.includes(location.pathname) && <MenuBar />}
+            {!hideMenuBarRoutes.includes(location.pathname) && <MenuBar currentUser={currentUser} />}
                 {isAuthenticated && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>

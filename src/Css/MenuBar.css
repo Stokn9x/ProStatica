@@ -15,6 +15,16 @@
     justify-content: space-between;
 }
 
+    .vertical-menu .menu-btn.disabled {
+        color: gray;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+        .vertical-menu .menu-btn.disabled i {
+            margin-right: 8px;
+        }
+
 .menu-header {
     text-align: center;
     margin-bottom: 20px;
