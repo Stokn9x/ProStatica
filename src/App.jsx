@@ -66,6 +66,8 @@ function App() {
 
     const hideMenuBarRoutes = ["/login", "/sign-Up", "/"];
 
+    const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
+
     return (
             <div className="App">
             {!hideMenuBarRoutes.includes(location.pathname) && <MenuBar currentUser={currentUser} />}
@@ -82,14 +84,14 @@ function App() {
                         <Route path="/playerMapStats" element={isAuthenticated ? <PlayerMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/settings" element={isAuthenticated ? <SettingsPage currentUser={currentUser} /> : <Navigate to="/login" />} />
 
-                    {/*All the team pages */}
-                        <Route path="/TeamInfoDashboard" element={isAuthenticated ? <TeamInfoDashboard currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
+                        {/*All the team pages */}
+                        <Route path="/TeamInfoDashboard" element={isAuthenticated ? (isUserInTeam ? <TeamInfoDashboard currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                         <Route path="/TeamCreateJoin" element={isAuthenticated ? <TeamCreateJoin currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
                         <Route path="/TeamInfo" element={isAuthenticated ? <TeamInfo currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
-                        <Route path="/TeamStats" element={isAuthenticated ? <TeamStats currentUser={currentUser} /> : <Navigate to="/login" />} />
-                        <Route path="/TeamMapStats" element={isAuthenticated ? <TeamMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
-                        <Route path="/TeamMatches" element={isAuthenticated ? <TeamMatches currentUser={currentUser} /> : <Navigate to="/login" />} />
-                        <Route path="/TeamCalendar" element={isAuthenticated ? <TeamCalendar currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/TeamStats" element={isAuthenticated ? (isUserInTeam ? <TeamStats currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
+                        <Route path="/TeamMapStats" element={isAuthenticated ? (isUserInTeam ? <TeamMapStats currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
+                        <Route path="/TeamMatches" element={isAuthenticated ? (isUserInTeam ? <TeamMatches currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
+                        <Route path="/TeamCalendar" element={isAuthenticated ? (isUserInTeam ? <TeamCalendar currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                     </Routes>
                 </div>
             </div>
