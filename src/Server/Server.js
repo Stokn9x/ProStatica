@@ -188,7 +188,6 @@ app.post('/joinTeam', (req, res) => {
 				return;
 			}
 
-			// Update user's current team
 			fs.readFile(usersDataPath, 'utf8', (err, userData) => {
 				if (err) {
 					console.error(err);
@@ -295,6 +294,28 @@ app.post('/leaveTeam', (req, res) => {
 				});
 			});
 		});
+	});
+});
+
+app.get('/teamPlayers', (req, res) => {
+	const { team } = req.query;
+
+	fs.readFile(teamsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			res.status(500).send('An error occurred while reading team data.');
+			return;
+		}
+
+		const teamsData = JSON.parse(data);
+		const teamData = teamsData.teams.find(t => t.teamName === team);
+
+		if (!teamData) {
+			res.status(404).send('Team not found.');
+			return;
+		}
+
+		res.status(200).json(teamData.members);
 	});
 });
 

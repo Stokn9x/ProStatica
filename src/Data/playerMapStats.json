@@ -5,25 +5,102 @@
       "profilePicture": "/src/assets/Logo/Stokn9x-Logo.jpg",
       "maps": {
         "inferno": {
-
+          "kills": 50,
+          "deaths": 30,
+          "assists": 10,
+          "kr": 0.8,
+          "kd": 1.67,
+          "adr": 90.5,
+          "ctRounds": 8,
+          "tRounds": 7,
+          "entryCT": 3,
+          "entryT": 2,
+          "ctPistolWins": 1,
+          "tPistolWins": 1
         },
         "vertigo": {
-
+          "kills": 60,
+          "deaths": 40,
+          "assists": 15,
+          "kr": 0.9,
+          "kd": 1.5,
+          "adr": 100.2,
+          "ctRounds": 10,
+          "tRounds": 8,
+          "entryCT": 4,
+          "entryT": 3,
+          "ctPistolWins": 2,
+          "tPistolWins": 0
         },
         "anubis": {
-
+          "kills": 70,
+          "deaths": 50,
+          "assists": 20,
+          "kr": 0.85,
+          "kd": 1.4,
+          "adr": 85.5,
+          "ctRounds": 9,
+          "tRounds": 7,
+          "entryCT": 2,
+          "entryT": 5,
+          "ctPistolWins": 1,
+          "tPistolWins": 2
         },
         "mirage": {
-
+          "kills": 55,
+          "deaths": 45,
+          "assists": 12,
+          "kr": 0.7,
+          "kd": 1.22,
+          "adr": 78.4,
+          "ctRounds": 7,
+          "tRounds": 8,
+          "entryCT": 3,
+          "entryT": 1,
+          "ctPistolWins": 0,
+          "tPistolWins": 1
         },
         "dust2": {
-
+          "kills": 65,
+          "deaths": 35,
+          "assists": 18,
+          "kr": 0.95,
+          "kd": 1.86,
+          "adr": 92.3,
+          "ctRounds": 11,
+          "tRounds": 10,
+          "entryCT": 5,
+          "entryT": 4,
+          "ctPistolWins": 1,
+          "tPistolWins": 1
         },
         "ancient": {
-
+          "kills": 45,
+          "deaths": 25,
+          "assists": 8,
+          "kr": 0.75,
+          "kd": 1.8,
+          "adr": 88.0,
+          "ctRounds": 8,
+          "tRounds": 6,
+          "entryCT": 1,
+          "entryT": 2,
+          "ctPistolWins": 2,
+          "tPistolWins": 0
         },
         "nuke": {
-
+          "kills": 80,
+          "deaths": 60,
+          "assists": 22,
+          "kr": 1.0,
+          "kd": 1.33,
+          "adr": 95.5,
+          "ctRounds": 12,
+          "tRounds": 11,
+          "entryCT": 4,
+          "entryT": 6,
+          "ctPistolWins": 3,
+          "tPistolWins": 2
         }
       }
     },
@@ -32,25 +109,102 @@
       "profilePicture": "/src/assets/Logo/Storm-Logo.jpg",
       "maps": {
         "inferno": {
-
+          "kills": 60,
+          "deaths": 50,
+          "assists": 12,
+          "kr": 0.9,
+          "kd": 1.2,
+          "adr": 87.3,
+          "ctRounds": 10,
+          "tRounds": 9,
+          "entryCT": 4,
+          "entryT": 3,
+          "ctPistolWins": 2,
+          "tPistolWins": 1
         },
         "vertigo": {
-
+          "kills": 50,
+          "deaths": 45,
+          "assists": 10,
+          "kr": 0.8,
+          "kd": 1.11,
+          "adr": 82.5,
+          "ctRounds": 9,
+          "tRounds": 7,
+          "entryCT": 2,
+          "entryT": 1,
+          "ctPistolWins": 1,
+          "tPistolWins": 1
         },
         "anubis": {
-
+          "kills": 40,
+          "deaths": 38,
+          "assists": 8,
+          "kr": 0.7,
+          "kd": 1.05,
+          "adr": 75.5,
+          "ctRounds": 8,
+          "tRounds": 6,
+          "entryCT": 3,
+          "entryT": 2,
+          "ctPistolWins": 1,
+          "tPistolWins": 1
         },
         "mirage": {
-
+          "kills": 75,
+          "deaths": 65,
+          "assists": 15,
+          "kr": 0.95,
+          "kd": 1.15,
+          "adr": 90.4,
+          "ctRounds": 12,
+          "tRounds": 9,
+          "entryCT": 5,
+          "entryT": 4,
+          "ctPistolWins": 3,
+          "tPistolWins": 2
         },
         "dust2": {
-
+          "kills": 65,
+          "deaths": 60,
+          "assists": 13,
+          "kr": 0.85,
+          "kd": 1.08,
+          "adr": 83.2,
+          "ctRounds": 11,
+          "tRounds": 10,
+          "entryCT": 4,
+          "entryT": 3,
+          "ctPistolWins": 2,
+          "tPistolWins": 1
         },
         "ancient": {
-
+          "kills": 70,
+          "deaths": 50,
+          "assists": 18,
+          "kr": 0.88,
+          "kd": 1.4,
+          "adr": 91.7,
+          "ctRounds": 10,
+          "tRounds": 8,
+          "entryCT": 6,
+          "entryT": 5,
+          "ctPistolWins": 2,
+          "tPistolWins": 1
         },
         "nuke": {
-
+          "kills": 55,
+          "deaths": 45,
+          "assists": 12,
+          "kr": 0.75,
+          "kd": 1.22,
+          "adr": 78.5,
+          "ctRounds": 9,
+          "tRounds": 8,
+          "entryCT": 3,
+          "entryT": 2,
+          "ctPistolWins": 1,
+          "tPistolWins": 1
         }
       }
     }

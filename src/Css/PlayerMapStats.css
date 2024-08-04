@@ -7,31 +7,32 @@ body {
 }
 
 .playerMapStats {
-    margin-bottom: 450px;
+    margin: 10px auto;
+    padding: 20px;
     border: 2px solid #3E3E55;
     border-radius: 10px;
-    background-color: #1E1E2F;
-    width: 1400px;
+    background-color: #2C2C3E;
+    width: 800px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 1200px;
+    height: 750px;
 }
 
-.content h1 {
-    color: white;
+h1, h2, h3 {
+    margin: 10px 0;
+    color: #FFFFFF;
 }
 
 .mapButtonDiv {
-    width: 1350px;
-    border: 2px solid #3E3E55;
-    border-radius: 10px;
-    background-color: #1E1E2F;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    height: 100px;
-    align-content: end;    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 15px 0;
 }
 
 .mapButtons:hover {
@@ -42,13 +43,38 @@ body {
     transition: background-color 0.3s, color 0.3s;
     background-color: #3E3E55;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    margin: 0 5px;
+    margin: 5px;
     cursor: pointer;
     height: auto;
     width: auto;
+}
+
+.map-stats {
+    margin-top: 20px;
+    border-top: 1px solid #3E3E55;
+    padding-top: 20px;
+    width: 100%;
+    text-align: left;
+    color: #E0E0E0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.stat-box {
+    background-color: #3E3E55;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profile-picture-mapStats {
