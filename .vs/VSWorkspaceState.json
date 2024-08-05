@@ -3,14 +3,11 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\teamComponets",
     "\\src\\Css",
-    "\\src\\Css\\TeamCss",
     "\\src\\Data",
     "\\src\\Server",
-    "\\src\\Server\\API",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Services\\authServices.js",
+  "SelectedNode": "\\src\\Server\\Server.js",
   "PreviewInSolutionExplorer": false
 }
