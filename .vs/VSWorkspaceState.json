@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\Cards",
     "\\src\\components",
     "\\src\\components\\teamComponets",
     "\\src\\Css",
@@ -11,6 +12,6 @@
     "\\src\\Server\\API",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Services\\authServices.js",
+  "SelectedNode": "\\TODO",
   "PreviewInSolutionExplorer": false
 }
