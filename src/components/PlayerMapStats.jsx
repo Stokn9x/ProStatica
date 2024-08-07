@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import './../Css/PlayerMapStats.css';
 import playerMapStatsData from './../Data/playerMapStats.json';
 
@@ -8,16 +9,16 @@ const PlayerMapStats = ({ currentUser }) => {
     if (!currentUser) {
         return <div>Loading ....</div>;
     }
-    // This should be an endpoint to fetch the data from the server
+
     const currentUserData = playerMapStatsData.players.find(player => player.playerName === currentUser.username);
 
     if (!currentUserData) {
         return <div className="NoDataFound">No data available for this user.</div>;
     }
 
-    const { playerName, maps, profilePicture } = currentUserData;
+    const { maps } = currentUserData;
 
-    const calculateAverageStats = () => {
+    const calculateAverageStats = useMemo(() => {
         const mapNames = Object.keys(maps);
         const totalMaps = mapNames.length;
 
@@ -35,27 +36,20 @@ const PlayerMapStats = ({ currentUser }) => {
         });
 
         return averageStats;
-    };
+    }, [maps]);
 
     const renderMapStats = () => {
-        const stats = selectedMap === 'all' ? calculateAverageStats() : maps[selectedMap];
+        const stats = selectedMap === 'all' ? calculateAverageStats : maps[selectedMap];
 
         return (
             <div className="map-stats">
                 <h2>{selectedMap === 'all' ? 'Average Stats for All Maps' : `${selectedMap.charAt(0).toUpperCase() + selectedMap.slice(1)} Stats`}</h2>
                 <div className="stats-grid">
-                    <div className="stat-box"><strong>Kills:</strong> {stats.kills.toFixed(2)}</div>
-                    <div className="stat-box"><strong>Deaths:</strong> {stats.deaths.toFixed(2)}</div>
-                    <div className="stat-box"><strong>Assists:</strong> {stats.assists.toFixed(2)}</div>
-                    <div className="stat-box"><strong>KR:</strong> {stats.kr.toFixed(2)}</div>
-                    <div className="stat-box"><strong>KD Ratio:</strong> {stats.kd.toFixed(2)}</div>
-                    <div className="stat-box"><strong>ADR:</strong> {stats.adr.toFixed(2)}</div>
-                    <div className="stat-box"><strong>CT Rounds:</strong> {stats.ctRounds.toFixed(2)}</div>
-                    <div className="stat-box"><strong>T Rounds:</strong> {stats.tRounds.toFixed(2)}</div>
-                    <div className="stat-box"><strong>Entry CT:</strong> {stats.entryCT.toFixed(2)}</div>
-                    <div className="stat-box"><strong>Entry T:</strong> {stats.entryT.toFixed(2)}</div>
-                    <div className="stat-box"><strong>CT Pistol Wins:</strong> {stats.ctPistolWins.toFixed(2)}</div>
-                    <div className="stat-box"><strong>T Pistol Wins:</strong> {stats.tPistolWins.toFixed(2)}</div>
+                    {Object.keys(stats).map((key) => (
+                        <div className="stat-box" key={key}>
+                            <strong>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> {stats[key].toFixed(2)}
+                        </div>
+                    ))}
                 </div>
             </div>
         );
@@ -63,21 +57,25 @@ const PlayerMapStats = ({ currentUser }) => {
 
     return (
         <div className="playerMapStats">
-            <img src={profilePicture} alt="Profile" className="profile-picture-mapStats" />
-            <h1>{playerName}'s Map Stats</h1>
+            <img src={currentUser.profilePic} alt="Profile" className="profile-picture-mapStats" />
+            <h1>{currentUser.username}'s Map Stats</h1>
             <div className="mapButtonDiv">
-                <button className="mapButtons" onClick={() => setSelectedMap('all')}>All maps</button>
-                <button className="mapButtons" onClick={() => setSelectedMap('inferno')}>Inferno</button>
-                <button className="mapButtons" onClick={() => setSelectedMap('vertigo')}>Vertigo</button>
-                <button className="mapButtons" onClick={() => setSelectedMap('mirage')}>Mirage</button>
-                <button className="mapButtons" onClick={() => setSelectedMap('anubis')}>Anubis</button>
-                <button className="mapButtons" onClick={() => setSelectedMap('nuke')}>Nuke</button>
-                <button className="mapButtons" onClick={() => setSelectedMap('dust2')}>Dust2</button>
-                <button className="mapButtons" onClick={() => setSelectedMap('ancient')}>Ancient</button>
+                {['all', 'inferno', 'vertigo', 'mirage', 'anubis', 'nuke', 'dust2', 'ancient'].map((map) => (
+                    <button className="mapButtons" key={map} onClick={() => setSelectedMap(map)}>
+                        {map.charAt(0).toUpperCase() + map.slice(1)}
+                    </button>
+                ))}
             </div>
             {renderMapStats()}
         </div>
     );
+};
+/*I will maybe remove this or do it on all the pages soo hmmm*/
+PlayerMapStats.propTypes = {
+    currentUser: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+        profilePic: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
 export default PlayerMapStats;
