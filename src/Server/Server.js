@@ -334,6 +334,35 @@ app.get('/teamPlayers', (req, res) => {
 	});
 });
 
+app.post('/updateFirstLogin', (req, res) => {
+	const { username } = req.body;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading user data.');
+		}
+
+		const usersData = JSON.parse(data);
+		const userIndex = usersData.users.findIndex(user => user.username === username);
+
+		if (userIndex === -1) {
+			return res.status(404).send('User not found.');
+		}
+
+		usersData.users[userIndex].firstLogin = false;
+
+		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('An error occurred while saving user data.');
+			}
+
+			res.status(200).send('firstLogin status updated successfully!');
+		});
+	});
+});
+
 app.listen(PORT, () => {
 	console.log(`Server is running on http://localhost:${PORT}`);
 });

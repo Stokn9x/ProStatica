@@ -23,6 +23,7 @@ const authService = {
 				bannerPic: user.bannerPic,
 				profilePic: user.profilePic,
 				location: user.location,
+				firstLogin: user.firstLogin,
 				socialMedia: user.socialMedia,
 				signupTime: user.signupTime,
 				currentTeam: user.currentTeam,

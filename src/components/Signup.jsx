@@ -34,6 +34,7 @@ function SignUp() {
             bannerPic: "/src/assets/Banner/placeholder-banner.jpg",
             bio: "none",
             location: "none",
+            firstLogin: true,
             socialMedia: {
                 "faceit": "none",
                 "twitter": "none",
