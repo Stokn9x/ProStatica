@@ -116,6 +116,14 @@ app.post('/createTeam', (req, res) => {
 		}
 
 		const teamsData = JSON.parse(data);
+
+		const teamExists = teamsData.teams.some(team => team.teamName.toLowerCase() === newTeam.teamName.toLowerCase());
+
+		if (teamExists) {
+			res.status(400).send('A team with this name already exists.');
+			return;
+		}
+
 		teamsData.teams.push(newTeam);
 
 		fs.writeFile(teamsDataPath, JSON.stringify(teamsData, null, 2), (err) => {
@@ -176,6 +184,13 @@ app.post('/joinTeam', (req, res) => {
 		}
 
 		const team = teamsData.teams[teamIndex];
+
+		const isAlreadyMember = team.members.some(member => member.username === user.username);
+
+		if (isAlreadyMember) {
+			res.status(400).send('You are already a member of this team.');
+			return;
+		}
 
 		if (user && Object.keys(user).length > 0) {
 			team.members.push(user);

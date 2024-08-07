@@ -8,6 +8,12 @@ const TeamCreateJoin = ({ currentUser, updateUser }) => {
     const [joinTeamCode, setJoinTeamCode] = useState('');
     const navigate = useNavigate();
 
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
     const handleTeamNameChange = (event) => {
         setTeamName(event.target.value);
     };
@@ -26,6 +32,7 @@ const TeamCreateJoin = ({ currentUser, updateUser }) => {
         const newTeam = {
             teamName,
             teamTag,
+            teamCreationTime: `${day}-${month}-${year}`,
             teamCode: Math.random().toString(36).substr(2, 8),
             members: [
                 {
