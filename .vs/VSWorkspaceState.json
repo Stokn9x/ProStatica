@@ -2,15 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\teamComponets",
     "\\src\\Css",
-    "\\src\\Css\\TeamCss",
-    "\\src\\Data",
-    "\\src\\Server",
-    "\\src\\Server\\API",
-    "\\src\\Services"
+    "\\src\\Server"
   ],
-  "SelectedNode": "\\src\\Data\\teams.json",
+  "SelectedNode": "\\src\\Server\\Server.js",
   "PreviewInSolutionExplorer": false
 }
