@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Images",
     "\\src",
     "\\src\\components",
     "\\src\\Css",
-    "\\src\\Data",
     "\\src\\Server"
   ],
   "SelectedNode": "\\src\\components\\HomePage.jsx",
