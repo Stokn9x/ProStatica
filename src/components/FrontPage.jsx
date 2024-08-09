@@ -11,7 +11,7 @@ const Homepage = () => {
                 <Link to="/contact" className="topbar-link">Contact</Link>
             </div>
             <div className="content">
-                <h1>Welcome to Our Site</h1>
+                <h1 className="text-2xl">Welcome to Our Site</h1>
                 <p>Your journey begins here. Explore, learn, and enjoy!</p>
             </div>
         </div>
