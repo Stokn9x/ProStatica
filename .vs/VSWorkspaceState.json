@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\teamComponets",
+    "\\src\\components\\Modal",
     "\\src\\Css",
-    "\\src\\Css\\TeamCss",
+    "\\src\\Css\\ModalCss",
     "\\src\\Data",
     "\\src\\Server",
     "\\src\\Server\\API",
     "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\Data\\teams.json",
+  "SelectedNode": "\\vite.config.js",
   "PreviewInSolutionExplorer": false
 }

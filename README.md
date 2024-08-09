@@ -16,7 +16,7 @@ Node.js: Først skal du installere Node.js fra nodejs.org. Når installationen e
 Installer Afhængigheder: Kør følgende kommando for at installere de nødvendige afhængigheder: npm install
 
 Start Udviklingsserveren: For at starte udviklingsserveren og se dit projekt lokalt, skal du køre: npm run dev
-Dette vil starte Vite-serveren, og du kan se dit projekt på http://localhost:3000 (eller en anden port, hvis angivet).
+Dette vil starte Vite-serveren, og du kan se dit projekt på http://localhost:5173 (eller en anden port, hvis angivet).
 
 ## Server-Side Opsætning
 *****Forudsætninger*****
@@ -29,9 +29,6 @@ Start Serveren: node server.js
 Serveren kører nu.
 
 Bemærk: Sørg for, at både klientapplikationen og serveren kører samtidig, så alt fungerer korrekt.
-
-***opsætning af live update server.js***
-Hvis du vil have live update af serveren skal du benytte dig af en pakke kaldet nodemon. For at installere nodemon skal du køre npm install -g nodemon. Herefter kan du starte serveren med nodemon server.js.
 
 ## Bidrag
 Hvis du støder på problemer eller har forslag til forbedringer, er du velkommen til at åbne en issue eller sende en pull request.

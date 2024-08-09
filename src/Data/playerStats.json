@@ -2,12 +2,11 @@
   "players": [
     {
       "playerName": "Stokn9x",
-      "profilePicture": "/src/assets/Logo/Stokn9x-Logo.jpg",
-      "mapStats": {
+      "stats": {
         "overall": {
           "winrate": "60%",
           "kda": "1.2",
-          "gamePlayed": "10",
+          "gamesPlayed": "10",
           "kills": "150",
           "deaths": "100",
           "headshots": "75",
@@ -30,12 +29,11 @@
     },
     {
       "playerName": "Storm",
-      "profilePicture": "/src/assets/Logo/Storm-Logo.jpg",
-      "mapStats": {
+      "stats": {
         "overall": {
           "winrate": "70%",
           "kda": "1.5",
-          "gamePlayed": "20",
+          "gamesPlayed": "20",
           "kills": "300",
           "deaths": "200",
           "headshots": "150",
