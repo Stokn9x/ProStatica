@@ -353,3 +353,5 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 /.vs/slnx.sqlite
+/.vs/slnx.sqlite
+/.vs/Esport-UI/v17/.wsuo
