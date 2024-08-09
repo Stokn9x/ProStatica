@@ -12,7 +12,7 @@
       "bannerPic": "/src/assets/Banner/Stokn9x-Banner.jpg",
       "bio": "Erfaren FPS-spiller med en passion for konkurrencepræget gaming. Jeg nyder at finpudse mine færdigheder og lære nye taktikker. I min fritid kan jeg godt lide at programmere og se esport.",
       "location": "Denmark",
-      "firstLogin": false,
+      "firstLogin": true,
       "socialMedia": {
         "faceit": "https://www.faceit.com/en/players/Stokn9x",
         "twitter": "https://x.com/Stokn9x",
