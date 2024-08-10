@@ -4,17 +4,20 @@ import '/src/Css/FrontPage.css';
 
 const Homepage = () => {
     return (
-        <div className="homepage">
-            <div className="topbar">
-                <Link to="/about" className="topbar-link">About</Link>
-                <Link to="/login" className="topbar-link">Login</Link>
-                <Link to="/contact" className="topbar-link">Contact</Link>
-            </div>
-            <div className="content">
-                <h1 className="text-2xl">Welcome to Our Site</h1>
-                <p>Your journey begins here. Explore, learn, and enjoy!</p>
-            </div>
-        </div>
+    
+      <body>
+            <header>
+                {/*<img className="logo" src="Images/AogC.jpg" alt="logo"></img>*/}
+                <nav>
+                    <ul className="nav_links">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Random</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>             
+                </nav>
+                <a className="cta" href="#"><button>Contact</button></a>          
+            </header>
+      </body>  
     );
 };
 
