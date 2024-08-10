@@ -37,6 +37,7 @@ const TeamCreateJoin = ({ currentUser, updateUser }) => {
             members: [
                 {
                     username: currentUser.username,
+                    profilePic: currentUser.profilePic,
                     name: currentUser.name,
                     age: currentUser.age,
                     role: 'admin'

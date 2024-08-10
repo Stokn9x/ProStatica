@@ -19,16 +19,14 @@
         "instagram": "https://www.instagram.com/casper_ermegaard_jensen/"
       },
       "signupTime": "none",
-      "currentTeam": "none",
+      "currentTeam": "Vortex Gaming Talent1",
       "previousTeams": [
-        "Syntox Serpants",
-        "Syntox Talent"
       ]
     },
     {
       "username": "Storm",
       "email": "storm@example.com",
-      "password": "123",
+      "password": "anotherpassword",
       "rank": "Gold Nova II",
       "name": "none",
       "age": "none",
@@ -36,7 +34,7 @@
       "profilePic": "/src/assets/Logo/Storm-Logo.jpg",
       "bannerPic": "/src/assets/Banner/Stokn9x-Banner.jpg",
       "bio": "none",
-      "location": "South Africa",
+      "location": "none",
       "firstLogin": false,
       "socialMedia": {
         "faceit": "none",
@@ -44,9 +42,8 @@
         "instagram": "none"
       },
       "signupTime": "none",
-      "currentTeam": "Kuss imak",
+      "currentTeam": "Syntox Serpants",
       "previousTeams": [
-        "none"
       ]
     }
   ]
