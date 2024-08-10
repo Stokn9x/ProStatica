@@ -1,3 +1,8 @@
+/*So remember don't use * for changing the color, just give it a classname like FrontPage-Color and then give it in the <div> like so
+
+    <div className="homepage FrontPage-Color"> </div> 
+    And yes a tag can have more than one class name, just give a space between them. and it can have more css.
+*/
 * {
     box-sizing: border-box;
     margin: 0;
