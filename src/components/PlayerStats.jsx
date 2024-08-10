@@ -7,43 +7,61 @@ const PlayerStats = ({ currentUser }) => {
     useEffect(() => {
         if (currentUser) {
             fetch(`http://localhost:5001/playerStats/${currentUser.username}`)
-                .then(response => {
+                .then((response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
-                .then(data => setPlayerData(data))
-                .catch(error => console.error('Error fetching player data:', error));
+                .then((data) => setPlayerData(data))
+                .catch((error) => console.error('Error fetching player data:', error));
         }
     }, [currentUser]);
+
+    const calculateAverage = (array) => {
+        if (!array || array.length === 0) return 'N/A';
+        const numericArray = array.map((value) =>
+            typeof value === 'string' && value.endsWith('%')
+                ? parseFloat(value)
+                : value
+        );
+        const sum = numericArray.reduce((a, b) => a + b, 0);
+        const average = sum / numericArray.length;
+        return typeof array[0] === 'string' && array[0].endsWith('%')
+            ? `${average.toFixed(1)}%`
+            : average.toFixed(1);
+    };
 
     if (!playerData) {
         return <div>Loading ....</div>;
     }
 
-    //This is for the tooltip
+    // This is for the tooltip
     const statDescriptions = {
-        winrate: "Procentdel af vundne kampe.",
-        kda: "Kill/Death/Assist forhold.",
-        trounds: "Antal spillet runder på T-side.",
-        ctrounds: "Antal spillet runder på CT-side.",
-        gamesPlayed: "Antal spillet kampe.",
-        kills: "Antal kills.",
-        killr: "Kill rate per runde.",
-        adr: "Average damage per runde.",
-        wins: "Antal vundne kampe.",
-        deaths: "Antal døde.",
-        gunround: "Antal vundne gun rounds.",
-        headshots: "Antal headshots.",
-        losses: "Antal tabte kampe.",
-        assist: "Antal assists."
+        winrate: 'Procentdel af vundne kampe.',
+        kda: 'Kill/Death/Assist forhold.',
+        trounds: 'Antal spillet runder på T-side.',
+        ctrounds: 'Antal spillet runder på CT-side.',
+        gamesPlayed: 'Antal spillet kampe.',
+        kills: 'Antal kills.',
+        killr: 'Kill rate per runde.',
+        adr: 'Average damage per runde.',
+        wins: 'Antal vundne kampe.',
+        deaths: 'Antal døde.',
+        gunround: 'Antal vundne gun rounds.',
+        headshots: 'Antal headshots.',
+        losses: 'Antal tabte kampe.',
+        assist: 'Antal assists.',
     };
 
     return (
         <div className="player-stats">
             <div className="player-info">
-                <img src={currentUser.profilePic} alt="Profile" className="profile-picture-playerStats" />
+                <img
+                    src={currentUser.profilePic}
+                    alt="Profile"
+                    className="profile-picture-playerStats"
+                />
                 <h1>{playerData.playerName}</h1>
                 <p>Pro Gamer</p>
             </div>
@@ -75,7 +93,10 @@ const PlayerStats = ({ currentUser }) => {
                         <h2>Overall Stats</h2>
                         {Object.keys(playerData.stats.overall).map((key, index) => (
                             <div className="stat-category" key={index}>
-                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {playerData.stats.overall[key]}
+                                <strong>
+                                    {key.charAt(0).toUpperCase() + key.slice(1)}:
+                                </strong>{' '}
+                                {calculateAverage(playerData.stats.overall[key])}
                                 <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
@@ -84,7 +105,10 @@ const PlayerStats = ({ currentUser }) => {
                         <h2>T-Side Stats</h2>
                         {Object.keys(playerData.stats.tSide).map((key, index) => (
                             <div className="stat-category" key={index}>
-                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {playerData.stats.tSide[key]}
+                                <strong>
+                                    {key.charAt(0).toUpperCase() + key.slice(1)}:
+                                </strong>{' '}
+                                {calculateAverage(playerData.stats.tSide[key])}
                                 <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
@@ -93,7 +117,10 @@ const PlayerStats = ({ currentUser }) => {
                         <h2>CT-Side Stats</h2>
                         {Object.keys(playerData.stats.ctSide).map((key, index) => (
                             <div className="stat-category" key={index}>
-                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {playerData.stats.ctSide[key]}
+                                <strong>
+                                    {key.charAt(0).toUpperCase() + key.slice(1)}:
+                                </strong>{' '}
+                                {calculateAverage(playerData.stats.ctSide[key])}
                                 <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
