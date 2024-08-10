@@ -17,7 +17,7 @@ app.use(cors());
 
 const teamsDataPath = path.join(__dirname, '..', 'Data', 'teams.json');
 const usersDataPath = path.join(__dirname, '..', 'Data', 'users.json');
-
+const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json');
 
 const updateUser = (usersData, username, updateCallback) => {
 	const userIndex = usersData.users.findIndex(user => user.username === username);
@@ -360,6 +360,26 @@ app.post('/updateFirstLogin', (req, res) => {
 
 			res.status(200).send('firstLogin status updated successfully!');
 		});
+	});
+});
+
+app.get('/playerStats/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(playerStatsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading player stats data.');
+		}
+
+		const playersData = JSON.parse(data);
+		const player = playersData.players.find(player => player.playerName === username);
+
+		if (!player) {
+			return res.status(404).send('Player not found.');
+		}
+
+		res.status(200).json(player);
 	});
 });
 

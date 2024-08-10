@@ -9,9 +9,16 @@
     display: inline-block;
 }
 
-    .playerCard .card-img {
-        max-width: 60%;
+    .playerCard {
+        width: 60%;
         height: auto;
-        border-radius: 50%;
         margin-bottom: 10px;
     }
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+}

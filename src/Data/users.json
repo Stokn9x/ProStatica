@@ -26,7 +26,7 @@
     {
       "username": "Storm",
       "email": "storm@example.com",
-      "password": "123",
+      "password": "anotherpassword",
       "rank": "Gold Nova II",
       "name": "none",
       "age": "none",
@@ -34,7 +34,7 @@
       "profilePic": "/src/assets/Logo/Storm-Logo.jpg",
       "bannerPic": "/src/assets/Banner/Stokn9x-Banner.jpg",
       "bio": "none",
-      "location": "South Africa",
+      "location": "none",
       "firstLogin": false,
       "socialMedia": {
         "faceit": "none",
@@ -42,7 +42,7 @@
         "instagram": "none"
       },
       "signupTime": "none",
-      "currentTeam": "none",
+      "currentTeam": "Syntox Serpants",
       "previousTeams": [
       ]
     }
