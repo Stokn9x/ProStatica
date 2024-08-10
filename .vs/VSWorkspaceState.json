@@ -3,10 +3,13 @@
     "",
     "\\Images",
     "\\src",
+    "\\src\\Cards",
     "\\src\\components",
+    "\\src\\components\\teamComponets",
     "\\src\\Css",
-    "\\src\\Server"
+    "\\src\\Css\\TeamCss",
+    "\\src\\Services"
   ],
-  "SelectedNode": "\\src\\components\\HomePage.jsx",
+  "SelectedNode": "\\src\\Css\\HomePage.css",
   "PreviewInSolutionExplorer": false
 }
