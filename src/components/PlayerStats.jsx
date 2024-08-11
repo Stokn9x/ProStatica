@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './../Css/PlayerStats.css';
-import playerStatsData from './../Data/playerStats.json';
 
 const PlayerStats = ({ currentUser }) => {
-    if (!currentUser) {
+    const [playerData, setPlayerData] = useState(null);
+
+    useEffect(() => {
+        if (currentUser) {
+            fetch(`http://localhost:5001/playerStats/${currentUser.username}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => setPlayerData(data))
+                .catch(error => console.error('Error fetching player data:', error));
+        }
+    }, [currentUser]);
+
+    if (!playerData) {
         return <div>Loading ....</div>;
     }
 
-    const currentUserData = playerStatsData.players.find(player => player.playerName == currentUser.username);
-    console.log(currentUserData);
-
-    if (!currentUserData) {
-        return <div className="NoDataFound">No data available for this user.</div>;
-    }
-
-    const { playerName, mapStats, profilePicture } = currentUserData;
-
+    //This is for the tooltip
     const statDescriptions = {
         winrate: "Procentdel af vundne kampe.",
         kda: "Kill/Death/Assist forhold.",
@@ -36,8 +43,8 @@ const PlayerStats = ({ currentUser }) => {
     return (
         <div className="player-stats">
             <div className="player-info">
-                <img src={profilePicture} alt="Profile" className="profile-picture-playerStats" />
-                <h1>{playerName}</h1>
+                <img src={currentUser.profilePic} alt="Profile" className="profile-picture-playerStats" />
+                <h1>{playerData.playerName}</h1>
                 <p>Pro Gamer</p>
             </div>
             <div className="filters">
@@ -66,27 +73,27 @@ const PlayerStats = ({ currentUser }) => {
                 <div className="stat-sections">
                     <div className="stat-section">
                         <h2>Overall Stats</h2>
-                        {Object.keys(mapStats.overall).map((key, index) => (
+                        {Object.keys(playerData.stats.overall).map((key, index) => (
                             <div className="stat-category" key={index}>
-                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {mapStats.overall[key]}
+                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {playerData.stats.overall[key]}
                                 <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
                     </div>
                     <div className="stat-section">
                         <h2>T-Side Stats</h2>
-                        {Object.keys(mapStats.tSide).map((key, index) => (
+                        {Object.keys(playerData.stats.tSide).map((key, index) => (
                             <div className="stat-category" key={index}>
-                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {mapStats.tSide[key]}
+                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {playerData.stats.tSide[key]}
                                 <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
                     </div>
                     <div className="stat-section">
                         <h2>CT-Side Stats</h2>
-                        {Object.keys(mapStats.ctSide).map((key, index) => (
+                        {Object.keys(playerData.stats.ctSide).map((key, index) => (
                             <div className="stat-category" key={index}>
-                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {mapStats.ctSide[key]}
+                                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {playerData.stats.ctSide[key]}
                                 <span className="tooltip">{statDescriptions[key]}</span>
                             </div>
                         ))}
@@ -95,6 +102,6 @@ const PlayerStats = ({ currentUser }) => {
             </div>
         </div>
     );
-}
+};
 
 export default PlayerStats;

@@ -10,12 +10,12 @@ import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
 import Profile from './components/Profile';
 import PlayerStats from './components/PlayerStats';
-import Homepage from './components/HomePage';
+import Homepage from './components/FrontPage';
 import Login from './/components/Login';
 import PlayerMapStats from './components/PlayerMapStats';
 import SignUp from './components/Signup';
 import SettingsPage from './components/SettingsPage';
-
+import AboutPage from './components/About';
 import TeamInfo from './components/teamComponets/TeamInfo';
 import TeamCalendar from './components/teamComponets/TeamCalendar';
 import TeamMapStats from './components/teamComponets/TeamMapStats';
@@ -64,19 +64,20 @@ function App() {
         setCurrentUser(authService.getCurrentUser());
     };
 
-    const hideMenuBarRoutes = ["/login", "/sign-Up", "/"];
+    const hideContentAtRoutes = ["/login", "/sign-Up", "/", "/about", "/contact"];
 
     const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
 
     return (
             <div className="App">
-            {!hideMenuBarRoutes.includes(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {isAuthenticated && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
+                {!hideContentAtRoutes.includes(location.pathname) && <MenuBar currentUser={currentUser} />}
+                {!hideContentAtRoutes.includes(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
                         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
                         <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
+                        <Route path="/about" element={<AboutPage />} />
                         <Route path="/profile" element={isAuthenticated ? <Profile currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
