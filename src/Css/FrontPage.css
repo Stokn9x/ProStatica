@@ -1,16 +1,47 @@
 * {
-/*    box-sizing: border-box;
-    margin: 0;
-    padding: 0;*/
-    /*background-color: rebeccapurple;*/
-
+    /* box-sizing: border-box; */
+    /* margin: 0; */
+    /* padding: 0; */
+    /* background-color: rebeccapurple; */
 }
 
 header {
-
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red;
+    padding: 10px 50px; /* Gør det mere centralt og tilpas afstande */
+    margin-left: -260px;
+}
+
+.NavLogo img {
+    height: 50px; /* Juster størrelsen på logoet efter behov */
+}
+
+.navbar-list {
+    list-style-type: none; /* Fjern punkterne foran list items */
+    display: flex; /* Gør listen vandret */
+    margin: 0; /* Fjern ekstra margin */
+    padding: 0; /* Fjern ekstra padding */
+}
+
+    .navbar-list li {
+        margin-left: 20px; /* Afstand mellem hvert menupunkt */
+    }
+
+        .navbar-list li a {
+            text-decoration: none; /* Fjern understregning */
+            color: white; /* Ændre farven på linksene */
+            font-size: 16px; /* Ændre tekststørrelse */
+        }
+
+            .navbar-list li a:hover {
+                color: lightgray; /* Ændre farve ved hover */
+            }
