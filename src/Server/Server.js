@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
@@ -12,12 +11,13 @@ const PORT = 5001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 
 const teamsDataPath = path.join(__dirname, '..', 'Data', 'teams.json');
 const usersDataPath = path.join(__dirname, '..', 'Data', 'users.json');
 const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json');
+const playerMapStatsDataPath = path.join(__dirname, '..','Data', 'playerMapStats.json')
 
 const updateUser = (usersData, username, updateCallback) => {
 	const userIndex = usersData.users.findIndex(user => user.username === username);
@@ -377,6 +377,26 @@ app.get('/playerStats/:username', (req, res) => {
 
 		if (!player) {
 			return res.status(404).send('Player not found.');
+		}
+
+		res.status(200).json(player);
+	});
+});
+
+app.get('/playerMapStats/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(playerMapStatsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading player map stats data.');
+		}
+
+		const playerMapData = JSON.parse(data);
+		const player = playerMapData.players.find(player => player.playerName === username)
+
+		if (!player) {
+			return res.status(404).send('Player not found.')
 		}
 
 		res.status(200).json(player);
