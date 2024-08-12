@@ -1,5 +1,6 @@
 body {
-    background: radial-gradient(circle, #5F0F40 20%, #310E68);
+    background: rgb(139, 71, 133);
+    background: linear-gradient(0deg, rgba(139, 71, 133, 1) 0%, rgba(85, 60, 88, 1) 91%);
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -7,26 +8,26 @@ body {
 }
 
 .navbar {
-    background: crimson;
-    font-family: calibri;
-    padding: 15px; /* Adjusted for symmetry */
-    width: 100%; /* Ensure full width */
-    
+    font-family: Calibri;
+    padding: 15px;
+    width: 100%;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    position: relative;
 }
 
 .navdiv {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Distributes space between items */
-    width: 100%; /* Full width container */
-    
+    justify-content: space-between;
+    width: 100%;
 }
 
 .logo a {
-    font-size: 35px;
+    font-size: 33px;
     font-weight: 600;
     color: white;
     text-decoration: none;
+    padding: 40px;
 }
 
 .navbar-list {
@@ -34,16 +35,16 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    list-style: none; /* Removes default list styling */
+    list-style: none;
 }
 
     .navbar-list li {
-        margin-right: 25px; /* Spacing between menu items */
+        margin-right: 28px;
+        font-size: 20px;
     }
 
         .navbar-list li a {
             color: white;
-            font-size: 18px;
             font-weight: bold;
             text-decoration: none;
         }
@@ -51,20 +52,38 @@ body {
 button {
     background-color: black;
     border-radius: 10px;
-    padding: 10px 20px; /* Adjust padding for better spacing */
-    width: auto; /* Remove fixed width to fit content */
-    white-space: nowrap; /* Prevent text from wrapping */
-    border: none; /* Remove default border */
-    display: inline-flex; /* Ensures content stays on one line */
-    align-items: center; /* Vertically center content */
+    padding: 10px 20px;
+    white-space: nowrap;
+    border: none;
+    display: inline-flex;
+    align-items: center;
 }
 
     button a {
         color: white;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 18px;
         text-decoration: none;
-        display: block; /* Ensures the link takes up full button */
-        text-align: center; /* Center text in button */
+        display: block;
+        text-align: center;
     }
 
+.content-wrapper {
+    width: 80%;
+    min-height: 50vh;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left */
+    align-items: center; /* Vertically center content */
+    color: #fff;
+}
+
+.content-desc {
+    max-width: 50%;
+}
+
+    .content-desc h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        text-align: left; /* Aligns text to the left */
+    }
