@@ -13,37 +13,38 @@ header {
 }
 
 .navbar {
-    background-color: red;
+    background-color: #9370DB;
     padding: 10px 50px;
 }
 
-.navbar-content {
+
+/*.navbar-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+}*/
 
-.NavLogo img {
-    height: 50px; /* Juster størrelsen på logoet efter behov */
-}
+/*.NavLogo img {
+    height: 50px;*/ /* Juster størrelsen på logoet efter behov */
+/*}*/
 
-.navbar-list {
-    list-style-type: none; /* Fjern punkterne foran list items */
-    display: flex; /* Gør listen vandret */
-    margin: 0;
+/*.navbar-list {
+    list-style-type: none;*/  /*Fjern punkterne foran list items*/ 
+    /*display: flex;*/  /*Gør listen vandret */
+    /*margin: 0;
     padding: 0;
-}
+}*/
 
-    .navbar-list li {
-        margin-left: 30px; /* Mere afstand mellem hvert menupunkt */
-    }
+    /*.navbar-list li {
+        margin-left: 30px;*/ /* Mere afstand mellem hvert menupunkt */
+    /*}
 
         .navbar-list li a {
-            text-decoration: none; /* Fjern understregning */
-            color: white; /* Ændre farven på linksene */
-            font-size: 16px; /* Ændre tekststørrelse */
-        }
+            text-decoration: none;*/ /* Fjern understregning */
+            /*color: white;*/ /* Ændre farven på linksene */
+            /*font-size: 16px;*/ /* Ændre tekststørrelse */
+        /*}
 
             .navbar-list li a:hover {
-                color: lightgray; /* Ændre farve ved hover */
-            }
+                color: lightgray;*/ /* Ændre farve ved hover */
+            /*}*/

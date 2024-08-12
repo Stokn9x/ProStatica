@@ -6,18 +6,18 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Homepage = () => {
     return (
-        <div>
-            <div className="navbar">
-                <nav>
-                    <ul className="navbar-list">
-                        <img src="your_logo_image_here" alt="Your Logo" />
-                        <li><Link to="/About">About</Link></li>
-                        <li><Link to="#">Random</Link></li>
-                        <li><Link to="/Login">Login</Link></li>
-                    </ul>
-                </nav>
+        <nav className="navbar">
+            <div className="navdiv">
+                <div className="logo"><a href="#">WebsiteName</a></div>
+                <ul className="navbar-list">
+                    <li><Link to="#">Home</Link></li>
+                    <li><Link to="/About">About</Link></li>
+                    <li><Link to="#">Contact</Link></li>
+                    <li><button><Link to="/Login">Sign In</Link></button></li>
+                    <li><button><Link to="/Signup">Sign Up</Link></button></li>
+                </ul>
             </div>
-        </div>
+        </nav>
     );
 };
 

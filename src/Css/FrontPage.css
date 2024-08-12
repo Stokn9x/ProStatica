@@ -1,47 +1,70 @@
-* {
-    /* box-sizing: border-box; */
-    /* margin: 0; */
-    /* padding: 0; */
-    /* background-color: rebeccapurple; */
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
+body {
+    background: radial-gradient(circle, #5F0F40 20%, #310E68);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Calibri, sans-serif;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: red;
-    padding: 10px 50px; /* Gør det mere centralt og tilpas afstande */
-    margin-left: -260px;
+    background: crimson;
+    font-family: calibri;
+    padding: 15px; /* Adjusted for symmetry */
+    width: 100%; /* Ensure full width */
+    
 }
 
-.NavLogo img {
-    height: 50px; /* Juster størrelsen på logoet efter behov */
+.navdiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distributes space between items */
+    width: 100%; /* Full width container */
+    
+}
+
+.logo a {
+    font-size: 35px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
 }
 
 .navbar-list {
-    list-style-type: none; /* Fjern punkterne foran list items */
-    display: flex; /* Gør listen vandret */
-    margin: 0; /* Fjern ekstra margin */
-    padding: 0; /* Fjern ekstra padding */
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Removes default list styling */
 }
 
     .navbar-list li {
-        margin-left: 20px; /* Afstand mellem hvert menupunkt */
+        margin-right: 25px; /* Spacing between menu items */
     }
 
         .navbar-list li a {
-            text-decoration: none; /* Fjern understregning */
-            color: white; /* Ændre farven på linksene */
-            font-size: 16px; /* Ændre tekststørrelse */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
         }
 
-            .navbar-list li a:hover {
-                color: lightgray; /* Ændre farve ved hover */
-            }
+button {
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for better spacing */
+    width: auto; /* Remove fixed width to fit content */
+    white-space: nowrap; /* Prevent text from wrapping */
+    border: none; /* Remove default border */
+    display: inline-flex; /* Ensures content stays on one line */
+    align-items: center; /* Vertically center content */
+}
+
+    button a {
+        color: white;
+        font-weight: bold;
+        font-size: 15px;
+        text-decoration: none;
+        display: block; /* Ensures the link takes up full button */
+        text-align: center; /* Center text in button */
+    }
+
