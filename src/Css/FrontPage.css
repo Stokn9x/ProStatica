@@ -1,26 +1,70 @@
-/*So remember don't use * for changing the color, just give it a classname like FrontPage-Color and then give it in the <div> like so
-
-    <div className="homepage FrontPage-Color"> </div> 
-    And yes a tag can have more than one class name, just give a space between them. and it can have more css.
-*/
-* {
-    box-sizing: border-box;
+body {
+    background: radial-gradient(circle, #5F0F40 20%, #310E68);
     margin: 0;
     padding: 0;
-    background-color: rebeccapurple;
-
+    min-height: 100vh;
+    font-family: Calibri, sans-serif;
 }
 
-.homepage {
-    text-align: center;
-    margin: 0 auto;
-    position: absolute;
-    top: 0px;
+.navbar {
+    background: crimson;
+    font-family: calibri;
+    padding: 15px; /* Adjusted for symmetry */
+    width: 100%; /* Ensure full width */
+    
 }
 
-header {
+.navdiv {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
+    justify-content: space-between; /* Distributes space between items */
+    width: 100%; /* Full width container */
+    
 }
+
+.logo a {
+    font-size: 35px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-list {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Removes default list styling */
+}
+
+    .navbar-list li {
+        margin-right: 25px; /* Spacing between menu items */
+    }
+
+        .navbar-list li a {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+button {
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px 20px; /* Adjust padding for better spacing */
+    width: auto; /* Remove fixed width to fit content */
+    white-space: nowrap; /* Prevent text from wrapping */
+    border: none; /* Remove default border */
+    display: inline-flex; /* Ensures content stays on one line */
+    align-items: center; /* Vertically center content */
+}
+
+    button a {
+        color: white;
+        font-weight: bold;
+        font-size: 15px;
+        text-decoration: none;
+        display: block; /* Ensures the link takes up full button */
+        text-align: center; /* Center text in button */
+    }
+
