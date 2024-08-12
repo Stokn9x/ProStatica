@@ -1,10 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import './../Css/PlayerMapStats.css';
 
 const PlayerMapStats = ({ currentUser }) => {
     const [selectedMap, setSelectedMap] = useState('all');
-    const [playerData, setPlayerData] = useState(null);
+    const [playerMapData, setPlayerMapData] = useState(null);
 
     useEffect(() => {
         if (currentUser) {
@@ -15,23 +14,27 @@ const PlayerMapStats = ({ currentUser }) => {
                     }
                     return response.json();
                 })
-                .then((data) => setPlayerData(data))
+                .then((data) => setPlayerMapData(data))
                 .catch((error) => console.error('Error fetching player data:', error));
         }
     }, [currentUser]);
 
+
+    if (playerMapData === null) {
+        return <div>Loading ....</div>;
+    }
+
+    console.log(playerMapData.maps);
     if (!currentUser) {
         return <div>Loading ....</div>;
     }
 
-    console.log(playerData);
-
     const calculateAverageStats = useMemo(() => {
-        const mapNames = Object.keys(playerData.maps);
+        const mapNames = Object.keys(playerMapData.maps);
         const totalMaps = mapNames.length;
 
         const totalStats = mapNames.reduce((acc, map) => {
-            const mapStats = playerData.maps[map];
+            const mapStats = playerMapData.maps[map];
             Object.keys(mapStats).forEach((key) => {
                 // Sum up the array values for each stat
                 acc[key] = (acc[key] || 0) + mapStats[key].reduce((a, b) => a + b, 0);
@@ -45,10 +48,10 @@ const PlayerMapStats = ({ currentUser }) => {
         });
 
         return averageStats;
-    }, [playerData.maps]);
+    }, [playerMapData.maps]);
 
     const renderMapStats = () => {
-        const stats = selectedMap === 'all' ? calculateAverageStats : PlayerData.maps[selectedMap];
+        const stats = selectedMap === 'all' ? calculateAverageStats : PlayerMapData.maps[selectedMap];
 
         return (
             <div className="map-stats">
@@ -91,13 +94,6 @@ const PlayerMapStats = ({ currentUser }) => {
             {renderMapStats()}
         </div>
     );
-};
-
-PlayerMapStats.propTypes = {
-    currentUser: PropTypes.shape({
-        username: PropTypes.string.isRequired,
-        profilePic: PropTypes.string.isRequired,
-    }).isRequired,
 };
 
 export default PlayerMapStats;
