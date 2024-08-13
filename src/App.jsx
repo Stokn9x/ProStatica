@@ -64,14 +64,15 @@ function App() {
         setCurrentUser(authService.getCurrentUser());
     };
 
-    const hideContentAtRoutes = ["/login", "/sign-Up", "/", "/about", "/contact"];
+    const showContentAtRoutes = ["/profile", "/matches", "/match/:id", "/playerStats", "/playerMapStats", "/settings",
+        "/TeamInfoDashboard", "/TeamCreateJoin", "/TeamInfo", "/TeamStats", "/TeamMapStats", "/TeamMatches", "/TeamCalendar"];
 
     const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
 
     return (
             <div className="App">
-                {!hideContentAtRoutes.includes(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {!hideContentAtRoutes.includes(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
+                {showContentAtRoutes.includes(location.pathname) && <MenuBar currentUser={currentUser} />}
+                {showContentAtRoutes.includes(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
                         <Route path="/login" element={<Login handleLogin={handleLogin} />} />

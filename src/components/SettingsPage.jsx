@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './../Css/SettingsPage.css';
 import { useNavigate } from 'react-router-dom';
-import userData from './../Data/users.json';
 import axios from 'axios';
 
 //Ja ved godt det skal laves om og hentes fra en api, men gad jeg ik lige til, så den får en fremtidige person lov til :).
@@ -37,27 +36,19 @@ const SettingsPage = ({ currentUser }) => {
         return <div>Loading ....</div>;
     }
 
-    const currentUserData = userData.users.find(user => user.username == currentUser.username);
-    /*console.log(currentUserData);*/
-    console.log(currentUser.name);
-
-    if (!currentUserData) {
-        return <div className="NoDataFound">No data available for this user.</div>;
-    }
-
     const [formData, setFormData] = useState({
-        profilePic: currentUserData.profilePic,
-        bannerPic: currentUserData.bannerPic,
-        username: currentUserData.username,
-        name: currentUserData.name,
-        age: currentUserData.age,
-        role: currentUserData.role,
-        bio: currentUserData.bio || '',
-        location: currentUserData.location || '',
+        profilePic: currentUser.profilePic,
+        bannerPic: currentUser.bannerPic,
+        username: currentUser.username,
+        name: currentUser.name,
+        age: currentUser.age,
+        role: currentUser.role,
+        bio: currentUser.bio || '',
+        location: currentUser.location || '',
         socialMedia: {
-            faceit: currentUserData.socialMedia?.faceit || '',
-            twitter: currentUserData.socialMedia?.twitter || '',
-            instagram: currentUserData.socialMedia?.instagram || ''
+            faceit: currentUser.socialMedia?.faceit || '',
+            twitter: currentUser.socialMedia?.twitter || '',
+            instagram: currentUser.socialMedia?.instagram || ''
         }
 
     });
@@ -85,10 +76,10 @@ const SettingsPage = ({ currentUser }) => {
         e.preventDefault();
 
         const updatedUserData = {
-            ...currentUserData,
+            ...currentUser,
             ...formData,
             socialMedia: {
-                ...currentUserData.socialMedia,
+                ...currentUser.socialMedia,
                 ...formData.socialMedia
             }
         };
