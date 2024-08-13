@@ -4,18 +4,18 @@ import './../../Css/TeamCss/TeamInfoDashboard.css';
 import PlayerCard from './../../Cards/PlayerCard';
 
 const TeamInfoDashboard = ({ currentUser, updateUser }) => {
-    const [teamPlayers, setTeamPlayers] = useState([]);
+    const [teamInfo, setTeamInfo] = useState(null); // State to hold entire team info
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchTeamPlayers = async () => {
+        const fetchTeamInfo = async () => {
             try {
-                const response = await fetch(`http://localhost:5001/teamPlayers?team=${currentUser.currentTeam}`);
+                const response = await fetch(`http://localhost:5001/getTeamInfo?team=${currentUser.currentTeam}`);
                 if (response.ok) {
-                    const players = await response.json();
-                    setTeamPlayers(players);
+                    const teamData = await response.json();
+                    setTeamInfo(teamData); // Store entire team data
                 } else {
-                    console.error('Failed to fetch team players.');
+                    console.error('Failed to fetch team info.');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -23,7 +23,7 @@ const TeamInfoDashboard = ({ currentUser, updateUser }) => {
         };
 
         if (currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '') {
-            fetchTeamPlayers();
+            fetchTeamInfo();
         }
     }, [currentUser.currentTeam]);
 
@@ -62,17 +62,21 @@ const TeamInfoDashboard = ({ currentUser, updateUser }) => {
         rating: 'N/A',
     };
 
+    if (!teamInfo) {
+        return <div>Loading...</div>;
+    }
+
     // Ensure there are always 5 player cards
-    const allPlayers = [...teamPlayers, ...Array(5 - teamPlayers.length).fill(placeholderPlayer)];
+    const allPlayers = [...teamInfo.members, ...Array(5 - teamInfo.members.length).fill(placeholderPlayer)];
 
     return (
         <div className="teamDashboard">
-            <h1>Welcome to Team {currentUser.currentTeam}</h1>
-            <p>Team details will be displayed here.</p>
+            <h1>Welcome to Team {teamInfo.teamName}</h1>
+            <p>Team Tag: {teamInfo.teamTag}</p>
+            <p>Team Creation Date: {teamInfo.teamCreationTime}</p>
             <button onClick={handleLeaveTeam}>Leave Team</button>
             <div className="playerCards">
                 {allPlayers.map((player, index) => (
-                    console.log(player),
                     <PlayerCard key={index} player={player} />
                 ))}
             </div>

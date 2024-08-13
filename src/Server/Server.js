@@ -17,7 +17,7 @@ app.use(cors());
 const teamsDataPath = path.join(__dirname, '..', 'Data', 'teams.json');
 const usersDataPath = path.join(__dirname, '..', 'Data', 'users.json');
 const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json');
-const playerMapStatsDataPath = path.join(__dirname, '..','Data', 'playerMapStats.json')
+const playerMapStatsDataPath = path.join(__dirname, '..', 'Data', 'playerMapStats.json')
 
 const updateUser = (usersData, username, updateCallback) => {
 	const userIndex = usersData.users.findIndex(user => user.username === username);
@@ -49,7 +49,7 @@ app.get('/getUser/:username', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-	const newUser = req.body;
+	const { newUser, newMapStats, newUserStats } = req.body;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
@@ -68,7 +68,47 @@ app.post('/signup', (req, res) => {
 				return;
 			}
 
-			res.status(200).send('Signup successful!');
+			// Læs og opdater map stats
+			fs.readFile(playerMapStatsDataPath, 'utf8', (err, data) => {
+				if (err) {
+					console.error(err);
+					res.status(500).send('An error occurred while reading map stats data.');
+					return;
+				}
+
+				const mapStatsData = JSON.parse(data);
+				mapStatsData.players.push(newMapStats);
+
+				fs.writeFile(playerMapStatsDataPath, JSON.stringify(mapStatsData, null, 2), (err) => {
+					if (err) {
+						console.error(err);
+						res.status(500).send('An error occurred while saving map stats data.');
+						return;
+					}
+
+					// Læs og opdater user stats
+					fs.readFile(playerStatsDataPath, 'utf8', (err, data) => {
+						if (err) {
+							console.error(err);
+							res.status(500).send('An error occurred while reading user stats data.');
+							return;
+						}
+
+						const userStatsData = JSON.parse(data);
+						userStatsData.players.push(newUserStats);
+
+						fs.writeFile(playerStatsDataPath, JSON.stringify(userStatsData, null, 2), (err) => {
+							if (err) {
+								console.error(err);
+								res.status(500).send('An error occurred while saving user stats data.');
+								return;
+							}
+
+							res.status(200).send('Signup successful!');
+						});
+					});
+				});
+			});
 		});
 	});
 });
@@ -312,7 +352,7 @@ app.post('/leaveTeam', (req, res) => {
 	});
 });
 
-app.get('/teamPlayers', (req, res) => {
+app.get('/getTeamInfo', (req, res) => {
 	const { team } = req.query;
 
 	fs.readFile(teamsDataPath, 'utf8', (err, data) => {
@@ -330,7 +370,8 @@ app.get('/teamPlayers', (req, res) => {
 			return;
 		}
 
-		res.status(200).json(teamData.members);
+		// Send the entire team data
+		res.status(200).json(teamData);
 	});
 });
 
