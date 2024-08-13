@@ -312,7 +312,7 @@ app.post('/leaveTeam', (req, res) => {
 	});
 });
 
-app.get('/teamPlayers', (req, res) => {
+app.get('/getTeamInfo', (req, res) => {
 	const { team } = req.query;
 
 	fs.readFile(teamsDataPath, 'utf8', (err, data) => {
@@ -330,7 +330,8 @@ app.get('/teamPlayers', (req, res) => {
 			return;
 		}
 
-		res.status(200).json(teamData.members);
+		// Send the entire team data
+		res.status(200).json(teamData);
 	});
 });
 

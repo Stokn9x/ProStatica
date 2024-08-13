@@ -64,7 +64,7 @@ function App() {
         setCurrentUser(authService.getCurrentUser());
     };
 
-    const hideContentAtRoutes = ["/login", "/sign-Up", "/", "/about", "/contact"];
+    const hideContentAtRoutes = ["/login", "/sign-Up", "/", "/about", "/contact", "/Login"];
 
     const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
 
