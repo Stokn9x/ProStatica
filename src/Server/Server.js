@@ -25,6 +25,30 @@ const updateUser = (usersData, username, updateCallback) => {
 		updateCallback(usersData.users[userIndex]);
 	}
 };
+app.get('/getUsers', (req, res) => {
+	const { username } = req.query;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			res.status(500).send('An error occurred while reading user data.');
+			return;
+		}
+
+		const usersData = JSON.parse(data);
+		const filteredUsers = usersData.users.filter(user =>
+			user.username.toLowerCase().startsWith(username.toLowerCase())
+		);
+
+		if (filteredUsers.length === 0) {
+			res.status(404).send('No users found.');
+			return;
+		}
+
+		res.status(200).json(filteredUsers);
+	});
+});
+
 
 app.get('/getUser/:username', (req, res) => {
 	const { username } = req.params;

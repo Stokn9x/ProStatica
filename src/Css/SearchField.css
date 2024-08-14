@@ -1,0 +1,33 @@
+.SearchField {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+}
+
+	.SearchField input {
+		width: 100%;
+		padding: 8px;
+		box-sizing: border-box;
+	}
+
+.suggestions-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ddd;
+	max-height: 200px;
+	overflow-y: auto;
+	background: #fff;
+	position: absolute;
+	width: 100%;
+	z-index: 1000;
+}
+
+	.suggestions-list li {
+		padding: 8px;
+		cursor: pointer;
+	}
+
+		.suggestions-list li:hover {
+			background-color: #f0f0f0;
+		}
