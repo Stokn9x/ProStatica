@@ -34,7 +34,7 @@ const SearchField = () => {
     };
 
     const handlePlayerClick = (username) => {
-        navigate(`/profile/${username}`); // Navigate to player's profile page
+        navigate(`/profile/${username}`);
     };
 
     return (
