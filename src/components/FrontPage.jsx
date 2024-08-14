@@ -19,6 +19,70 @@ const Homepage = () => {
                     </ul>
                 </div>
             </nav>
+
+            <section className="sec-01">
+                <div className="container">
+                    <h2 className="main-title">Reveal element on scroll</h2>
+                    <div className="content">
+                        <div className="image">
+                        <img src="src/assets/frontpage/csgorank.png" alt=""></img>
+                        </div>
+                        <div className="text-box">
+                            <h3>lorem Ipsum</h3>
+                            <p> jisnfijnsifnsi jisnfijnsifnsi  jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
+                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
+                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi </p>
+                        </div>
+                    </div>
+                    <div className="media-icons">
+                        <a href="#" className="icon"><i className="fab fa-facebook"></i></a>
+                        <a href="#" className="icon"><i className="fab fa-instagram"></i></a>
+                        <a href="#" className="icon"><i className="fab fa-twitter"></i></a>
+                        <a href="#" className="icon"><i className="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <section className="sec-02">
+                <div className="container">
+                    <h3 className="section-title">Lorem Ipsum</h3>
+                    <div className="content">
+                        <div className="image">
+                            <img src="src/assets/frontpage/stats.png" alt=""></img>
+                        </div>
+                        <div className="info">
+                            <h4 className="info-title">Description</h4>
+                            <p>jisnfijnsifnsi jisnfijnsifnsi  jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
+                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
+                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="sec-03">
+                <div className="container">
+                    <h3 className="section-title">Lorem Ipsum</h3>
+                    <div className="content">
+                        <div className="media-info">
+                            <li><a href="#"><i className="fab fa-facebook"></i> Facebook</a></li>
+                            <li><a href="#"><i className="fab fa-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i className="fab fa-twitter"></i>Twitter</a></li>
+                            <li><a href="#"><i className="fab fa-youtube"></i> Youtube</a></li>
+                            <li><a href="#"><i className="fab fa-linkedin"></i> LinkedIn</a></li>
+                        </div>
+                        <div className="image">
+                            <img src="src/assets/frontpage/Maps.png" alt=""></img>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script>
+                
+            </script>
+
+
             <div className="content-wrapper">
                 <div className="content-desc">
                     <h1>Game Smarter, Not Harder: Your Stats, Your Strategy, Your Victory.</h1>
