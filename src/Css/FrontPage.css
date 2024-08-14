@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
 * {
     margin: 0;
     padding: 0;
@@ -24,6 +25,8 @@ section {
 .main-title {
     font-size: 4em;
     margin-bottom: 50px;
+    font-family: "Matemasie", sans-serif;
+   
 }
 
 .content {
@@ -32,6 +35,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+   
 }
 
     .content .image {
@@ -61,6 +65,7 @@ section {
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         transform: translate(-80px, 50px);
+       
     }
 
         .content .text-box h3 {
@@ -135,10 +140,11 @@ body {
 
 .navbar {
     font-family: Calibri;
-    padding: 15px;
+    padding: 15px 0; /* Remove side padding */
     width: 100%;
     border-bottom: 2px solid rgb(255, 255, 255);
     position: relative;
+    background-color: transparent; /* Ensure it has no background color that could affect width */
 }
 
 .navdiv {
@@ -146,6 +152,9 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    max-width: 100%;  /*Ensure it uses the full width */
+    /*padding: 0 40px;*/ /* Add side padding here if needed */
+    margin: 0 auto; /* Center the navbar content */
 }
 
 .logo a {
@@ -153,7 +162,6 @@ body {
     font-weight: 600;
     color: white;
     text-decoration: none;
-    padding: 40px;
 }
 
 .navbar-list {
@@ -194,22 +202,51 @@ button {
         text-align: center;
     }
 
+
 .content-wrapper {
     width: 80%;
     min-height: 50vh;
     margin: auto;
     display: flex;
-    justify-content: flex-start; /* Aligns content to the left */
-    align-items: center; /* Vertically center content */
+    justify-content: space-between; /* Ensure content is spaced out */
+    align-items: center;
     color: #fff;
+    margin-bottom: 200px; /* Add more space below the content-wrapper */
 }
 
+
 .content-desc {
-    max-width: 50%;
+    display: flex;
+    flex-direction: column; /* Stack the text and button */
+    align-items: flex-start; /* Align text to the left */
+    max-width: 60%;
+    position: relative; /* Add this to position the button absolutely */
 }
 
     .content-desc h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        text-align: left; /* Aligns text to the left */
+        font-size: 4rem;
+        margin-bottom: 20px;
+        text-align: left;
     }
+
+.get-started-button {
+    position: absolute; /* Position the button absolutely */
+    left: 800px; /* Adjust this value as needed to position the button */
+    background-color: #4B0082;
+    color: white;
+    border-radius: 10px;
+    padding: 15px 35px; /* Reduce padding to ensure text fits on one line */
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 65px; /* Add space between text and button */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+    .get-started-button:hover {
+        background-color: #3A006C;
+    }
+
