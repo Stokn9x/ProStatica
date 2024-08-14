@@ -23,7 +23,7 @@ Dette vil starte Vite-serveren, og du kan se dit projekt på http://localhost:51
 Hvis du vil bruge en server-side funktion, som f.eks. en tilmeldingsside, skal du gøre følgende: npm install express body-parser cors samt npm install axios
 
 
-Naviger til Server-mappen: cd src/server
+Naviger til Server-mappen via terminal: cd src "også" cd server
 
 Start Serveren: node server.js
 Serveren kører nu.
