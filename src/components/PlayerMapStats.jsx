@@ -1,10 +1,9 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import './../Css/PlayerMapStats.css';
 
 const PlayerMapStats = ({ currentUser }) => {
     const [selectedMap, setSelectedMap] = useState('all');
-    const [playerData, setPlayerData] = useState(null);
+    const [playerMapData, setPlayerMapData] = useState(null);
 
     useEffect(() => {
         if (currentUser) {
@@ -15,40 +14,68 @@ const PlayerMapStats = ({ currentUser }) => {
                     }
                     return response.json();
                 })
-                .then((data) => setPlayerData(data))
+                .then((data) => setPlayerMapData(data))
                 .catch((error) => console.error('Error fetching player data:', error));
         }
     }, [currentUser]);
+
+    if (playerMapData === null) {
+        return <div>Loading ....</div>;
+    }
 
     if (!currentUser) {
         return <div>Loading ....</div>;
     }
 
-    console.log(playerData);
-
-    const calculateAverageStats = useMemo(() => {
-        const mapNames = Object.keys(playerData.maps);
-        const totalMaps = mapNames.length;
+    // Function to calculate average stats across all maps
+    const calculateAverageStats = () => {
+        const mapNames = Object.keys(playerMapData.maps);
+        let totalMaps = mapNames.length;
 
         const totalStats = mapNames.reduce((acc, map) => {
-            const mapStats = playerData.maps[map];
-            Object.keys(mapStats).forEach((key) => {
-                // Sum up the array values for each stat
-                acc[key] = (acc[key] || 0) + mapStats[key].reduce((a, b) => a + b, 0);
-            });
+            const mapStats = playerMapData.maps[map];
+            const mapHasData = Object.values(mapStats).some((values) => Array.isArray(values) && values.length > 0);
+
+            if (mapHasData) {
+                Object.keys(mapStats).forEach((key) => {
+                    const values = mapStats[key];
+                    if (Array.isArray(values) && values.length > 0) {
+                        acc[key] = (acc[key] || 0) + values.reduce((a, b) => a + b, 0);
+                    }
+                });
+            } else {
+                // If the map has no data, exclude it from the total map count
+                totalMaps--;
+            }
+
             return acc;
         }, {});
 
         const averageStats = {};
         Object.keys(totalStats).forEach((key) => {
-            averageStats[key] = totalStats[key] / totalMaps;
+            averageStats[key] = totalMaps > 0 ? totalStats[key] / totalMaps : 0;
         });
 
         return averageStats;
-    }, [playerData.maps]);
+    };
+
+    // Function to calculate stats for a specific map
+    const calculateMapStats = (mapStats) => {
+        const stats = {};
+        Object.keys(mapStats).forEach((key) => {
+            const values = mapStats[key];
+            if (Array.isArray(values) && values.length > 0) {
+                const total = values.reduce((acc, val) => acc + val, 0);
+                stats[key] = total / values.length;
+            } else {
+                stats[key] = 0; // Handle empty arrays by setting the stat to zero
+            }
+        });
+        return stats;
+    };
 
     const renderMapStats = () => {
-        const stats = selectedMap === 'all' ? calculateAverageStats : PlayerData.maps[selectedMap];
+        const stats = selectedMap === 'all' ? calculateAverageStats() : calculateMapStats(playerMapData.maps[selectedMap]);
 
         return (
             <div className="map-stats">
@@ -91,13 +118,6 @@ const PlayerMapStats = ({ currentUser }) => {
             {renderMapStats()}
         </div>
     );
-};
-
-PlayerMapStats.propTypes = {
-    currentUser: PropTypes.shape({
-        username: PropTypes.string.isRequired,
-        profilePic: PropTypes.string.isRequired,
-    }).isRequired,
 };
 
 export default PlayerMapStats;

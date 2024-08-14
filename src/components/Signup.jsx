@@ -10,7 +10,6 @@ function SignUp() {
     const navigate = useNavigate();
 
     const date = new Date();
-
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -47,13 +46,145 @@ function SignUp() {
             ]
         };
 
+        const newMapStats = {
+            playerName: username,
+            maps: {
+                inferno: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                vertigo: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                anubis: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                mirage: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                dust2: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                ancient: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                nuke: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+            }
+        };
+
+        const newUserStats = {
+            playerName: username,
+            stats: {
+                overall: {
+                    "winrate": [],
+                    "kda": [],
+                    "gamesPlayed": [],
+                    "kills": [],
+                    "deaths": [],
+                    "headshots": [],
+                    "adr": [],
+                    "wins": [],
+                    "loses": [],
+                    "assist": []
+                },
+                tSide: {
+                    tRounds: [],
+                    killR: [],
+                    gunRound: []
+                },
+                ctSide: {
+                    tRounds: [],
+                    killR: [],
+                    gunRound: []
+                }
+			}
+        };
+
         try {
             const response = await fetch('http://localhost:5001/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newUser),
+                body: JSON.stringify({ newUser, newMapStats, newUserStats }), // Send all data in the request body
             });
 
             if (response.ok) {

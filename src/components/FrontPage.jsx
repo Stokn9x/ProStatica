@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '/src/Css/FrontPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Footer from './Footer';
 
 const Homepage = () => {
     return (
@@ -14,7 +15,7 @@ const Homepage = () => {
                         <li><Link to="/profile">Home</Link></li>
                         <li><Link to="/About">About</Link></li>
                         <li><Link to="#">Contact</Link></li>
-                        <li><button><Link to="/Login">Login</Link></button></li>
+                        <li><button><Link to="/login">Login</Link></button></li>
                         <li><button><Link to="/Signup">Sign Up</Link></button></li>
                     </ul>
                 </div>
@@ -89,6 +90,7 @@ const Homepage = () => {
                     <p>Click the button to get started.</p>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };
