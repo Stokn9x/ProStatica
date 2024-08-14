@@ -1,7 +1,8 @@
 .SearchField {
-	position: relative;
-	width: 300px;
-	margin: 0 auto;
+	position: absolute;
+	width: 200px;
+	margin-top: 5px;
+	margin-left: 800px;
 }
 
 	.SearchField input {
@@ -20,7 +21,7 @@
 	background: #fff;
 	position: absolute;
 	width: 100%;
-	z-index: 1000;
+	z-index: 1;
 }
 
 	.suggestions-list li {
