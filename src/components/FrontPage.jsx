@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Footer from './Footer';
 
+import { motion } from "framer-motion"
 const Homepage = () => {
     return (
         <div>
@@ -79,8 +80,12 @@ const Homepage = () => {
                 </div>
             </section>
 
+            refs = React.createRef();
+
             <script>
-                
+                <motion.div />
+
+
             </script>
 
 
