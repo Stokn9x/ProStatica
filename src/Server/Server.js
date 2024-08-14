@@ -49,6 +49,18 @@ app.get('/getUsers', (req, res) => {
 	});
 });
 
+app.get('/getAllUsers', (req, res) => {
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			res.status(500).send('An error occurred while reading user data.');
+			return;
+		}
+
+		const usersData = JSON.parse(data);
+		res.status(200).json(usersData.users);
+	});
+});
 
 app.get('/getUser/:username', (req, res) => {
 	const { username } = req.params;
@@ -470,6 +482,8 @@ app.get('/playerMapStats/:username', (req, res) => {
 		res.status(200).json(player);
 	});
 });
+
+
 
 app.listen(PORT, () => {
 	console.log(`Server is running on http://localhost:${PORT}`);
