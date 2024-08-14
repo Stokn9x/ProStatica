@@ -26,6 +26,7 @@
 	.suggestions-list li {
 		padding: 8px;
 		cursor: pointer;
+		color: black;
 	}
 
 		.suggestions-list li:hover {
