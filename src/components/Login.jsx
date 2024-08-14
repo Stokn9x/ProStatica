@@ -3,15 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/Css/LoginPage.css';
 
-function Login({ handleLogin }) {
+function Login({ handleLogin, currentUser }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
+    const profileLink = currentUser ? `/profile/${currentUser.username}` : '/login';
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (handleLogin(email, password)) {
-            navigate('/profile');
+            navigate(profileLink);
         }
         else {
             alert("Invalid creds")

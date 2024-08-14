@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './../Css/MenuBar.css';
 
 function MenuBar({ currentUser }) {
     const [isPersonalInfoOpen, setPersonalInfoOpen] = useState(false);
     const [isTeamInfoOpen, setTeamInfoOpen] = useState(false);
+    const location = useLocation();
+
+    // Reset menu state on route change
+    useEffect(() => {
+        setPersonalInfoOpen(false);
+        setTeamInfoOpen(false);
+    }, [location.pathname]);
 
     const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
+    const profileLink = currentUser ? `/profile/${currentUser.username}` : '/login';
 
     return (
         <div className="vertical-menu">
@@ -14,7 +22,7 @@ function MenuBar({ currentUser }) {
                 <img src="path-to-your-logo.png" alt="Logo" className="logo" />
                 <h3>SideBar Frame</h3>
             </div>
-            <Link to="/profile" className="btn menu-btn active">Home</Link>
+            <Link to={profileLink} className="btn menu-btn active">Home</Link>
 
             <div className="menu-section-title" onClick={() => setPersonalInfoOpen(!isPersonalInfoOpen)}>Personal info</div>
             {isPersonalInfoOpen && (
@@ -25,7 +33,7 @@ function MenuBar({ currentUser }) {
                 </>
             )}
 
-            <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team(Needs reworkd)</div>
+            <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team(Needs rework)</div>
             {isTeamInfoOpen && (
                 <>
                     <Link to="/TeamInfo" className="menu-btn">Team Info</Link>

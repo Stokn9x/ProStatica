@@ -2,7 +2,7 @@
 //import Footer from "./Footer.jsx"
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, matchPath } from 'react-router-dom';
 import authService from './Services/authServices';
 import ProfileMenu from './components/ProfileMenu';
 import MenuBar from './components/MenuBar';
@@ -23,11 +23,30 @@ import TeamMatches from './components/teamComponets/TeamMatches';
 import TeamStats from './components/teamComponets/TeamStats';
 import TeamCreateJoin from './components/teamComponets/TeamCreateJoin';
 import TeamInfoDashboard from './components/teamComponets/TeamInfoDashboard';
+import SearchField from './components/SearchFIeld';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 
+const routesToShowContent = [
+    "/profile/:username",
+    "/matches",
+    "/match/:id",
+    "/playerStats",
+    "/playerMapStats",
+    "/settings",
+    "/TeamInfoDashboard",
+    "/TeamCreateJoin",
+    "/TeamInfo",
+    "/TeamStats",
+    "/TeamMapStats",
+    "/TeamMatches",
+    "/TeamCalendar"
+];
 
+const shouldShowContent = (pathname) => {
+    return routesToShowContent.some(route => matchPath(route, pathname));
+};
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authService.getAuthStatus());
@@ -64,22 +83,20 @@ function App() {
         setCurrentUser(authService.getCurrentUser());
     };
 
-    const showContentAtRoutes = ["/profile", "/matches", "/match/:id", "/playerStats", "/playerMapStats", "/settings",
-        "/TeamInfoDashboard", "/TeamCreateJoin", "/TeamInfo", "/TeamStats", "/TeamMapStats", "/TeamMatches", "/TeamCalendar"];
-
     const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
 
     return (
             <div className="App">
-                {showContentAtRoutes.includes(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {showContentAtRoutes.includes(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
+                {shouldShowContent(location.pathname) && <MenuBar currentUser={currentUser} />}
+                {shouldShowContent(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
+                {shouldShowContent(location.pathname) && <SearchField />}
                 <div className="content">
                     <Routes>
-                        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+                    <Route path="/login" element={<Login currentUser={currentUser} handleLogin={handleLogin} />} /> {/*Det her skal laves om login skal ik tage imod en currentUser*/}
                         <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
                         <Route path="/about" element={<AboutPage />} />
-                        <Route path="/profile" element={isAuthenticated ? <Profile currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
+                    <Route path="/profile/:username" element={isAuthenticated ? <Profile currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />
