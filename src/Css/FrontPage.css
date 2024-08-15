@@ -283,6 +283,7 @@ button {
     padding: 15px 35px; /* Reduce padding to ensure text fits on one line */
     font-size: 25px;
     font-weight: bold;
+    margin-top: 10px;
     border: none;
     cursor: pointer;
     text-decoration: none;

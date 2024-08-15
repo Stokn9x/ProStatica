@@ -22,7 +22,6 @@ const Homepage = () => {
     const [teamCount, setTeamCount] = useState(0);
 
     useEffect(() => {
-        // Fake API data for demo purposes, replace with real API call later
         setUserCount(4572);
         setDemoCount(12934);
         setTeamCount(534);
