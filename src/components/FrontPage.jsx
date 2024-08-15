@@ -179,7 +179,7 @@ const Homepage = () => {
                         </motion.div>
                         <div className="text-box">
                             <h4 className="info-title">Team Up for Success</h4>
-                            <p>Create your own team and monitor its progress. Track each member’s performance, compare stats, and analyze your team’s overall effectiveness. Get insights into how your strategies work together and make adjustments to climb the ranks as a unit.</p>
+                            <p>Create your own team and monitor its progress. Track each memberï¿½s performance, compare stats, and analyze your teamï¿½s overall effectiveness. Get insights into how your strategies work together and make adjustments to climb the ranks as a unit.</p>
                         </div>
                     </div>
                 </div>
