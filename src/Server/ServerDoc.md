@@ -2,19 +2,30 @@
 
 ## Endpoints
 
+### **GET /getUsers**
+Henter en liste af brugere baseret pÃ¥ en sÃ¸gning efter brugernavne.
+
+- **Query Params:**
+  - `username` (valgfri): SÃ¸gning pÃ¥ brugernavn. Filtrerer brugere, hvis brugernavn starter med denne vÃ¦rdi.
+
+- **Response:**
+  - **200 OK:** Returnerer en liste af brugere, hvis brugernavn matcher sÃ¸gningen (JSON).
+  - **404 Not Found:** Ingen brugere fundet.
+  - **500 Server Error:** Problemer med at lÃ¦se brugerdata.
+
 ### **GET /getUser/:username**
-Henter brugeroplysninger baseret på brugernavn.
+Henter brugeroplysninger baseret pÃ¥ brugernavn.
 
 - **URL Params:** `:username` (brugernavn)
 - **Response:**
   - **200 OK:** Returnerer brugeroplysninger (JSON).
   - **404 Not Found:** Bruger ikke fundet.
-  - **500 Server Error:** Problemer med at læse brugerdata.
+  - **500 Server Error:** Problemer med at lÃ¦se brugerdata.
 
 ---
 
 ### **POST /signup**
-Registrerer en ny bruger og opretter tilhørende statistikker.
+Registrerer en ny bruger og opretter tilhÃ¸rende statistikker.
 
 - **Request Body:**
   - `newUser` (brugerdata)
@@ -38,7 +49,7 @@ Opdaterer en brugers profiloplysninger.
 ---
 
 ### **POST /createTeam**
-Opretter et nyt hold og opdaterer brugerens nuværende hold.
+Opretter et nyt hold og opdaterer brugerens nuvÃ¦rende hold.
 
 - **Request Body:** Nyt hold data (JSON).
 - **Response:**
@@ -49,13 +60,13 @@ Opretter et nyt hold og opdaterer brugerens nuværende hold.
 ---
 
 ### **POST /joinTeam**
-Tilføjer en bruger til et hold baseret på holdkode.
+TilfÃ¸jer en bruger til et hold baseret pÃ¥ holdkode.
 
 - **Request Body:**
   - `teamCode` (kode til hold)
   - `user` (brugerdata)
 - **Response:**
-  - **200 OK:** Bruger er tilføjet til holdet.
+  - **200 OK:** Bruger er tilfÃ¸jet til holdet.
   - **400 Bad Request:** Bruger er allerede medlem.
   - **404 Not Found:** Hold ikke fundet.
   - **500 Server Error:** Problemer med at gemme data.
@@ -63,12 +74,12 @@ Tilføjer en bruger til et hold baseret på holdkode.
 ---
 
 ### **POST /leaveTeam**
-Brugeren forlader det nuværende hold.
+Brugeren forlader det nuvÃ¦rende hold.
 
 - **Request Body:** `username` (brugernavn)
 - **Response:**
   - **200 OK:** Bruger har forladt holdet.
-  - **400 Bad Request:** Bruger er ikke på noget hold.
+  - **400 Bad Request:** Bruger er ikke pÃ¥ noget hold.
   - **404 Not Found:** Hold eller bruger ikke fundet.
   - **500 Server Error:** Problemer med at opdatere data.
 
@@ -81,7 +92,7 @@ Henter oplysninger om et specifikt hold.
 - **Response:**
   - **200 OK:** Returnerer holdoplysninger (JSON).
   - **404 Not Found:** Hold ikke fundet.
-  - **500 Server Error:** Problemer med at læse holddata.
+  - **500 Server Error:** Problemer med at lÃ¦se holddata.
 
 ---
 
@@ -97,21 +108,21 @@ Opdaterer en brugers "firstLogin" status.
 ---
 
 ### **GET /playerStats/:username**
-Henter en spillers statistik baseret på brugernavn.
+Henter en spillers statistik baseret pÃ¥ brugernavn.
 
 - **URL Params:** `:username` (brugernavn)
 - **Response:**
   - **200 OK:** Returnerer spillerstatistik (JSON).
   - **404 Not Found:** Spiller ikke fundet.
-  - **500 Server Error:** Problemer med at læse data.
+  - **500 Server Error:** Problemer med at lÃ¦se data.
 
 ---
 
 ### **GET /playerMapStats/:username**
-Henter en spillers kortstatistik baseret på brugernavn.
+Henter en spillers kortstatistik baseret pÃ¥ brugernavn.
 
 - **URL Params:** `:username` (brugernavn)
 - **Response:**
   - **200 OK:** Returnerer kortstatistik (JSON).
   - **404 Not Found:** Spiller ikke fundet.
-  - **500 Server Error:** Problemer med at læse data.
+  - **500 Server Error:** Problemer med at lÃ¦se data.
