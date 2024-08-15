@@ -5,74 +5,61 @@
     width: 220px;
     height: 100%;
     background-color: #2A2B3D;
-    padding: 10px;
+    padding: 20px;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
-
-    .vertical-menu .menu-btn.disabled {
-        color: gray;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-        .vertical-menu .menu-btn.disabled i {
-            margin-right: 8px;
-        }
 
 .menu-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
     .menu-header .logo {
         width: 60px;
         height: 60px;
         margin-bottom: 10px;
-
     }
 
-/*.btn {
-    color: #c3f309;
-}*/
-
-
 .menu-btn {
-    background-color: #00000000; /* Ser ikke ud til at virke */
-    color: #697d8f;
+    background-color: transparent;
+    color: #C0C3C8;
     border: none;
-    padding: 10px;
-    text-align: center;
+    padding: 10px 20px;
+    text-align: left;
     text-decoration: none;
     display: block;
     font-size: 16px;
-    margin: 5px 0;
+    margin: 10px 0;
     cursor: pointer;
-    width: 100%;
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis if the text is too long */
 }
 
-.menu-btn.active, .menu-btn:hover {
-    background-color: #7986CB;
+    .menu-btn:hover {
+        background-color: #7986CB;
+        color: white;
+    }
+
+.sub-menu {
+    margin-left: 20px; /* Indent sub-menu items */
+    padding-left: 10px;
+    border-left: 2px solid #C0C3C8; /* Visual distinction for the sub-menu */
 }
 
-.menu-section-title {
-    text-align: center;
-    margin: 15px 0;
-    font-weight: bold;
-    color: #C0C3C8; /* Lysere farve til sektionstitler */
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.menu-section-title:hover {
-    color: #fff;
+.sub-menu-btn {
+    margin: 5px 0; /* Adjusted margin for sub-menu items */
+    font-size: 16px; /* You can increase this value */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis if the text is too long */
 }
 
 .menu-footer {
@@ -81,13 +68,13 @@
     margin-top: 20px;
 }
 
-.menu-footer a {
-    color: white;
-    font-size: 18px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
+    .menu-footer a {
+        color: white;
+        font-size: 18px;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
 
-.menu-footer a:hover {
-        color: #C0C3C8;
-}
+        .menu-footer a:hover {
+            color: #7986CB;
+        }

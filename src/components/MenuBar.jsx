@@ -1,39 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import './../Css/MenuBar.css';
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
 
+function MenuBar() {
+    const [isTeamStatsOpen, setIsTeamStatsOpen] = useState(false);
 
-function MenuBar({ currentUser }) {
-    const [isPersonalInfoOpen, setPersonalInfoOpen] = useState(false);
-    const [isTeamInfoOpen, setTeamInfoOpen] = useState(false);
-    const location = useLocation();
+    const toggleTeamStats = () => {
+        setIsTeamStatsOpen(!isTeamStatsOpen);
+    };
 
-    // Reset menu state on route change
-    useEffect(() => {
-        setPersonalInfoOpen(false);
-        setTeamInfoOpen(false);
-    }, [location.pathname]);
+    // Variants for sidebar animation
+    const sidebarVariants = {
+        hidden: { x: '-100%' },
+        visible: { x: 0, transition: { duration: 0.5 } },
+    };
 
-    const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
-    const profileLink = currentUser ? `/profile/${currentUser.username}` : '/login';
+    // Variants for the sub-menu items
+    const subMenuVariants = {
+        hidden: { opacity: 0, height: 0 },
+        visible: {
+            opacity: 1,
+            height: 'auto',
+            transition: { duration: 0.3 },
+        },
+    };
 
     return (
-        <div ClassName="sidebar">
-            <div className="top">
-                <div className="logo">
-                    <i className="bx bxl-codepen"></i>
-                    <span>WebsiteName</span>
-                </div>'
-                <i className="bx bx-menu" id="btn"></i>
+        <motion.div
+            className="vertical-menu"
+            initial="hidden"
+            animate="visible"
+            variants={sidebarVariants}
+        >
+            <div className="menu-header">
+                <img src="path-to-your-logo.png" alt="Logo" className="logo" />
+                <h3>Menu</h3>
             </div>
-            <div className="user"></div>
-        </div>
+            <Link to="/home" className="menu-btn">Home</Link>
+            <Link to="/general-stats" className="menu-btn">General stats</Link>
+            <Link to="/profile" className="menu-btn">Matches</Link>
+            <div className="menu-btn" onClick={toggleTeamStats}>
+                Team
+            </div>
+            <AnimatePresence>
+                {isTeamStatsOpen && (
+                    <motion.div
+                        className="sub-menu"
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={subMenuVariants}
+                    >
+                        <Link to="/team-stats" className="menu-btn sub-menu-btn">Team Overview</Link>
+                        <Link to="/team-matches" className="menu-btn sub-menu-btn">Team Matches</Link>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
-
-
+            <div className="menu-footer">
+                <a href="#"><i className="fab fa-linkedin"></i></a>
+                <a href="#"><i className="fab fa-discord"></i></a>
+                <a href="#"><i className="fas fa-envelope"></i></a>
+                <a href="#"><i className="fab fa-twitter"></i></a>
+            </div>
+        </motion.div>
     );
 }
+
 export default MenuBar;
-
-
