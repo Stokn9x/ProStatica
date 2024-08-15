@@ -25,6 +25,8 @@ const updateUser = (usersData, username, updateCallback) => {
 		updateCallback(usersData.users[userIndex]);
 	}
 };
+
+//This needs a rename asap
 app.get('/getUsers', (req, res) => {
 	const { username } = req.query;
 
