@@ -19,13 +19,15 @@
         "instagram": "https://www.instagram.com/casper_ermegaard_jensen/"
       },
       "signupTime": "none",
-      "currentTeam": "Vortex Gaming Talent1",
-      "previousTeams": []
+      "currentTeam": "none",
+      "previousTeams": [
+        "Vortex Gaming Talent1"
+      ]
     },
     {
       "username": "Storm",
       "email": "storm@example.com",
-      "password": "anotherpassword",
+      "password": "123",
       "rank": "Gold Nova II",
       "name": "none",
       "age": "none",

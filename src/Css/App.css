@@ -7,8 +7,9 @@ body {
 }
 
 .content {
-    margin-left: 260px; /* For at give plads til MenuBar */
-    padding: 20px;
+    /*margin-left: 260px;*/ /* For at give plads til MenuBar */
+    /*padding: 20px;*/
     width: 100%;
     align-content: center;
+    margin-top: 26px;
 }

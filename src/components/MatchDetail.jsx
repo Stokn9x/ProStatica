@@ -25,7 +25,6 @@ const mapIcons = {
 function MatchDetail() {
     const { id } = useParams();
 
-    // Fetch match details based on the id
     const match = matchesData.matches[id];
     if (!match) {
         return <div>Match not found</div>;
@@ -33,7 +32,6 @@ function MatchDetail() {
 
     const { map, result, score, time, mode, yourTeam, enemyTeam } = match;
 
-    // Ensure each team has exactly 5 players
     const ensureFivePlayers = (team) => {
         const filledTeam = [...team];
         while (filledTeam.length < 5) {
