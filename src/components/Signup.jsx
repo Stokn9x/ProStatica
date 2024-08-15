@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './../Css/SignUp.css';
 
@@ -7,10 +7,30 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [retypePassword, setRetypePassword] = useState('');
+    const [users, setUsers] = useState([]);
     const navigate = useNavigate();
 
-    const date = new Date();
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:5001/getAllUsers');
+                if (response.ok) {
+                    const data = await response.json();
+                    setUsers(data);
+                } else {
+                    console.error('Failed to fetch users');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
 
+        fetchUsers();
+    }, []);
+
+    console.log(users);
+
+    const date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
@@ -21,6 +41,11 @@ function SignUp() {
             alert('Passwords do not match');
             return;
         }
+
+        if (users.some(user => user.email === email)) {
+			alert('Email is taken, you have an account with us :)');
+			return;
+		}
 
         const newUser = {
             username,
@@ -47,13 +72,145 @@ function SignUp() {
             ]
         };
 
+        const newMapStats = {
+            playerName: username,
+            maps: {
+                inferno: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                vertigo: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                anubis: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                mirage: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                dust2: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                ancient: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+                nuke: {
+                    "kills": [],
+                    "deaths": [],
+                    "assists": [],
+                    "kr": [],
+                    "kd": [],
+                    "adr": [],
+                    "ctRounds": [],
+                    "tRounds": [],
+                    "entryCT": [],
+                    "entryT": [],
+                    "ctPistolWins": [],
+                    "tPistolWins": []
+                },
+            }
+        };
+
+        const newUserStats = {
+            playerName: username,
+            stats: {
+                overall: {
+                    "winrate": [],
+                    "kda": [],
+                    "gamesPlayed": [],
+                    "kills": [],
+                    "deaths": [],
+                    "headshots": [],
+                    "adr": [],
+                    "wins": [],
+                    "loses": [],
+                    "assist": []
+                },
+                tSide: {
+                    tRounds: [],
+                    killR: [],
+                    gunRound: []
+                },
+                ctSide: {
+                    tRounds: [],
+                    killR: [],
+                    gunRound: []
+                }
+			}
+        };
+
         try {
             const response = await fetch('http://localhost:5001/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newUser),
+                body: JSON.stringify({ newUser, newMapStats, newUserStats }),
             });
 
             if (response.ok) {
