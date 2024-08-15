@@ -13,9 +13,11 @@ const Homepage = () => {
     const controls1 = useAnimation();
     const controls2 = useAnimation();
     const controls3 = useAnimation();
+    const controls4 = useAnimation();
     const [ref1, inView1] = useInView();
     const [ref2, inView2] = useInView();
     const [ref3, inView3] = useInView();
+    const [ref4, inView4] = useInView();
 
     const imageVariant = {
         hidden: { opacity: 0, y: 50 },
@@ -46,19 +48,24 @@ const Homepage = () => {
         }
     }, [controls3, inView3]);
 
-    // Define animation variants for the button
+    useEffect(() => {
+        if (inView4) {
+            controls4.start('visible');
+        } else {
+            controls4.start('hidden');
+        }
+    }, [controls4, inView4]);
+
     const buttonVariants = {
         hover: { scale: 1.1, backgroundColor: "#3A006C" },
         tap: { scale: 0.9 },
     };
 
-
-
     return (
         <div>
             <nav className="navbar">
                 <div className="navdiv">
-                    <div className="logo"><a href="#">WebsiteName</a></div>
+                    <div className="logo"><a href="#">GameStatsHub</a></div>
                     <ul className="navbar-list">
                         <li><Link to="/profile">Home</Link></li>
                         <li><Link to="/About">About</Link></li>
@@ -85,10 +92,9 @@ const Homepage = () => {
 
             <br />
 
-            {/* Remaining sections of your page */}
             <section className="sec-01">
                 <div className="container">
-                    <h2 className="main-title">Reveal element on scroll</h2>
+                    <h2 className="main-title">Track Your Progress, Elevate Your Game</h2>
                     <div className="content">
                         <motion.div
                             className="image"
@@ -100,10 +106,8 @@ const Homepage = () => {
                             <img src="src/assets/frontpage/csgorank.png" alt="" />
                         </motion.div>
                         <div className="text-box">
-                            <h3>lorem Ipsum</h3>
-                            <p> jisnfijnsifnsi jisnfijnsifnsi  jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
-                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
-                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi </p>
+                            <h3>Analyze Your Performance</h3>
+                            <p>Get in-depth insights on your gaming performance. Track your rank, win rate, and key statistics over time. Identify strengths, expose weaknesses, and make informed decisions to improve your gameplay.</p>
                         </div>
                     </div>
                     <div className="media-icons">
@@ -117,7 +121,7 @@ const Homepage = () => {
 
             <section className="sec-02">
                 <div className="container">
-                    <h3 className="section-title">Lorem Ipsum</h3>
+                    <h3 className="section-title">Master Your Strategy</h3>
                     <div className="content">
                         <motion.div
                             className="image"
@@ -129,10 +133,29 @@ const Homepage = () => {
                             <img src="src/assets/frontpage/stats.png" alt="" />
                         </motion.div>
                         <div className="info">
-                            <h4 className="info-title">Description</h4>
-                            <p>jisnfijnsifnsi jisnfijnsifnsi  jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
-                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi
-                                jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi jisnfijnsifnsi</p>
+                            <h4 className="info-title">Understand Your Gameplay</h4>
+                            <p>Dive into detailed stats that break down every match, from kill/death ratios to accuracy rates. Use these analytics to refine your strategies, optimize your playstyle, and stay ahead of the competition.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="sec-04">
+                <div className="container">
+                    <h3 className="section-title">Build and Track Your Team</h3>
+                    <div className="content">
+                        <motion.div
+                            className="image"
+                            ref={ref4}
+                            initial="hidden"
+                            animate={controls4}
+                            variants={imageVariant}
+                        >
+                            <img src="src/assets/frontpage/stats.jpg" alt="" />
+                        </motion.div>
+                        <div className="info">
+                            <h4 className="info-title">Team Up for Success</h4>
+                            <p>Create your own team and monitor its progress. Track each members performance, compare stats, and analyze your teams overall effectiveness. Get insights into how your strategies work together and make adjustments to climb the ranks as a unit.</p>
                         </div>
                     </div>
                 </div>
@@ -140,13 +163,13 @@ const Homepage = () => {
 
             <section className="sec-03">
                 <div className="container">
-                    <h3 className="section-title">Lorem Ipsum</h3>
+                    <h3 className="section-title">Connect with the Community</h3>
                     <div className="content">
                         <div className="media-info">
                             <li><a href="#"><i className="fab fa-facebook"></i> Facebook</a></li>
                             <li><a href="#"><i className="fab fa-instagram"></i> Instagram</a></li>
                             <li><a href="#"><i className="fab fa-twitter"></i>Twitter</a></li>
-                            <li><a href="#"><i className="fab fa-youtube"></i> Youtube</a></li>
+                            <li><a href="#"><i className="fab fa-youtube"></i> YouTube</a></li>
                             <li><a href="#"><i className="fab fa-linkedin"></i> LinkedIn</a></li>
                         </div>
                         <motion.div
