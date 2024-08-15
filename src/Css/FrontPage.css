@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
 * {
     margin: 0;
     padding: 0;
@@ -53,9 +54,6 @@
 
 section {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 80px 100px;
     color: #fff;
 }
@@ -72,16 +70,13 @@ section {
     font-size: 4em;
     margin-bottom: 50px;
     font-family: "Matemasie", sans-serif;
-   
 }
 
 .content {
     position: relative;
     width: 1150px;
-    display: flex;
     justify-content: center;
     align-items: center;
-   
 }
 
     .content .image {
@@ -111,7 +106,6 @@ section {
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         transform: translate(-80px, 50px);
-       
     }
 
         .content .text-box h3 {
@@ -163,15 +157,17 @@ section {
             margin-bottom: 50px;
         }
 
-        .media-info li:nth-child(1), .media-info li:nth-child(5) {
+        .media-info li:nth-child(1),
+        .media-info li:nth-child(5) {
             padding-left: 100px;
         }
 
-        .media-info li:nth-child(2), .media-info li:nth-child(4) {
+        .media-info li:nth-child(2),
+        .media-info li:nth-child(4) {
             padding-left: 50px;
         }
 
-.sec-03{
+.sec-03 {
     margin-bottom: 100px;
 }
 
@@ -184,13 +180,14 @@ body {
     font-family: Calibri, sans-serif;
 }
 
+/* Keep the navbar styles intact */
 .navbar {
-    font-family: Calibri;
-    padding: 15px 0; /* Remove side padding */
+    padding: 15px 0;
     width: 100%;
     border-bottom: 2px solid rgb(255, 255, 255);
     position: relative;
-    background-color: transparent; /* Ensure it has no background color that could affect width */
+    background-color: transparent;
+    display: block; /* Ensure the navbar is block-level */
 }
 
 .navdiv {
@@ -198,9 +195,8 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 100%;  /*Ensure it uses the full width */
-    /*padding: 0 40px;*/ /* Add side padding here if needed */
-    margin: 0 auto; /* Center the navbar content */
+    padding: 0 40px;
+    margin: 0 auto;
 }
 
 .logo a {
@@ -248,26 +244,23 @@ button {
         text-align: center;
     }
 
-
 .content-wrapper {
     width: 80%;
     min-height: 86vh;
     margin: auto;
     display: flex;
-    justify-content: space-between; /* Ensure content is spaced out */
+    justify-content: space-between;
     align-items: center;
     color: #fff;
-    margin-bottom: 100px; /* Add more space below the content-wrapper */
-
+   margin-bottom: 200px; /* Add more space below the content-wrapper */
 }
-
 
 .content-desc {
     display: flex;
-    flex-direction: column; /* Stack the text and button */
-    align-items: flex-start; /* Align text to the left */
+    flex-direction: column;
+    align-items: flex-start;
     max-width: 60%;
-    position: relative; /* Add this to position the button absolutely */
+    position: relative;
 }
 
     .content-desc h1 {
@@ -277,10 +270,12 @@ button {
     }
 
 .get-started-button {
+    position: absolute;
+    left: 800px;
     background-color: #4B0082;
     color: white;
     border-radius: 10px;
-    padding: 15px 35px; /* Reduce padding to ensure text fits on one line */
+    padding: 15px 35px;
     font-size: 25px;
     font-weight: bold;
     margin-top: 10px;
@@ -288,10 +283,21 @@ button {
     cursor: pointer;
     text-decoration: none;
     text-align: center;
+    margin-top: 65px;
+    white-space: nowrap;
     white-space: nowrap; /* Prevent text from wrapping */
+    
 }
 
     .get-started-button:hover {
         background-color: #3A006C;
     }
 
+/* Apply display: flex only to the specified sections */
+.sec-01,
+.sec-02,
+.sec-03 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
