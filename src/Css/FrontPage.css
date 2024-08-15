@@ -5,6 +5,52 @@
     box-sizing: border-box;
 }
 
+.counter-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    max-width: 300px;
+    margin-left: 30px;
+}
+
+    .counter-box h3 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+.counter {
+    margin-bottom: 20px;
+}
+
+    .counter p {
+        font-size: 1.2em;
+        color: white;
+    }
+
+    .counter h4 {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #00ff00;
+    }
+
+/* Boks til Understand Your Gameplay og Team Up for Success sektioner */
+.sec-02 .text-box, .sec-04 .text-box {
+    margin-left: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+
 section {
     position: relative;
     display: flex;
@@ -211,7 +257,8 @@ button {
     justify-content: space-between; /* Ensure content is spaced out */
     align-items: center;
     color: #fff;
-    margin-bottom: 200px; /* Add more space below the content-wrapper */
+    padding-top: 14px;
+    margin-bottom: 100px; /* Add more space below the content-wrapper */
 }
 
 
@@ -230,8 +277,6 @@ button {
     }
 
 .get-started-button {
-    position: absolute; /* Position the button absolutely */
-    left: 800px; /* Adjust this value as needed to position the button */
     background-color: #4B0082;
     color: white;
     border-radius: 10px;
