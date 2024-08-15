@@ -65,7 +65,6 @@ const Homepage = () => {
         }
     }, [controls4, inView4]);
 
-    // Define animation variants for the button
     const buttonVariants = {
         hover: { scale: 1.1, backgroundColor: "#3A006C" },
         tap: { scale: 0.9 },
@@ -99,7 +98,6 @@ const Homepage = () => {
                     </motion.button>
                 </div>
 
-                {/* Counter Box */}
                 <div className="counter-box">
                     <h3>Platform Stats</h3>
                     <div className="counter">
@@ -119,7 +117,6 @@ const Homepage = () => {
 
             <br />
 
-            {/* Remaining sections of your page */}
             <section className="sec-01">
                 <div className="container">
                     <h2 className="main-title">Track Your Progress, Elevate Your Game</h2>
@@ -168,7 +165,6 @@ const Homepage = () => {
                 </div>
             </section>
 
-            {/* Updated section with a text box */}
             <section className="sec-04">
                 <div className="container">
                     <h3 className="section-title">Build and Track Your Team</h3>

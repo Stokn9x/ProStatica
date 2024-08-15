@@ -251,14 +251,14 @@ button {
 
 .content-wrapper {
     width: 80%;
-    min-height: 50vh;
+    min-height: 86vh;
     margin: auto;
     display: flex;
     justify-content: space-between; /* Ensure content is spaced out */
     align-items: center;
     color: #fff;
-    padding-top: 14px;
     margin-bottom: 100px; /* Add more space below the content-wrapper */
+
 }
 
 
@@ -287,7 +287,6 @@ button {
     cursor: pointer;
     text-decoration: none;
     text-align: center;
-    margin-top: 65px; /* Add space between text and button */
     white-space: nowrap; /* Prevent text from wrapping */
 }
 
