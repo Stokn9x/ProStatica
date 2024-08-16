@@ -1,24 +1,51 @@
+.playerCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 20px;
+}
+
 .playerCard {
-    border: 1px solid grey;
+    background-color: #1F1F2E;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px grey;
-    padding: 20px;
-    margin: 10px;
+    padding: 15px;
+    width: 180px;
     text-align: center;
-    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 10px;
+    max-width: 180px; 
     display: inline-block;
 }
 
-    .playerCard {
-        width: 60%;
-        height: auto;
+    .playerCard:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .playerCard img {
+        width: 100%;
+        border-radius: 50%;
         margin-bottom: 10px;
+        object-fit: cover;
+    }
+
+    .playerCard h2 {
+        font-size: 1.2em;
+        margin: 5px 0;
+        color: #FFD700;
+    }
+
+    .playerCard p {
+        font-size: 1em;
+        margin: 5px 0;
+        color: #C0C0C0;
     }
 
 .img-container {
     display: flex;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 100%;
     margin: 0 auto;
 }

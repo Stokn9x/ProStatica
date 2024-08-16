@@ -28,6 +28,21 @@
           "role": "admin"
         }
       ]
+    },
+    {
+      "teamName": "Vortex Gaming Talent2",
+      "teamTag": "123",
+      "teamCreationTime": "16-8-2024",
+      "teamCode": "hipzl0po",
+      "members": [
+        {
+          "username": "Stokn9x",
+          "profilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
+          "name": "Casper Ermegaard Jensen",
+          "age": "24",
+          "role": "admin"
+        }
+      ]
     }
   ]
 }
