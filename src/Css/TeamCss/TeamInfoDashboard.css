@@ -1,19 +1,97 @@
 .teamDashboard {
-	/*display: flex;*/
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin-top: 20px;
-	border-radius: 15px;
 	background-color: #2E2E3F;
+	border-radius: 15px;
 	padding: 20px;
-	position: center;
+	margin-top: 20px;
 	margin-left: 260px;
+	margin-right: 20px;
+	text-align: center;
+	color: white;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	position: relative;
+	max-width: 1200px;
 }
 
-.playerCards {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding: 20px;
+	.teamDashboard h1 {
+		margin-bottom: 10px;
+		font-size: 2em;
+	}
+
+	.teamDashboard p {
+		margin: 5px 0;
+		font-size: 1.1em;
+	}
+
+.teamLogo {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin-bottom: 20px;
+	object-fit: cover;
+	border: 3px solid white;
 }
+
+.leaveTeamButton {
+	background-color: #FF4136;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 1em;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	transition: background-color 0.3s;
+}
+
+	.leaveTeamButton:hover {
+		background-color: #E63946;
+	}
+
+.teamSettingsButton {
+	background-color: #0074D9;
+	color: white;
+	border: none;
+	padding: 8px 15px;
+	font-size: 1em;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute;
+	top: 20px;
+	right: 120px;
+	transition: background-color 0.3s;
+}
+
+	.teamSettingsButton:hover {
+		background-color: #0063A9;
+	}
+
+.teamBio {
+	background-color: #3B3B5A;
+	padding: 15px;
+	border-radius: 10px;
+	margin: 20px 0;
+	color: #C0C0C0;
+	font-size: 1.1em;
+	max-width: 800px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.socialIcons {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+	.socialIcons a {
+		color: white;
+		font-size: 1.5em;
+		transition: color 0.3s;
+	}
+
+		.socialIcons a:hover {
+			color: #FFD700;
+		}

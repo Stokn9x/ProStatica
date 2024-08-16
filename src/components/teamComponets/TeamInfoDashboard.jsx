@@ -4,7 +4,7 @@ import './../../Css/TeamCss/TeamInfoDashboard.css';
 import PlayerCard from './../../Cards/PlayerCard';
 
 const TeamInfoDashboard = ({ currentUser, updateUser }) => {
-    const [teamInfo, setTeamInfo] = useState(null); // State to hold entire team info
+    const [teamInfo, setTeamInfo] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const TeamInfoDashboard = ({ currentUser, updateUser }) => {
                 const response = await fetch(`http://localhost:5001/getTeamInfo?team=${currentUser.currentTeam}`);
                 if (response.ok) {
                     const teamData = await response.json();
-                    setTeamInfo(teamData); // Store entire team data
+                    setTeamInfo(teamData);
                 } else {
                     console.error('Failed to fetch team info.');
                 }
@@ -66,15 +66,24 @@ const TeamInfoDashboard = ({ currentUser, updateUser }) => {
         return <div>Loading...</div>;
     }
 
-    // Ensure there are always 5 player cards
     const allPlayers = [...teamInfo.members, ...Array(5 - teamInfo.members.length).fill(placeholderPlayer)];
 
     return (
         <div className="teamDashboard">
+            <img src="/path/to/teamLogo.png" alt="Team Logo" className="teamLogo" />
             <h1>Welcome to Team {teamInfo.teamName}</h1>
             <p>Team Tag: {teamInfo.teamTag}</p>
             <p>Team Creation Date: {teamInfo.teamCreationTime}</p>
-            <button onClick={handleLeaveTeam}>Leave Team</button>
+
+            <div className="teamStats">
+                <h2>Team Statistics</h2>
+                <div className="statItem">Winrate: <span className="statValue">60%</span></div>
+                <div className="statItem">Average K/D: <span className="statValue">1.15</span></div>
+                <div className="statItem">Total Matches: <span className="statValue">120</span></div>
+            </div>
+
+            <button className="leaveTeamButton" onClick={handleLeaveTeam}>Leave Team</button>
+
             <div className="playerCards">
                 {allPlayers.map((player, index) => (
                     <PlayerCard key={index} player={player} />
