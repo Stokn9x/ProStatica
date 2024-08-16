@@ -1,4 +1,3 @@
-//import Header from "./Header.jsx"
 //import Footer from "./Footer.jsx"
 
 import React, { useState, useEffect } from 'react';
@@ -24,9 +23,11 @@ import TeamStats from './components/teamComponets/TeamStats';
 import TeamCreateJoin from './components/teamComponets/TeamCreateJoin';
 import TeamInfoDashboard from './components/teamComponets/TeamInfoDashboard';
 import SearchField from './components/SearchFIeld';
+import Header from './components/Header';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
+
 
 const routesToShowContent = [
     "/profile/:username",
@@ -88,8 +89,8 @@ function App() {
     return (
             <div className="App">
                 {shouldShowContent(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {shouldShowContent(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
-                {shouldShowContent(location.pathname) && <SearchField />}
+                {/*{shouldShowContent(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}*/}
+                {shouldShowContent(location.pathname) && <Header currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
                     <Route path="/login" element={<Login currentUser={currentUser} handleLogin={handleLogin} />} /> {/*Det her skal laves om login skal ik tage imod en currentUser*/}

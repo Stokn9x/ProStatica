@@ -61,7 +61,7 @@ const SearchField = () => {
             part.toLowerCase() === query.toLowerCase() ? <strong key={index}>{part}</strong> : part
         );
     };
-
+    console.log(players)
     return (
         <div className="SearchField" ref={searchRef}>
             <input
@@ -75,7 +75,10 @@ const SearchField = () => {
                 <ul className="suggestions-list">
                     {players.map(player => (
                         <li key={player.username} onClick={() => handlePlayerClick(player.username)}>
-                            {highlightMatch(player.username, query)}
+                            <span className="text-content">
+                                {highlightMatch(player.username, query)}
+                            </span>
+                            <img src={player.profilePic} alt="img" className="searchLogo" />
                         </li>
                     ))}
                 </ul>
