@@ -70,7 +70,7 @@ const Homepage = () => {
     };
 
     return (
-        <div>
+        <div className="frontpage">
             <nav className="navbar">
                 <div className="navdiv">
                     <div className="logo"><a href="#">GameStatsHub</a></div>
@@ -91,8 +91,8 @@ const Homepage = () => {
                         className="get-started-button"
                         variants={buttonVariants}
                         whileHover="hover"
-                        whileTap="tap"
-                    >
+                        whileTap="tap">
+                        
                         <Link to="/login">Get Started</Link>
                     </motion.button>
                 </div>
