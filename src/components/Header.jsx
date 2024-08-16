@@ -1,18 +1,17 @@
+import React from 'react';
+import '/src/Css/Header.css';
+import SearchField from './SearchFIeld';
+import ProfileMenu from './ProfileMenu';
 
-function Header(){
+function Header({ currentUser, handleLogout }){
 
 	return(
-		<header>
-			<h1>My website</h1>
-			<nav>
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</nav>
-			<hr></hr>
-		</header>
+		<div className="header">
+			<div>
+				<SearchField />
+				<ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />
+			</div>
+		</div>
 
 	);
 }
