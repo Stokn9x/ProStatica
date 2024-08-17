@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+.frontpage {
+    margin-top: -34px;
+}
+
 .counter-box {
     display: flex;
     flex-direction: column;
@@ -270,7 +274,6 @@ button {
     }
 
 .get-started-button {
-    position: absolute;
     left: 800px;
     background-color: #4B0082;
     color: white;
