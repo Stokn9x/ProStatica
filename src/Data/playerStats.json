@@ -4,55 +4,117 @@
       "playerName": "Stokn9x",
       "stats": {
         "overall": {
-          "winrate": [
-            "60%",
-            "62%",
-            "59%"
+          "assist": [
+            1,
+            1
           ],
-          "kda": [
-            1.2,
-            1.3,
-            1.1
+          "avg_damage_round": [
+            1,
+            1
           ],
-          "gamesPlayed": [
-            10,
-            15,
-            20
+          "avg_deaths_round": [
+            1,
+            1
           ],
-          "kills": [
-            150,
-            170,
-            180
+          "avg_kills_round": [
+            1,
+            1
+          ],
+          "avg_utilDamage_round": [
+            1,
+            1
+          ],
+          "damage_armor": [
+            1,
+            1
+          ],
+          "damage_health": [
+            1,
+            1
           ],
           "deaths": [
-            100,
-            110,
-            120
+            1,
+            1
           ],
-          "headshots": [
-            75,
-            80,
-            85
+          "first_death": [
+            1,
+            1
           ],
-          "adr": [
-            80,
-            82,
-            78
+          "first_kill": [
+            1,
+            1
           ],
-          "wins": [
-            6,
-            9,
-            12
+          "first_trade_death": [
+            1,
+            1
           ],
-          "loses": [
-            4,
-            6,
-            8
+          "first_trade_kill": [
+            1,
+            1
           ],
-          "assist": [
-            50,
-            55,
-            60
+          "five_kill_count": [
+            1,
+            1
+          ],
+          "four_kill_count": [
+            1,
+            1
+          ],
+          "mvp": [
+            1,
+            1
+          ],
+          "hs": [
+            1,
+            1
+          ],
+          "hs_percentage": [
+            1,
+            1
+          ],
+          "kast": [
+            1,
+            1
+          ],
+          "kills": [
+            1,
+            1
+          ],
+          "kd": [
+            1,
+            1
+          ],
+          "one_kill_count": [
+            1,
+            1
+          ],
+          "score": [
+            1,
+            1
+          ],
+          "three_kill_count": [
+            1,
+            1
+          ],
+          "trade_death": [
+            1,
+            1
+          ],
+          "trade_kill": [
+            1,
+            1
+          ],
+          "two_kill_count": [
+            1,
+            1
+          ],
+          "util_damage": [
+            1,
+            1
+          ],
+          "hltv2Rating": [
+            1,
+            1
           ]
         },
         "tSide": {
@@ -95,55 +157,117 @@
       "playerName": "Storm",
       "stats": {
         "overall": {
-          "winrate": [
-            "70%",
-            "72%",
-            "68%"
+          "assist": [
+            1,
+            1
           ],
-          "kda": [
-            1.5,
-            1.6,
-            1.4
+          "avg_damage_round": [
+            1,
+            1
           ],
-          "gamesPlayed": [
-            20,
-            25,
-            30
+          "avg_deaths_round": [
+            1,
+            1
           ],
-          "kills": [
-            300,
-            310,
-            320
+          "avg_kills_round": [
+            1,
+            1
+          ],
+          "avg_utilDamage_round": [
+            1,
+            1
+          ],
+          "damage_armor": [
+            1,
+            1
+          ],
+          "damage_health": [
+            1,
+            1
           ],
           "deaths": [
-            200,
-            210,
-            220
+            1,
+            1
           ],
-          "headshots": [
-            150,
-            160,
-            155
+          "first_death": [
+            1,
+            1
           ],
-          "adr": [
-            90,
-            91,
-            89
+          "first_kill": [
+            1,
+            1
           ],
-          "wins": [
-            14,
-            18,
-            21
+          "first_trade_death": [
+            1,
+            1
           ],
-          "loses": [
-            6,
-            7,
-            9
+          "first_trade_kill": [
+            1,
+            1
           ],
-          "assist": [
-            60,
-            65,
-            70
+          "five_kill_count": [
+            1,
+            1
+          ],
+          "four_kill_count": [
+            1,
+            1
+          ],
+          "mvp": [
+            1,
+            1
+          ],
+          "hs": [
+            1,
+            1
+          ],
+          "hs_percentage": [
+            1,
+            1
+          ],
+          "kast": [
+            1,
+            1
+          ],
+          "kills": [
+            1,
+            1
+          ],
+          "kd": [
+            1,
+            1
+          ],
+          "one_kill_count": [
+            1,
+            1
+          ],
+          "score": [
+            1,
+            1
+          ],
+          "three_kill_count": [
+            1,
+            1
+          ],
+          "trade_death": [
+            1,
+            1
+          ],
+          "trade_kill": [
+            1,
+            1
+          ],
+          "two_kill_count": [
+            1,
+            1
+          ],
+          "util_damage": [
+            1,
+            1
+          ],
+          "hltv2Rating": [
+            1,
+            1
           ]
         },
         "tSide": {
@@ -179,6 +303,51 @@
             57,
             54
           ]
+        }
+      }
+    },
+    {
+      "playerName": "Alex",
+      "stats": {
+        "overall": {
+          "assist": [],
+          "avg_damage_round": [],
+          "avg_deaths_round": [],
+          "avg_kills_round": [],
+          "avg_utilDamage_round": [],
+          "damage_armor": [],
+          "damage_health": [],
+          "deaths": [],
+          "first_death": [],
+          "first_kill": [],
+          "first_trade_death": [],
+          "first_trade_kill": [],
+          "five_kill_count": [],
+          "four_kill_count": [],
+          "mvp": [],
+          "hs": [],
+          "hs_percentage": [],
+          "kast": [],
+          "kills": [],
+          "kd": [],
+          "one_kill_count": [],
+          "score": [],
+          "three_kill_count": [],
+          "trade_death": [],
+          "trade_kill": [],
+          "two_kill_count": [],
+          "util_damage": [],
+          "hltv2Rating": []
+        },
+        "tSide": {
+          "tRounds": [],
+          "killR": [],
+          "gunRound": []
+        },
+        "ctSide": {
+          "tRounds": [],
+          "killR": [],
+          "gunRound": []
         }
       }
     }

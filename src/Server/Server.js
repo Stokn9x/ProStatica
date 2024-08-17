@@ -26,8 +26,10 @@ const updateUser = (usersData, username, updateCallback) => {
 	}
 };
 
-//This needs a rename asap
-app.get('/getUsers', (req, res) => {
+
+
+
+app.get('/getUsersSearch', (req, res) => {
 	const { username } = req.query;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
@@ -198,6 +200,7 @@ app.post('/createTeam', (req, res) => {
 
 		const teamsData = JSON.parse(data);
 
+		//this is not nullable so we need to check if it is null
 		const teamExists = teamsData.teams.some(team => team.teamName.toLowerCase() === newTeam.teamName.toLowerCase());
 
 		if (teamExists) {

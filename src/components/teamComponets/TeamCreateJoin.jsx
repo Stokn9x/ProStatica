@@ -32,7 +32,29 @@ const TeamCreateJoin = ({ currentUser, updateUser }) => {
         const newTeam = {
             teamName,
             teamTag,
+            teamBanner: "none",
+            teamPic: "none",
+            teamBio: "none",
+            teamActivity: "none",
+            teamAchievements:{
+                title: "none",
+                date: "none",
+                throphyPic: "none"
+            },
             teamCreationTime: `${day}-${month}-${year}`,
+            teamLocation: "none",
+            teamDocs:{
+                pracDays:[],
+                serverInfor: "none",
+                docsText: "none",
+                communication: "none"
+            },
+            socialMedia: {
+                "faceit": "none",
+                "twitter": "none",
+                "instagram": "none",
+                "website": "none"
+            },
             teamCode: Math.random().toString(36).substr(2, 8),
             members: [
                 {
