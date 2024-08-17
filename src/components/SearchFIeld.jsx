@@ -61,7 +61,7 @@ const SearchField = () => {
             part.toLowerCase() === query.toLowerCase() ? <strong key={index}>{part}</strong> : part
         );
     };
-    console.log(players)
+
     return (
         <div className="SearchField" ref={searchRef}>
             <input
