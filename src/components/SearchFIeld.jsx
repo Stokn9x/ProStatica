@@ -13,7 +13,7 @@ const SearchField = () => {
         if (query.length > 0) {
             const fetchPlayers = async () => {
                 try {
-                    const response = await fetch(`http://localhost:5001/getUsers?username=${query}`);
+                    const response = await fetch(`http://localhost:5001/getUsersSearch?username=${query}`);
                     if (response.ok) {
                         const data = await response.json();
                         setPlayers(data);

@@ -1,39 +1,32 @@
 {
   "teams": [
     {
-      "teamName": "Syntox Serpants",
-      "teamTag": "321",
-      "teamCreationTime": "6-8-2024",
-      "teamCode": "lf1gv1f4",
-      "members": [
-        {
-          "username": "Storm",
-          "profilePic": "/src/assets/Logo/Storm-Logo.jpg",
-          "name": "none",
-          "age": "none",
-          "role": "rifler"
-        }
-      ]
-    },
-    {
-      "teamName": "Kuss imak",
+      "teamName": "Vortex Gaming Talent4",
       "teamTag": "123",
-      "teamCreationTime": "9-8-2024",
-      "teamCode": "67e0wm8u",
-      "members": [
-        {
-          "username": "Storm",
-          "name": "none",
-          "age": "none",
-          "role": "admin"
-        }
-      ]
-    },
-    {
-      "teamName": "Vortex Gaming Talent2",
-      "teamTag": "123",
-      "teamCreationTime": "16-8-2024",
-      "teamCode": "hipzl0po",
+      "teamBanner": "none",
+      "teamPic": "none",
+      "teamBio": "none",
+      "teamActivity": "none",
+      "teamAchievements": {
+        "title": "none",
+        "date": "none",
+        "throphyPic": "none"
+      },
+      "teamCreationTime": "17-8-2024",
+      "teamLocation": "none",
+      "teamDocs": {
+        "pracDays": [],
+        "serverInfor": "none",
+        "docsText": "none",
+        "communication": "none"
+      },
+      "socialMedia": {
+        "faceit": "none",
+        "twitter": "none",
+        "instagram": "none",
+        "website": "none"
+      },
+      "teamCode": "5lre254p",
       "members": [
         {
           "username": "Stokn9x",
