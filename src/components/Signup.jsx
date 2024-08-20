@@ -249,10 +249,10 @@ function SignUp() {
         <div className="login-container">
             <div className="login-box">
                 <div className="logo">
-                    <h1>Logo og navn</h1>
+                    <h1>MyApp</h1>
                 </div>
                 <div className="welcome-message">
-                    <h2>Welcome to the heart of Counter-Strike statistics</h2>
+                    <h2>Join the heart of Counter-Strike statistics</h2>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <input
@@ -287,6 +287,7 @@ function SignUp() {
                 </form>
             </div>
         </div>
+
     );
 }
 
