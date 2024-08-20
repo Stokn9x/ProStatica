@@ -32,40 +32,46 @@
     padding: 10px 20px;
     text-align: left;
     text-decoration: none;
-    display: block;
+    display: flex;
+    align-items: center;
     font-size: 16px;
     margin: 10px 0;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s;
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis if the text is too long */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-    .menu-btn:hover {
+    .menu-btn.active, .menu-btn:hover {
         background-color: #7986CB;
-        color: white;
+    }
+
+    .menu-btn i {
+        margin-right: 10px;
+        font-size: 18px;
     }
 
 .sub-menu {
-    margin-left: 20px; /* Indent sub-menu items */
+    margin-left: 20px;
     padding-left: 10px;
-    border-left: 2px solid #C0C3C8; /* Visual distinction for the sub-menu */
+    border-left: 2px solid #C0C3C8;
 }
 
 .sub-menu-btn {
-    margin: 5px 0; /* Adjusted margin for sub-menu items */
-    font-size: 16px; /* You can increase this value */
-    white-space: nowrap; /* Prevent text wrapping */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis if the text is too long */
+    margin-right: 10px;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .menu-footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 20px;
+    padding: 0 10px;
 }
 
     .menu-footer a {

@@ -37,12 +37,19 @@ function MenuBar() {
                 <img src="path-to-your-logo.png" alt="Logo" className="logo" />
                 <h3>Menu</h3>
             </div>
-            <Link to="/home" className="menu-btn">Home</Link>
-            <Link to="/general-stats" className="menu-btn">General stats</Link>
-            <Link to="/profile" className="menu-btn">Matches</Link>
+            <Link to="/Feed" className="menu-btn">
+                <i className="fas fa-home"></i> Feed
+            </Link>
+            <Link to="/PlayerStats" className="menu-btn">
+                <i className="fas fa-chart-bar"></i> General Stats
+            </Link>
+            <Link to="/Matches" className="menu-btn">
+                <i className="fas fa-user"></i> Matches
+            </Link>
             <div className="menu-btn" onClick={toggleTeamStats}>
-                Team
+                <i className="fas fa-users"></i> Team
             </div>
+
             <AnimatePresence>
                 {isTeamStatsOpen && (
                     <motion.div
@@ -52,8 +59,15 @@ function MenuBar() {
                         exit="hidden"
                         variants={subMenuVariants}
                     >
-                        <Link to="/team-stats" className="menu-btn sub-menu-btn">Team Overview</Link>
-                        <Link to="/team-matches" className="menu-btn sub-menu-btn">Team Matches</Link>
+                        <Link to="/TeamInfo" className="menu-btn sub-menu-btn">
+                            Team Overview
+                        </Link>
+                        <Link to="/TeamMatches" className="menu-btn sub-menu-btn">
+                            Team Matches
+                        </Link>
+                        <Link to="/TeamStats" className="menu-btn sub-menu-btn">
+                            Team Stats
+                        </Link>
                     </motion.div>
                 )}
             </AnimatePresence>
