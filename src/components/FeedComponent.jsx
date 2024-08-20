@@ -7,6 +7,7 @@ const FeedComponent = ({ currentUser }) => {
 	const [newPost, setNewPost] = useState('');
 	const [filter, setFilter] = useState('newest');
 	const [newComment, setNewComment] = useState({});
+	const [likedPosts, setLikedPosts] = useState(new Set());
 	const navigate = useNavigate();
 
 	const date = new Date();
@@ -46,6 +47,33 @@ const FeedComponent = ({ currentUser }) => {
 
 	const handleCommentChange = (e, postId) => {
 		setNewComment({ ...newComment, [postId]: e.target.value });
+	};
+
+	const handleAddLike = (postId) => {
+		if (likedPosts.has(postId)) {
+			return; // User has already liked this post
+		}
+
+		fetch('http://localhost:5001/likePost', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				postId,
+			}),
+		})
+			.then(response => response.json())
+			.then(likedPost => {
+				const updatedPosts = posts.map(post => {
+					if (post.id === postId) {
+						return likedPost;
+					}
+					return post;
+				});
+				setPosts(updatedPosts);
+				setLikedPosts(new Set(likedPosts).add(postId)); // Add postId to likedPosts
+			});
 	};
 
 	const handleAddComment = (postId) => {
@@ -121,7 +149,7 @@ const FeedComponent = ({ currentUser }) => {
 								</div>
 							</div>
 							<p className="postContent">{post.content}</p>
-							<button className="likeButton">
+							<button className="likeButton" onClick={() => handleAddLike(post.id)}>
 								Like ({post.likes})
 							</button>
 						</div>
