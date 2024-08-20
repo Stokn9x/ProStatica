@@ -27,9 +27,6 @@ const Profile = ({ updateUser, currentUser }) => {
         fetchUser();
     }, [username]);
 
-    console.log(currentUser);
-    console.log(profileUser);
-
     useEffect(() => {
         if (profileUser && profileUser.firstLogin && profileUser.username === currentUser.username) {
             setShowModal(true);

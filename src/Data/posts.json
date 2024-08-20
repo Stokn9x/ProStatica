@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "id": 1724142067705,
+      "username": "Stokn9x",
+      "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
+      "createdAt": "2024-8-20",
+      "content": "test",
+      "likes": 0,
+      "comments": [
+        {
+          "id": 1724142071308,
+          "username": "Stokn9x",
+          "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
+          "createdAt": "2024-8-20",
+          "content": "test"
+        },
+        {
+          "id": 1724142140866,
+          "username": "Stokn9x",
+          "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
+          "createdAt": "2024-8-20",
+          "content": "hejsa"
+        }
+      ]
+    },
+    {
+      "id": 1724142552649,
+      "username": "Stokn9x",
+      "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
+      "createdAt": "2024-8-20",
+      "content": "Hvem er du",
+      "likes": 0,
+      "comments": []
+    }
+  ]
+}
