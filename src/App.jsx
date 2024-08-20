@@ -1,10 +1,8 @@
-//import Header from "./Header.jsx"
 //import Footer from "./Footer.jsx"
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, matchPath } from 'react-router-dom';
 import authService from './Services/authServices';
-import ProfileMenu from './components/ProfileMenu';
 import MenuBar from './components/MenuBar';
 import Matches from './components/Matches';
 import MatchDetail from './components/MatchDetail';
@@ -23,10 +21,10 @@ import TeamMatches from './components/teamComponets/TeamMatches';
 import TeamStats from './components/teamComponets/TeamStats';
 import TeamCreateJoin from './components/teamComponets/TeamCreateJoin';
 import TeamInfoDashboard from './components/teamComponets/TeamInfoDashboard';
-import SearchField from './components/SearchFIeld';
-
+import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
+
 
 const routesToShowContent = [
     "/profile/:username",
@@ -51,7 +49,6 @@ const shouldShowContent = (pathname) => {
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authService.getAuthStatus());
     const [currentUser, setCurrentUser] = useState(authService.getCurrentUser());
-
     const location = useLocation();
 
     useEffect(() => {
@@ -59,15 +56,15 @@ function App() {
         setCurrentUser(authService.getCurrentUser());
     }, []);
 
-    const handleLogin = (email, password) => {
+    const handleLogin = async (email, password) => {
         console.log("Handling login with", email, password);
-        const result = authService.login(email, password);
+        const result = await authService.login(email, password); // Brug await her
         console.log("Login result:", result);
         if (result) {
             setIsAuthenticated(true);
             setCurrentUser(authService.getCurrentUser());
         } else {
-            alert("Invalid creds");
+            alert("Invalid credentials");
         }
         return result;
     };
@@ -88,11 +85,11 @@ function App() {
     return (
             <div className="App">
                 {shouldShowContent(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {shouldShowContent(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}
-                {shouldShowContent(location.pathname) && <SearchField />}
+                {/*{shouldShowContent(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}*/}
+                {shouldShowContent(location.pathname) && <Header currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
-                    <Route path="/login" element={<Login currentUser={currentUser} handleLogin={handleLogin} />} /> {/*Det her skal laves om login skal ik tage imod en currentUser*/}
+                    <Route path="/login" element={<Login handleLogin={handleLogin} />} /> {/*Det her skal laves om login skal ik tage imod en currentUser*/}
                         <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
                         <Route path="/about" element={<AboutPage />} />

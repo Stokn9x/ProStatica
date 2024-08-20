@@ -34,4 +34,4 @@ Bemærk: Sørg for, at både klientapplikationen og serveren kører samtidig, s�
 Hvis du støder på problemer eller har forslag til forbedringer, er du velkommen til at åbne en issue eller sende en pull request.
 
 ## Licens
-Dette projekt er licenseret under MIT License. Se LICENSE filen for detaljer.
+Dette projekt er licenseret under MIT License. Se LICENSE filen for detaljer. 

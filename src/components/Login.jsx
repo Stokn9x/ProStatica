@@ -1,22 +1,33 @@
 import React, { useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import authService from './../Services/authServices';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/Css/LoginPage.css';
 
-function Login({ handleLogin, currentUser }) {
+function Login({ handleLogin}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const profileLink = currentUser ? `/profile/${currentUser.username}` : '/login';
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (handleLogin(email, password)) {
-            navigate(profileLink);
-        }
-        else {
-            alert("Invalid creds")
+        console.log("test");
+
+        const loginSuccess = await handleLogin(email, password);
+
+        if (loginSuccess) {
+            const updatedUser = authService.getCurrentUser();
+
+            if (updatedUser && updatedUser.username) {
+                const profileLink = `/profile/${updatedUser.username}`;
+                console.log("Login success");
+                console.log(profileLink);
+                navigate(profileLink);
+            } else {
+                console.error("Login success, but currentUser is not set correctly");
+            }
+        } else {
+            alert("Invalid credentials");
         }
     };
 

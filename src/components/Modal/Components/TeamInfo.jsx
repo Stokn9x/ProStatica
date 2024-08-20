@@ -16,7 +16,7 @@ const TeamInfo = ({ currentUser, updateUser }) => {
     }, [navigate, forceUpdate]);
 
     return (
-        <div>
+        <div className="teamInfo">
             <div className="teamContainer">
                 {(currentUser.currentTeam === 'none' || currentUser.currentTeam === '') ? (
                     <TeamCreateJoin currentUser={currentUser} updateUser={updateUser} />

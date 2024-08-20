@@ -4,12 +4,12 @@
     color: #fff; /* White text color */
     border-radius: 10px;
     margin: 0 auto;
-    max-width: 100%; /* Fjern breddebegrænsning */
+    max-width: 86%; /* Fjern breddebegrænsning */
     width: auto; /* Fyld hele skærmen */
     height: auto;
     box-sizing: border-box; /* Sørg for padding og border er inkluderet i bredden */
     margin-bottom: 350px; /* Tilføjet margen nederst */
-    margin-left: 25px;
+    margin-left: 260px;
 }
 
 .pagination {

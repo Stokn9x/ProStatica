@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './../Css/SignUp.css';
 
@@ -7,7 +7,28 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [retypePassword, setRetypePassword] = useState('');
+    const [users, setUsers] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await fetch('http://localhost:5001/getAllUsers');
+                if (response.ok) {
+                    const data = await response.json();
+                    setUsers(data);
+                } else {
+                    console.error('Failed to fetch users');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    console.log(users);
 
     const date = new Date();
     let day = date.getDate();
@@ -20,6 +41,11 @@ function SignUp() {
             alert('Passwords do not match');
             return;
         }
+
+        if (users.some(user => user.email === email)) {
+			alert('Email is taken, you have an account with us :)');
+			return;
+		}
 
         const newUser = {
             username,
@@ -154,16 +180,34 @@ function SignUp() {
             playerName: username,
             stats: {
                 overall: {
-                    "winrate": [],
-                    "kda": [],
-                    "gamesPlayed": [],
-                    "kills": [],
-                    "deaths": [],
-                    "headshots": [],
-                    "adr": [],
-                    "wins": [],
-                    "loses": [],
-                    "assist": []
+                    assist: [],
+                    avg_damage_round: [],
+                    avg_deaths_round: [],
+                    avg_kills_round: [],
+                    avg_utilDamage_round: [],
+                    damage_armor: [],
+                    damage_health: [],
+                    deaths: [],
+                    first_death: [],
+                    first_kill: [],
+                    first_trade_death: [],
+                    first_trade_kill: [],
+                    five_kill_count: [],
+                    four_kill_count: [],
+                    mvp: [],
+                    hs: [],
+                    hs_percentage: [],
+                    kast: [],
+                    kills: [],
+                    kd: [],
+                    one_kill_count: [],
+                    score: [],
+                    three_kill_count: [],
+                    trade_death: [],
+                    trade_kill: [],
+                    two_kill_count: [],
+                    util_damage: [],
+                    hltv2Rating: []
                 },
                 tSide: {
                     tRounds: [],
@@ -184,7 +228,7 @@ function SignUp() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ newUser, newMapStats, newUserStats }), // Send all data in the request body
+                body: JSON.stringify({ newUser, newMapStats, newUserStats }),
             });
 
             if (response.ok) {
@@ -198,6 +242,8 @@ function SignUp() {
             alert('An error occurred during signup');
         }
     };
+
+    console.log("hejsa");
 
     return (
         <div className="login-container">

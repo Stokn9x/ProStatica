@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import matchesData from '../Data/matches.json';
 import '../Css/Matches.css';
 
 function Matches({ currentUser }) {
     const navigate = useNavigate();
 
+    const [matchesData, setMatchesData] = useState([]);
     const [dateFrom, setDateFrom] = useState('');
     const [dateTo, setDateTo] = useState('');
     const [selectedMap, setSelectedMap] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const matchesPerPage = 10;
+
+    useEffect(() => {
+        fetch('http://localhost:5001/getMatches')
+            .then((response) => response.json())
+            .then((data) => setMatchesData(data.matches))
+            .catch((error) => console.error('Error fetching match data:', error));
+    }, []);
 
     const handleRowClick = (matchId) => {
         navigate(`/match/${matchId}`);
@@ -33,7 +40,7 @@ function Matches({ currentUser }) {
             case "ancient":
                 return "/src/assets/Map-Icons/32px-De_ancient.png";
             default:
-                return "/src/assets/Map-Icons/default.png"; /*Findes ik*/
+                return "/src/assets/Map-Icons/default.png";
         }
     };
 
@@ -41,10 +48,10 @@ function Matches({ currentUser }) {
         return <div>Error: Current user data is not available.</div>;
     }
 
-    const filteredMatches = Object.keys(matchesData.matches)
+    const filteredMatches = Object.keys(matchesData)
         .map(matchId => ({
             id: matchId,
-            ...matchesData.matches[matchId]
+            ...matchesData[matchId]
         }))
         .filter(filterMatchesByUser);
 

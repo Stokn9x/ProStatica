@@ -13,7 +13,7 @@ const SearchField = () => {
         if (query.length > 0) {
             const fetchPlayers = async () => {
                 try {
-                    const response = await fetch(`http://localhost:5001/getUsers?username=${query}`);
+                    const response = await fetch(`http://localhost:5001/getUsersSearch?username=${query}`);
                     if (response.ok) {
                         const data = await response.json();
                         setPlayers(data);
@@ -75,7 +75,10 @@ const SearchField = () => {
                 <ul className="suggestions-list">
                     {players.map(player => (
                         <li key={player.username} onClick={() => handlePlayerClick(player.username)}>
-                            {highlightMatch(player.username, query)}
+                            <span className="text-content">
+                                {highlightMatch(player.username, query)}
+                            </span>
+                            <img src={player.profilePic} alt="img" className="searchLogo" />
                         </li>
                     ))}
                 </ul>

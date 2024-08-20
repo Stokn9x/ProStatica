@@ -18,6 +18,7 @@ const teamsDataPath = path.join(__dirname, '..', 'Data', 'teams.json');
 const usersDataPath = path.join(__dirname, '..', 'Data', 'users.json');
 const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json');
 const playerMapStatsDataPath = path.join(__dirname, '..', 'Data', 'playerMapStats.json')
+const matchesDataPath = path.join(__dirname, '..', 'Data', 'matches.json');
 
 const updateUser = (usersData, username, updateCallback) => {
 	const userIndex = usersData.users.findIndex(user => user.username === username);
@@ -25,7 +26,50 @@ const updateUser = (usersData, username, updateCallback) => {
 		updateCallback(usersData.users[userIndex]);
 	}
 };
-app.get('/getUsers', (req, res) => {
+
+app.get('/getMatch/:id', (req, res) => {
+	const { id } = req.params;
+
+	fs.readFile(matchesDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading match data:', err);
+			return res.status(500).send('An error occurred while reading match data.');
+		}
+
+		try {
+			const matchesData = JSON.parse(data);
+
+			if (!matchesData.matches || !matchesData.matches[id]) {
+				return res.status(404).json({ message: 'Match not found' });
+			}
+
+			const match = matchesData.matches[id];
+			res.status(200).json(match);
+		} catch (parseError) {
+			console.error('Error parsing match data:', parseError);
+			res.status(500).send('An error occurred while processing match data.');
+		}
+	});
+});
+
+app.get('/getMatches', (req, res) => {
+	fs.readFile(matchesDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading match data.');
+		}
+
+		try {
+			const matchesData = JSON.parse(data);
+			res.status(200).json(matchesData);
+		} catch (parseError) {
+			console.error('Error parsing match data:', parseError);
+			res.status(500).send('An error occurred while processing match data.');
+		}
+	});
+});
+
+app.get('/getUsersSearch', (req, res) => {
 	const { username } = req.query;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
@@ -49,6 +93,18 @@ app.get('/getUsers', (req, res) => {
 	});
 });
 
+app.get('/getAllUsers', (req, res) => {
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			res.status(500).send('An error occurred while reading user data.');
+			return;
+		}
+
+		const usersData = JSON.parse(data);
+		res.status(200).json(usersData.users);
+	});
+});
 
 app.get('/getUser/:username', (req, res) => {
 	const { username } = req.params;
@@ -184,6 +240,7 @@ app.post('/createTeam', (req, res) => {
 
 		const teamsData = JSON.parse(data);
 
+		//this is not nullable so we need to check if it is null
 		const teamExists = teamsData.teams.some(team => team.teamName.toLowerCase() === newTeam.teamName.toLowerCase());
 
 		if (teamExists) {
@@ -470,6 +527,8 @@ app.get('/playerMapStats/:username', (req, res) => {
 		res.status(200).json(player);
 	});
 });
+
+
 
 app.listen(PORT, () => {
 	console.log(`Server is running on http://localhost:${PORT}`);
