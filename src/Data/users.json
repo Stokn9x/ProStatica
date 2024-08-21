@@ -13,6 +13,8 @@
       "bio": "Erfaren FPS-spiller med en passion for konkurrencepræget gaming. Jeg nyder at finpudse mine færdigheder og lære nye taktikker. I min fritid kan jeg godt lide at programmere og se esport.",
       "location": "Denmark",
       "firstLogin": false,
+      "friends": [],
+      "friendRequests": [],
       "socialMedia": {
         "faceit": "https://www.faceit.com/en/players/Stokn9x",
         "twitter": "https://x.com/Stokn9x",
@@ -37,6 +39,8 @@
       "bio": "none",
       "location": "none",
       "firstLogin": false,
+      "friends": [],
+      "friendRequests": [],
       "socialMedia": {
         "faceit": "none",
         "twitter": "none",
@@ -45,31 +49,6 @@
       "signupTime": "none",
       "currentTeam": "none",
       "previousTeams": []
-    },
-    {
-      "username": "Alex",
-      "email": "Alex@gmail.com",
-      "password": "123",
-      "rank": "Unranked",
-      "name": "none",
-      "age": "none",
-      "role": "none",
-      "profilePic": "/src/assets/Logo/Placeholder.jpg",
-      "bannerPic": "/src/assets/Banner/placeholder-banner.jpg",
-      "bio": "none",
-      "location": "none",
-      "firstLogin": false,
-      "socialMedia": {
-        "faceit": "none",
-        "twitter": "none",
-        "instagram": "none"
-      },
-      "signupTime": "17-8-2024",
-      "currentTeam": "none",
-      "previousTeams": [
-        "none",
-        "Vortex Gaming Talent4"
-      ]
     }
   ]
 }
