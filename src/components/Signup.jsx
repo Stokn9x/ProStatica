@@ -60,6 +60,8 @@ function SignUp() {
             bio: "none",
             location: "none",
             firstLogin: true,
+            friends: [],
+            "friendRequests": [],
             socialMedia: {
                 "faceit": "none",
                 "twitter": "none",
