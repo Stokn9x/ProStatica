@@ -1,4 +1,29 @@
 .header {
-	margin-top: 10px;
-	padding-bottom: 10px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #2a2a33;
+	padding: 20px 20px;
+	z-index: 99;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.icons {
+	margin-left: 950px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+	.icons a img {
+		width: 24px;
+		height: 24px;
+	}
+
+body {
+	padding-top: 40px;
 }
