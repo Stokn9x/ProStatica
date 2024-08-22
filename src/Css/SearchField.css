@@ -1,7 +1,7 @@
 .SearchField {
 	position: absolute;
-	margin-left: 700px;
 	z-index: 1;
+	margin-left: 400px;
 }
 
 	.SearchField input {
