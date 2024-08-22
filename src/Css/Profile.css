@@ -1,100 +1,209 @@
+body {
+    background-color: #141414;
+    color: #e6e6e6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .ProfilePage {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #2a2a33;
     color: #fff;
     min-height: 100vh;
-    width: 86%;
-    margin-left: 260px;
-    margin-top: 20px;
+    width: 80%;
+    margin-left: 290px;
     border-radius: 15px;
+    padding: 20px;
 }
 
-.banner {
+.header-container {
     width: 100%;
-    height: 300px;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 15px;
+    margin-bottom: 30px;
 }
 
-.profile-picture {
-    position: absolute;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
+.background-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+    .background-header h2 {
+        margin: 0;
+    }
+
+    .background-header button {
+        background-color: #555;
+        color: #e6e6e6;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .background-header button:hover {
+            background-color: #777;
+        }
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.profile-pic-container {
+    text-align: center;
+    margin-right: 20px;
+}
+
+    .profile-pic-container h2 {
+        margin-bottom: 10px;
+    }
+
+.profile-pic-stats {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: 5px solid #fff;
 }
 
-.member-since {
-    position: absolute;
-    bottom: 0px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
-    border-radius: 5px;
+.profile-details {
+    color: #ffffff;
 }
 
-.user-info {
-    margin-top: 60px;
-    text-align: center;
-    padding: 0 20px;
+.username {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.stats-overview {
+    font-size: 1.2rem;
+    color: #999999;
+    margin-top: 10px;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
-.bio {
-    margin: 5px 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+.stats-box, .winrate-box {
+    width: 48%;
+    background-color: #333;
+    padding: 15px;
     border-radius: 10px;
-    max-width: 80%;
-    margin: 0 auto;
-    white-space: pre-line;
-    max-width: 600px;
 }
 
-.additional-info {
-    margin: 10px 0;
-}
-
-    .additional-info span {
-        display: block;
-        margin: 5px 0;
+    .stats-box h3, .winrate-box h3 {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        border-bottom: 1px solid #555;
+        padding-bottom: 10px;
     }
 
-.stats-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 100%;
-    margin: 20px auto;
-    text-align: center;
+.stat-bar {
+    margin-bottom: 15px;
 }
 
-.stat-item {
-    margin: 10px;
-    flex: 1 1 30%;
-    background: #333;
-    padding: 10px;
+    .stat-bar p {
+        margin: 0 0 5px;
+    }
+
+.bar-container {
+    position: relative;
+    height: 10px;
+    background-color: #555;
     border-radius: 5px;
 }
 
-.homePageMatches-header {
-    width: 100%;
-    margin: 20px auto;
+.bar {
+    height: 100%;
+    background-color: #88cc88;
+    border-radius: 5px;
+}
+
+    .bar.negative {
+        background-color: #cc8888;
+    }
+
+.value {
+    position: absolute;
+    right: -45px;
+    top: -5px;
+}
+
+    .value.negative {
+        color: #cc8888;
+    }
+
+.circle-stat {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #555;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    color: #88cc88;
+    font-size: 1.5rem;
+}
+
+    .circle.negative {
+        color: #cc8888;
+    }
+
+    .circle small {
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+
+.rating-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating {
     text-align: center;
 }
 
-.homePageMatches {
+.rating-value {
+    font-size: 1.5rem;
+}
+
+    .rating-value.negative {
+        color: #cc8888;
+    }
+
+.matches-box {
     width: 100%;
-    margin: 20px auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+    .matches-box h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #88cc88;
+    }
+
+.matches-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,36 +211,14 @@
 
 .match-card {
     width: 80%;
-    background: #333;
-    padding: 10px;
+    background: #444;
+    padding: 15px;
     margin: 10px 0;
     border-radius: 5px;
-    text-align: left;
+    color: #e6e6e6;
 }
 
-.team-info {
-    margin: 20px auto;
-    text-align: center;
-}
-
-.socials-container {
-    position: absolute;
-    left: 20px;
-    /*top: 320px;*/
-    background: #333;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 320px;
-}
-
-.socials {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-    .socials a img {
-        width: 30px;
-        margin: 10px 0;
+    .match-card h4 {
+        margin: 0 0 10px 0;
+        color: #88cc88;
     }

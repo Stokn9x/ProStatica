@@ -57,26 +57,6 @@ const Profile = ({ updateUser, currentUser }) => {
         }
     };
 
-    const sendFriendRequest = async () => {
-        try {
-            const response = await fetch('http://localhost:5001/sendFriendRequest', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ senderUsername: currentUser.username, receiverUsername: profileUser.username }),
-            });
-
-            if (response.ok) {
-                console.log('Friend request sent!');
-            } else {
-                console.error('Failed to send friend request:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Failed to send friend request:', error);
-        }
-    };
-
     if (!profileUser) {
         return <div>Loading ....</div>;
     }
@@ -98,64 +78,114 @@ const Profile = ({ updateUser, currentUser }) => {
     return (
         <div className="ProfilePage">
             {showModal && <FirstLoginModal onClose={handleCloseModal} />}
-            <div className="banner" style={{ backgroundImage: `url(${profileUser.bannerPic})` }}>
-                <img src={profileUser.profilePic} alt="Profile" className="profile-picture" />
-                <p className="member-since">Member since {profileUser.signupTime}</p>
-            </div>
-            <div className="socials-container">
-                <div className="socials">
-                    <p>Socials</p>
-                    <a href={profileUser.socialMedia.faceit} target="_blank" rel="noopener noreferrer">
-                        <img src="/path/to/faceit-icon.png" alt="Faceit" />
-                    </a>
-                    <a href={profileUser.socialMedia.twitter} target="_blank" rel="noopener noreferrer">
-                        <img src="/path/to/twitter-icon.png" alt="Twitter" />
-                    </a>
-                    <a href={profileUser.socialMedia.instagram} target="_blank" rel="noopener noreferrer">
-                        <img src="/path/to/instagram-icon.png" alt="Instagram" />
-                    </a>
+
+            {/* Header for Profile Picture and Background */}
+            <div className="header-container">
+                <div className="background-header">
+                    <h2>Background Picture</h2>
+                    <button>Upload Cover Image</button>
+                </div>
+                <div className="profile-header">
+                    <div className="profile-pic-container">                       
+                        <img src={profileUser.profilePic} alt="Profile" className="profile-pic-stats" />
+                    </div>
+                    <div className="profile-details">
+                        <h1 className="username">{profileUser.username}</h1>
+                        <div className="stats-overview">Stats Overview</div>
+                    </div>
                 </div>
             </div>
-            <div className="user-info">
-                <h1>{profileUser.username}</h1>
-                <p className="bio">{profileUser.bio}</p>
-                <p className="additional-info">
-                    <span>Name: {profileUser.name}</span>
-                    <span>Rank: {profileUser.rank}</span>
-                    <span>Role: {profileUser.role}</span>
-                    <span>Age: {profileUser.age}</span>
-                </p>
-            </div>
-            <div className="stats-header">
-                <div className="stat-item">Matches Played: {userProfile.stats.matchesPlayed}</div>
-                <div className="stat-item">Rating: {userProfile.stats.rating}</div>
-                <div className="stat-item">HS%: {userProfile.stats.hsPercentage}</div>
-                <div className="stat-item">K/D: {userProfile.stats.kdRatio}</div>
-                <div className="stat-item">KAST%: {userProfile.stats.kastPercentage}</div>
-                <div className="stat-item">ADR: {userProfile.stats.adr}</div>
-            </div>
-            <div className="homePageMatches-header">
-                <h3>Last 5 Matches</h3>
-            </div>
-            <div className="homePageMatches">
-                {latestMatches.map((match, index) => (
-                    <div key={index} className="match-card">
-                        <h4>Map: {match.map}</h4>
-                        <p>Result: {match.result}</p>
-                        <p>Score: {match.score}</p>
-                        <p>Mode: {match.mode}</p>
-                        <p>Date: {match.date}</p>
+
+            <div className="stats-container">
+                {/* Stats Box */}
+                <div className="stats-box">
+                    <h3>Stats</h3>
+                    <div className="stats-left">
+                        <div className="stat-bar">
+                            <p>AIM</p>
+                            <div className="bar-container">
+                                <div className="bar" style={{ width: '88%' }}></div>
+                                <span className="value">88</span>
+                            </div>
+                        </div>
+                        <div className="stat-bar">
+                            <p>UTILITY</p>
+                            <div className="bar-container">
+                                <div className="bar" style={{ width: '52%' }}></div>
+                                <span className="value">52</span>
+                            </div>
+                        </div>
+                        <div className="stat-bar">
+                            <p>POSITIONING</p>
+                            <div className="bar-container">
+                                <div className="bar" style={{ width: '49%' }}></div>
+                                <span className="value">49</span>
+                            </div>
+                        </div>
+                        <div className="stat-bar">
+                            <p>OPENING DUELS</p>
+                            <div className="bar-container">
+                                <div className="bar negative" style={{ width: '24.9%' }}></div>
+                                <span className="value negative">-2.49</span>
+                            </div>
+                        </div>
+                        <div className="stat-bar">
+                            <p>CLUTCHING</p>
+                            <div className="bar-container">
+                                <div className="bar" style={{ width: '90%' }}></div>
+                                <span className="value">+11.85</span>
+                            </div>
+                        </div>
                     </div>
-                ))}
+                </div>
+
+                {/* Win Rate Box */}
+                <div className="winrate-box">
+                    <h3>Win Rate & Rating</h3>
+                    <div className="stats-right">
+                        <div className="circle-stat">
+                            <p>WIN RATE</p>
+                            <div className="circle">
+                                <span>53%</span>
+                                <small>Good</small>
+                            </div>
+                        </div>
+                        <div className="circle-stat">
+                            <p>RATING</p>
+                            <div className="circle negative">
+                                <span>-1.31</span>
+                                <small>Poor</small>
+                            </div>
+                        </div>
+                        <div className="rating-container">
+                            <div className="rating">
+                                <span>T Rating</span>
+                                <div className="rating-value negative">-0.34</div>
+                            </div>
+                            <div className="rating">
+                                <span>CT Rating</span>
+                                <div className="rating-value negative">-2.35</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
             </div>
-            <div className="team-info">
-                <p>Looking for a team? <span>Yes</span> <span>No</span></p>
+
+            {/* Last 5 Matches Box */}
+            <div className="matches-box">
+                <h3>Last 5 Matches</h3>
+                <div className="matches-content">
+                    {latestMatches.map((match, index) => (
+                        <div key={index} className="match-card">
+                            <h4>Map: {match.map}</h4>
+                            <p>Result: {match.result}</p>
+                            <p>Score: {match.score}</p>
+                            <p>Mode: {match.mode}</p>
+                            <p>Date: {match.date}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-            {!isOwnProfile && (
-                <button onClick={sendFriendRequest} className="send-friend-request-button">
-                    Send Friend Request
-                </button>
-            )}
         </div>
     );
 };
