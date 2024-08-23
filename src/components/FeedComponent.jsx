@@ -16,10 +16,10 @@ const FeedComponent = ({ currentUser }) => {
 	let year = date.getFullYear();
 
 	useEffect(() => {
-		fetch('http://localhost:5001/getPosts')
+		fetch(`http://localhost:5001/getPosts?username=${currentUser.username}`)
 			.then(response => response.json())
 			.then(data => setPosts(data));
-	}, []);
+	}, [currentUser.username]);
 
 	const handleCreatePost = () => {
 		fetch('http://localhost:5001/createPost', {

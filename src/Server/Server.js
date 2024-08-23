@@ -30,14 +30,32 @@ const updateUser = (usersData, username, updateCallback) => {
 };
 
 app.get('/getPosts', (req, res) => {
-	fs.readFile(postsDataPath, 'utf8', (err, data) => {
+	const { username } = req.query; // Forvent at klienten sender brugernavnet som query parameter
+
+	fs.readFile(usersDataPath, 'utf8', (err, usersData) => {
 		if (err) {
 			console.error(err);
-			return res.status(500).send('An error occurred while reading posts data.');
+			return res.status(500).send('An error occurred while reading users data.');
 		}
 
-		const postsData = JSON.parse(data);
-		res.status(200).json(postsData.posts);
+		const users = JSON.parse(usersData).users;
+		const currentUser = users.find(user => user.username === username);
+
+		if (!currentUser) {
+			return res.status(404).send('User not found.');
+		}
+
+		fs.readFile(postsDataPath, 'utf8', (err, postsData) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('An error occurred while reading posts data.');
+			}
+
+			const posts = JSON.parse(postsData).posts;
+			const friendPosts = posts.filter(post => currentUser.friends.includes(post.username));
+
+			res.status(200).json(friendPosts);
+		});
 	});
 });
 
