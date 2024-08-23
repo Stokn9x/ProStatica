@@ -30,7 +30,7 @@ const updateUser = (usersData, username, updateCallback) => {
 };
 
 app.get('/getPosts', (req, res) => {
-	const { username } = req.query; // Forvent at klienten sender brugernavnet som query parameter
+	const { username } = req.query; 
 
 	fs.readFile(usersDataPath, 'utf8', (err, usersData) => {
 		if (err) {
@@ -149,8 +149,7 @@ app.post('/addComment', (req, res) => {
 				content: comment,
 			};
 
-			// Tilføj kommentaren til posten
-			post.comments = post.comments || []; // Sikrer at post.comments eksisterer
+			post.comments = post.comments || [];
 			post.comments.push(newComment);
 
 			// Gem de opdaterede posts
@@ -274,13 +273,59 @@ app.get('/getUser/:username', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-	const { newUser, newMapStats, newUserStats } = req.body;
+	const { username, email, password } = req.body;
+
+	const newUser = {
+		username: username,
+		email: email,
+		password: password,
+		rank: "Unranked",
+		name: "none",
+		age: "none",
+		role: "none",
+		profilePic: "/src/assets/Logo/Placeholder.jpg",
+		bannerPic: "/src/assets/Banner/placeholder-banner.jpg",
+		bio: "none",
+		location: "none",
+		firstLogin: true,
+		friends: [],
+		friendRequests: [],
+		socialMedia: {
+			faceit: "none",
+			twitter: "none",
+			instagram: "none"
+		},
+		signupTime: new Date().toLocaleDateString(),
+		currentTeam: "none",
+		previousTeams: ["none"]
+	};
+
+	const newMapStats = {
+		playerName: username,
+		maps: {
+			inferno: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			vertigo: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			anubis: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			mirage: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			dust2: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			ancient: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			nuke: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] }
+		}
+	};
+
+	const newUserStats = {
+		playerName: username,
+		stats: {
+			overall: { assist: [], avg_damage_round: [], avg_deaths_round: [], avg_kills_round: [], avg_utilDamage_round: [], damage_armor: [], damage_health: [], deaths: [], first_death: [], first_kill: [], first_trade_death: [], first_trade_kill: [], five_kill_count: [], four_kill_count: [], mvp: [], hs: [], hs_percentage: [], kast: [], kills: [], kd: [], one_kill_count: [], score: [], three_kill_count: [], trade_death: [], trade_kill: [], two_kill_count: [], util_damage: [], hltv2Rating: [] },
+			tSide: { tRounds: [], killR: [], gunRound: [] },
+			ctSide: { tRounds: [], killR: [], gunRound: [] }
+		}
+	};
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
 			console.error(err);
-			res.status(500).send('An error occurred while reading user data.');
-			return;
+			return res.status(500).send('An error occurred while reading user data.');
 		}
 
 		const usersData = JSON.parse(data);
@@ -289,16 +334,13 @@ app.post('/signup', (req, res) => {
 		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
 			if (err) {
 				console.error(err);
-				res.status(500).send('An error occurred while saving user data.');
-				return;
+				return res.status(500).send('An error occurred while saving user data.');
 			}
 
-			// Læs og opdater map stats
 			fs.readFile(playerMapStatsDataPath, 'utf8', (err, data) => {
 				if (err) {
 					console.error(err);
-					res.status(500).send('An error occurred while reading map stats data.');
-					return;
+					return res.status(500).send('An error occurred while reading map stats data.');
 				}
 
 				const mapStatsData = JSON.parse(data);
@@ -307,16 +349,13 @@ app.post('/signup', (req, res) => {
 				fs.writeFile(playerMapStatsDataPath, JSON.stringify(mapStatsData, null, 2), (err) => {
 					if (err) {
 						console.error(err);
-						res.status(500).send('An error occurred while saving map stats data.');
-						return;
+						return res.status(500).send('An error occurred while saving map stats data.');
 					}
 
-					// Læs og opdater user stats
 					fs.readFile(playerStatsDataPath, 'utf8', (err, data) => {
 						if (err) {
 							console.error(err);
-							res.status(500).send('An error occurred while reading user stats data.');
-							return;
+							return res.status(500).send('An error occurred while reading user stats data.');
 						}
 
 						const userStatsData = JSON.parse(data);
@@ -325,8 +364,7 @@ app.post('/signup', (req, res) => {
 						fs.writeFile(playerStatsDataPath, JSON.stringify(userStatsData, null, 2), (err) => {
 							if (err) {
 								console.error(err);
-								res.status(500).send('An error occurred while saving user stats data.');
-								return;
+								return res.status(500).send('An error occurred while saving user stats data.');
 							}
 
 							res.status(200).send('Signup successful!');
@@ -337,6 +375,7 @@ app.post('/signup', (req, res) => {
 		});
 	});
 });
+
 
 app.post('/updateProfile', (req, res) => {
 	const updatedUser = req.body;
@@ -382,7 +421,6 @@ app.post('/createTeam', (req, res) => {
 
 		const teamsData = JSON.parse(data);
 
-		//this is not nullable so we need to check if it is null
 		const teamExists = teamsData.teams.some(team => team.teamName.toLowerCase() === newTeam.teamName.toLowerCase());
 
 		if (teamExists) {
@@ -399,7 +437,6 @@ app.post('/createTeam', (req, res) => {
 				return;
 			}
 
-			// Update user's current team
 			fs.readFile(usersDataPath, 'utf8', (err, userData) => {
 				if (err) {
 					console.error(err);
@@ -596,7 +633,6 @@ app.get('/getTeamInfo', (req, res) => {
 			return;
 		}
 
-		// Send the entire team data
 		res.status(200).json(teamData);
 	});
 });
@@ -784,7 +820,6 @@ app.post('/getFriendRequests', (req, res) => {
 			return res.status(404).send('User not found.');
 		}
 
-		// Returner venneanmodningerne for den fundne bruger
 		res.status(200).json(user.friendRequests);
 	});
 });
