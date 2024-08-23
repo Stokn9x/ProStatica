@@ -26,6 +26,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 import FeedComponent from './components/FeedComponent';
 import InboxPage from './components/InboxPage';
+import PageNotFound from './components/PageNotFound';
 
 const routesToShowContent = [
     "/profile/:username",
@@ -88,7 +89,6 @@ function App() {
     return (
             <div className="App">
                 {shouldShowContent(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {/*{shouldShowContent(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}*/}
                 {shouldShowContent(location.pathname) && <Header currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
@@ -112,6 +112,7 @@ function App() {
                         <Route path="/TeamMapStats" element={isAuthenticated ? (isUserInTeam ? <TeamMapStats currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                         <Route path="/TeamMatches" element={isAuthenticated ? (isUserInTeam ? <TeamMatches currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                         <Route path="/TeamCalendar" element={isAuthenticated ? (isUserInTeam ? <TeamCalendar currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
+                        <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </div>
             </div>
