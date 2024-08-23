@@ -4,354 +4,102 @@
       "playerName": "Stokn9x",
       "maps": {
         "inferno": {
-          "kills": [
-            50,
-            55
-          ],
-          "deaths": [
-            30,
-            35
-          ],
-          "assists": [
-            10,
-            12
-          ],
-          "kr": [
-            0.8,
-            0.85
-          ],
-          "kd": [
-            1.67,
-            1.57
-          ],
-          "adr": [
-            90.5,
-            92
-          ],
-          "ctRounds": [
-            8,
-            10
-          ],
-          "tRounds": [
-            7,
-            9
-          ],
-          "entryCT": [
-            3,
-            4
-          ],
-          "entryT": [
-            2,
-            3
-          ],
-          "ctPistolWins": [
-            1,
-            0
-          ],
-          "tPistolWins": [
-            1,
-            1
-          ]
+          "kills": [ 50,55],
+          "deaths": [30,35],
+          "assists": [10,12],
+          "kr": [0.8,0.85],
+          "kd": [1.67,1.57],
+          "adr": [90.5,92],
+          "ctRounds": [8,10],
+          "tRounds": [7,9],
+          "entryCT": [3,4],
+          "entryT": [2,3],
+          "ctPistolWins": [1,0],
+          "tPistolWins": [1,1]
         },
         "vertigo": {
-          "kills": [
-            60,
-            65
-          ],
-          "deaths": [
-            40,
-            45
-          ],
-          "assists": [
-            15,
-            18
-          ],
-          "kr": [
-            0.9,
-            0.93
-          ],
-          "kd": [
-            1.5,
-            1.44
-          ],
-          "adr": [
-            100.2,
-            98.5
-          ],
-          "ctRounds": [
-            10,
-            11
-          ],
-          "tRounds": [
-            8,
-            9
-          ],
-          "entryCT": [
-            4,
-            5
-          ],
-          "entryT": [
-            3,
-            4
-          ],
-          "ctPistolWins": [
-            2,
-            1
-          ],
-          "tPistolWins": [
-            0,
-            0
-          ]
+          "kills": [60,65],
+          "deaths": [40,45],
+          "assists": [15,18],
+          "kr": [0.9,0.93],
+          "kd": [1.5,1.44],
+          "adr": [100.2,98.5],
+          "ctRounds": [10,11],
+          "tRounds": [8,9],
+          "entryCT": [4,5],
+          "entryT": [3,4],
+          "ctPistolWins": [2,1],
+          "tPistolWins": [0,0]
         },
         "anubis": {
-          "kills": [
-            70,
-            75
-          ],
-          "deaths": [
-            50,
-            48
-          ],
-          "assists": [
-            20,
-            25
-          ],
-          "kr": [
-            0.85,
-            0.88
-          ],
-          "kd": [
-            1.4,
-            1.56
-          ],
-          "adr": [
-            85.5,
-            89.2
-          ],
-          "ctRounds": [
-            9,
-            11
-          ],
-          "tRounds": [
-            7,
-            8
-          ],
-          "entryCT": [
-            2,
-            3
-          ],
-          "entryT": [
-            5,
-            4
-          ],
-          "ctPistolWins": [
-            1,
-            2
-          ],
-          "tPistolWins": [
-            2,
-            2
-          ]
+          "kills": [70,75],
+          "deaths": [50,48],
+          "assists": [20,25],
+          "kr": [0.85,0.88],
+          "kd": [1.4,1.56],
+          "adr": [85.5,89.2],
+          "ctRounds": [9,11],
+          "tRounds": [7,8],
+          "entryCT": [2,3],
+          "entryT": [5,4],
+          "ctPistolWins": [1,2],
+          "tPistolWins": [2,2]
         },
         "mirage": {
-          "kills": [
-            55,
-            58
-          ],
-          "deaths": [
-            45,
-            44
-          ],
-          "assists": [
-            12,
-            14
-          ],
-          "kr": [
-            0.7,
-            0.72
-          ],
-          "kd": [
-            1.22,
-            1.32
-          ],
-          "adr": [
-            78.4,
-            82
-          ],
-          "ctRounds": [
-            7,
-            9
-          ],
-          "tRounds": [
-            8,
-            10
-          ],
-          "entryCT": [
-            3,
-            2
-          ],
-          "entryT": [
-            1,
-            2
-          ],
-          "ctPistolWins": [
-            0,
-            1
-          ],
-          "tPistolWins": [
-            1,
-            0
-          ]
+          "kills": [55,58],
+          "deaths": [45,44],
+          "assists": [12,14],
+          "kr": [0.7,0.72],
+          "kd": [1.22,1.32],
+          "adr": [78.4,82],
+          "ctRounds": [7,9],
+          "tRounds": [8,10],
+          "entryCT": [3,2],
+          "entryT": [1,2],
+          "ctPistolWins": [0,1],
+          "tPistolWins": [1,0]
         },
         "dust2": {
-          "kills": [
-            65,
-            70
-          ],
-          "deaths": [
-            35,
-            33
-          ],
-          "assists": [
-            18,
-            20
-          ],
-          "kr": [
-            0.95,
-            0.97
-          ],
-          "kd": [
-            1.86,
-            2.12
-          ],
-          "adr": [
-            92.3,
-            95
-          ],
-          "ctRounds": [
-            11,
-            13
-          ],
-          "tRounds": [
-            10,
-            11
-          ],
-          "entryCT": [
-            5,
-            6
-          ],
-          "entryT": [
-            4,
-            3
-          ],
-          "ctPistolWins": [
-            1,
-            2
-          ],
-          "tPistolWins": [
-            1,
-            1
-          ]
+          "kills": [65,70],
+          "deaths": [35,33],
+          "assists": [18,20],
+          "kr": [0.95,0.97],
+          "kd": [1.86,2.12],
+          "adr": [92.3,95],
+          "ctRounds": [11,13],
+          "tRounds": [10,11],
+          "entryCT": [5,6],
+          "entryT": [4,3],
+          "ctPistolWins": [1,2],
+          "tPistolWins": [1,1]
         },
         "ancient": {
-          "kills": [
-            45,
-            50
-          ],
-          "deaths": [
-            25,
-            30
-          ],
-          "assists": [
-            8,
-            12
-          ],
-          "kr": [
-            0.75,
-            0.78
-          ],
-          "kd": [
-            1.8,
-            1.67
-          ],
-          "adr": [
-            88,
-            85.3
-          ],
-          "ctRounds": [
-            8,
-            9
-          ],
-          "tRounds": [
-            6,
-            7
-          ],
-          "entryCT": [
-            1,
-            2
-          ],
-          "entryT": [
-            2,
-            3
-          ],
-          "ctPistolWins": [
-            2,
-            1
-          ],
-          "tPistolWins": [
-            0,
-            0
-          ]
+          "kills": [45,50],
+          "deaths": [25,30],
+          "assists": [8,12],
+          "kr": [0.75,0.78],
+          "kd": [1.8,1.67],
+          "adr": [88,85.3],
+          "ctRounds": [8,9],
+          "tRounds": [6,7],
+          "entryCT": [1,2],
+          "entryT": [2,3],
+          "ctPistolWins": [2,1 ],
+          "tPistolWins": [0,0]
         },
         "nuke": {
-          "kills": [
-            80,
-            85
-          ],
-          "deaths": [
-            60,
-            58
-          ],
-          "assists": [
-            22,
-            25
-          ],
-          "kr": [
-            1,
-            1.02
-          ],
-          "kd": [
-            1.33,
-            1.47
-          ],
-          "adr": [
-            95.5,
-            98
-          ],
-          "ctRounds": [
-            12,
-            13
-          ],
-          "tRounds": [
-            11,
-            12
-          ],
-          "entryCT": [
-            4,
-            5
-          ],
-          "entryT": [
-            6,
-            7
-          ],
-          "ctPistolWins": [
-            3,
-            2
-          ],
-          "tPistolWins": [
-            2,
-            2
-          ]
+          "kills": [80,85],
+          "deaths": [60,58],
+          "assists": [22,25],
+          "kr": [1,1.02],
+          "kd": [1.33,1.47],
+          "adr": [95.5,98],
+          "ctRounds": [12,13],
+          "tRounds": [11,12],
+          "entryCT": [4,5],
+          "entryT": [6,7],
+          "ctPistolWins": [3,2],
+          "tPistolWins": [2,2]
         }
       }
     },
@@ -359,457 +107,102 @@
       "playerName": "Storm",
       "maps": {
         "inferno": {
-          "kills": [
-            60,
-            62
-          ],
-          "deaths": [
-            50,
-            52
-          ],
-          "assists": [
-            12,
-            14
-          ],
-          "kr": [
-            0.9,
-            0.95
-          ],
-          "kd": [
-            1.2,
-            1.19
-          ],
-          "adr": [
-            87.3,
-            90
-          ],
-          "ctRounds": [
-            10,
-            11
-          ],
-          "tRounds": [
-            9,
-            10
-          ],
-          "entryCT": [
-            4,
-            3
-          ],
-          "entryT": [
-            3,
-            4
-          ],
-          "ctPistolWins": [
-            2,
-            2
-          ],
-          "tPistolWins": [
-            1,
-            0
-          ]
+          "kills": [60,62],
+          "deaths": [50,52],
+          "assists": [12,14],
+          "kr": [0.9,0.95],
+          "kd": [1.2,1.19],
+          "adr": [87.3,90],
+          "ctRounds": [10,11],
+          "tRounds": [9,10],
+          "entryCT": [4,3],
+          "entryT": [3,4],
+          "ctPistolWins": [2,2],
+          "tPistolWins": [1,0]
         },
         "vertigo": {
-          "kills": [
-            50,
-            55
-          ],
-          "deaths": [
-            45,
-            47
-          ],
-          "assists": [
-            10,
-            11
-          ],
-          "kr": [
-            0.8,
-            0.82
-          ],
-          "kd": [
-            1.11,
-            1.17
-          ],
-          "adr": [
-            82.5,
-            85
-          ],
-          "ctRounds": [
-            9,
-            10
-          ],
-          "tRounds": [
-            7,
-            8
-          ],
-          "entryCT": [
-            2,
-            3
-          ],
-          "entryT": [
-            1,
-            2
-          ],
-          "ctPistolWins": [
-            1,
-            1
-          ],
-          "tPistolWins": [
-            1,
-            1
-          ]
+          "kills": [50,55],
+          "deaths": [45,47],
+          "assists": [10,11],
+          "kr": [0.8,0.82],
+          "kd": [1.11,1.17],
+          "adr": [82.5,85],
+          "ctRounds": [9,10],
+          "tRounds": [7,8],
+          "entryCT": [2,3],
+          "entryT": [1,2],
+          "ctPistolWins": [1,1],
+          "tPistolWins": [1,1]
         },
         "anubis": {
-          "kills": [
-            40,
-            45
-          ],
-          "deaths": [
-            38,
-            39
-          ],
-          "assists": [
-            8,
-            10
-          ],
-          "kr": [
-            0.7,
-            0.73
-          ],
-          "kd": [
-            1.05,
-            1.15
-          ],
-          "adr": [
-            75.5,
-            77
-          ],
-          "ctRounds": [
-            8,
-            9
-          ],
-          "tRounds": [
-            6,
-            7
-          ],
-          "entryCT": [
-            3,
-            2
-          ],
-          "entryT": [
-            2,
-            3
-          ],
-          "ctPistolWins": [
-            1,
-            0
-          ],
-          "tPistolWins": [
-            1,
-            1
-          ]
+          "kills": [40,45],
+          "deaths": [38,39],
+          "assists": [8,10],
+          "kr": [0.7,0.73],
+          "kd": [1.05,1.15],
+          "adr": [75.5,77],
+          "ctRounds": [8,9],
+          "tRounds": [6,7],
+          "entryCT": [3,2],
+          "entryT": [2,3],
+          "ctPistolWins": [1,0],
+          "tPistolWins": [1,1]
         },
         "mirage": {
-          "kills": [
-            75,
-            78
-          ],
-          "deaths": [
-            65,
-            67
-          ],
-          "assists": [
-            15,
-            18
-          ],
-          "kr": [
-            0.95,
-            0.98
-          ],
-          "kd": [
-            1.15,
-            1.16
-          ],
-          "adr": [
-            90.4,
-            92.5
-          ],
-          "ctRounds": [
-            12,
-            13
-          ],
-          "tRounds": [
-            9,
-            10
-          ],
-          "entryCT": [
-            5,
-            4
-          ],
-          "entryT": [
-            4,
-            5
-          ],
-          "ctPistolWins": [
-            3,
-            2
-          ],
-          "tPistolWins": [
-            2,
-            2
-          ]
+          "kills": [75,78],
+          "deaths": [65,67],
+          "assists": [15,18],
+          "kr": [0.95,0.98],
+          "kd": [1.15,1.16],
+          "adr": [90.4,92.5],
+          "ctRounds": [12,13],
+          "tRounds": [9,10],
+          "entryCT": [5,4],
+          "entryT": [4,5],
+          "ctPistolWins": [3,2],
+          "tPistolWins": [2,2]
         },
         "dust2": {
-          "kills": [
-            65,
-            68
-          ],
-          "deaths": [
-            60,
-            62
-          ],
-          "assists": [
-            13,
-            15
-          ],
-          "kr": [
-            0.85,
-            0.87
-          ],
-          "kd": [
-            1.08,
-            1.1
-          ],
-          "adr": [
-            83.2,
-            84.5
-          ],
-          "ctRounds": [
-            11,
-            12
-          ],
-          "tRounds": [
-            10,
-            11
-          ],
-          "entryCT": [
-            4,
-            5
-          ],
-          "entryT": [
-            3,
-            4
-          ],
-          "ctPistolWins": [
-            2,
-            1
-          ],
-          "tPistolWins": [
-            1,
-            1
-          ]
+          "kills": [65,68],
+          "deaths": [60,62],
+          "assists": [13,15],
+          "kr": [0.85,0.87],
+          "kd": [1.08,1.1],
+          "adr": [83.2,84.5],
+          "ctRounds": [11,12],
+          "tRounds": [10,11],
+          "entryCT": [4,5],
+          "entryT": [3,4],
+          "ctPistolWins": [2,1],
+          "tPistolWins": [1,1]
         },
         "ancient": {
-          "kills": [
-            70,
-            72
-          ],
-          "deaths": [
-            50,
-            52
-          ],
-          "assists": [
-            18,
-            20
-          ],
-          "kr": [
-            0.88,
-            0.9
-          ],
-          "kd": [
-            1.4,
-            1.38
-          ],
-          "adr": [
-            91.7,
-            94
-          ],
-          "ctRounds": [
-            10,
-            11
-          ],
-          "tRounds": [
-            8,
-            9
-          ],
-          "entryCT": [
-            6,
-            5
-          ],
-          "entryT": [
-            5,
-            4
-          ],
-          "ctPistolWins": [
-            3,
-            2
-          ],
-          "tPistolWins": [
-            2,
-            2
-          ]
+          "kills": [70,72],
+          "deaths": [50,52],
+          "assists": [18,20],
+          "kr": [0.88,0.9],
+          "kd": [1.4,1.38],
+          "adr": [91.7,94],
+          "ctRounds": [10,11],
+          "tRounds": [8,9],
+          "entryCT": [6,5],
+          "entryT": [5,4],
+          "ctPistolWins": [3,2],
+          "tPistolWins": [2,2]
         },
         "nuke": {
-          "kills": [
-            55,
-            57
-          ],
-          "deaths": [
-            45,
-            43
-          ],
-          "assists": [
-            12,
-            14
-          ],
-          "kr": [
-            0.75,
-            0.78
-          ],
-          "kd": [
-            1.22,
-            1.33
-          ],
-          "adr": [
-            86.3,
-            88.5
-          ],
-          "ctRounds": [
-            9,
-            10
-          ],
-          "tRounds": [
-            7,
-            8
-          ],
-          "entryCT": [
-            3,
-            2
-          ],
-          "entryT": [
-            2,
-            3
-          ],
-          "ctPistolWins": [
-            1,
-            1
-          ],
-          "tPistolWins": [
-            0,
-            0
-          ]
-        }
-      }
-    },
-    {
-      "playerName": "Alex",
-      "maps": {
-        "inferno": {
-          "kills": [],
-          "deaths": [],
-          "assists": [],
-          "kr": [],
-          "kd": [],
-          "adr": [],
-          "ctRounds": [],
-          "tRounds": [],
-          "entryCT": [],
-          "entryT": [],
-          "ctPistolWins": [],
-          "tPistolWins": []
-        },
-        "vertigo": {
-          "kills": [],
-          "deaths": [],
-          "assists": [],
-          "kr": [],
-          "kd": [],
-          "adr": [],
-          "ctRounds": [],
-          "tRounds": [],
-          "entryCT": [],
-          "entryT": [],
-          "ctPistolWins": [],
-          "tPistolWins": []
-        },
-        "anubis": {
-          "kills": [],
-          "deaths": [],
-          "assists": [],
-          "kr": [],
-          "kd": [],
-          "adr": [],
-          "ctRounds": [],
-          "tRounds": [],
-          "entryCT": [],
-          "entryT": [],
-          "ctPistolWins": [],
-          "tPistolWins": []
-        },
-        "mirage": {
-          "kills": [],
-          "deaths": [],
-          "assists": [],
-          "kr": [],
-          "kd": [],
-          "adr": [],
-          "ctRounds": [],
-          "tRounds": [],
-          "entryCT": [],
-          "entryT": [],
-          "ctPistolWins": [],
-          "tPistolWins": []
-        },
-        "dust2": {
-          "kills": [],
-          "deaths": [],
-          "assists": [],
-          "kr": [],
-          "kd": [],
-          "adr": [],
-          "ctRounds": [],
-          "tRounds": [],
-          "entryCT": [],
-          "entryT": [],
-          "ctPistolWins": [],
-          "tPistolWins": []
-        },
-        "ancient": {
-          "kills": [],
-          "deaths": [],
-          "assists": [],
-          "kr": [],
-          "kd": [],
-          "adr": [],
-          "ctRounds": [],
-          "tRounds": [],
-          "entryCT": [],
-          "entryT": [],
-          "ctPistolWins": [],
-          "tPistolWins": []
-        },
-        "nuke": {
-          "kills": [],
-          "deaths": [],
-          "assists": [],
-          "kr": [],
-          "kd": [],
-          "adr": [],
-          "ctRounds": [],
-          "tRounds": [],
-          "entryCT": [],
-          "entryT": [],
-          "ctPistolWins": [],
-          "tPistolWins": []
+          "kills": [55,57],
+          "deaths": [45,43],
+          "assists": [12,14],
+          "kr": [0.75,0.78],
+          "kd": [1.22,1.33],
+          "adr": [86.3,88.5],
+          "ctRounds": [9,10],
+          "tRounds": [7,8],
+          "entryCT": [3,2],
+          "entryT": [2,3],
+          "ctPistolWins": [1,1],
+          "tPistolWins": [0,0]
         }
       }
     }
