@@ -17,6 +17,14 @@ const ProfileMenu = ({ currentUser, handleLogout }) => {
         navigate("/settings");
     };
 
+    const goToInbox = () => {
+        navigate("/inbox");
+    }
+
+    const goToProfile = () => {
+        navigate(`/profile/${currentUser.username}`);
+	}
+
     return (
         <div className="profile-menu">
             <div className="profile-summary" onClick={toggleDropdown}>
@@ -25,6 +33,8 @@ const ProfileMenu = ({ currentUser, handleLogout }) => {
             </div>
             {dropdownOpen && (
                 <div className="dropdown">
+                    <button onClick={goToProfile}>Your Profile</button>
+                    <button onClick={goToInbox}>Inbox</button>
                     <button onClick={goToSettings}>Settings</button>
                     <button onClick={handleLogout}>Log Out</button>
                 </div>

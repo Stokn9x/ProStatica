@@ -57,6 +57,26 @@ const Profile = ({ updateUser, currentUser }) => {
         }
     };
 
+    const sendFriendRequest = async () => {
+        try {
+            const response = await fetch('http://localhost:5001/sendFriendRequest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ senderUsername: currentUser.username, receiverUsername: profileUser.username }),
+            });
+
+            if (response.ok) {
+                console.log('Friend request sent!');
+            } else {
+                console.error('Failed to send friend request:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Failed to send friend request:', error);
+        }
+    };
+
     if (!profileUser) {
         return <div>Loading ....</div>;
     }
@@ -131,6 +151,11 @@ const Profile = ({ updateUser, currentUser }) => {
             <div className="team-info">
                 <p>Looking for a team? <span>Yes</span> <span>No</span></p>
             </div>
+            {!isOwnProfile && (
+                <button onClick={sendFriendRequest} className="send-friend-request-button">
+                    Send Friend Request
+                </button>
+            )}
         </div>
     );
 };

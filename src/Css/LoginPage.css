@@ -1,58 +1,102 @@
+/* Container for the entire login page */
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /*background-color: #1b1b1b;*/
+    background: linear-gradient(135deg, #2A2B3D, #1b1b1b); /* Gradient background for modern look */
 }
 
-.line {
-    color: wheat;
-}
-
+/* The login box container */
 .login-box {
     background-color: #2c2c2c;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 40px 30px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+    /* Hover effect on the login box */
+    .login-box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    }
+
+/* Logo styling */
 .logo h1 {
-    color: #8c52ff;
-    margin-bottom: 10px;
+    color: #7986CB;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Welcome message styling */
 .welcome-message h2 {
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Input fields styling */
 .login-input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 30px;
+    background-color: #1f1f2e;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
+    /* Hover and focus effects on input fields */
+    .login-input:hover,
+    .login-input:focus {
+        border-color: #7986CB;
+        background-color: #2A2B3D;
+    }
+
+/* Button styling */
 .login-button {
     width: 100%;
-    padding: 10px;
-    background-color: #8c52ff;
+    padding: 15px;
+    background-color: #7986CB;
     color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
+    /* Hover effect for the button */
+    .login-button:hover {
+        background-color: #8c52ff;
+        transform: translateY(-5px);
+    }
+
+/* Forgot password and signup link styling */
 .forgot-password,
 .signup {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
+    /* Links within forgot password and signup */
     .forgot-password a,
     .signup a {
-        color: #8c52ff;
+        color: #7986CB;
         text-decoration: none;
+        transition: color 0.3s ease-in-out;
     }
+
+        /* Hover effect for the links */
+        .forgot-password a:hover,
+        .signup a:hover {
+            color: #8c52ff;
+        }

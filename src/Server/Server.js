@@ -19,6 +19,8 @@ const usersDataPath = path.join(__dirname, '..', 'Data', 'users.json');
 const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json');
 const playerMapStatsDataPath = path.join(__dirname, '..', 'Data', 'playerMapStats.json')
 const postsDataPath = path.join(__dirname, '..', 'Data', 'posts.json');
+const matchesDataPath = path.join(__dirname, '..', 'Data', 'matches.json');
+
 
 const updateUser = (usersData, username, updateCallback) => {
 	const userIndex = usersData.users.findIndex(user => user.username === username);
@@ -26,7 +28,6 @@ const updateUser = (usersData, username, updateCallback) => {
 		updateCallback(usersData.users[userIndex]);
 	}
 };
-
 
 app.get('/getPosts', (req, res) => {
 	fs.readFile(postsDataPath, 'utf8', (err, data) => {
@@ -146,6 +147,48 @@ app.post('/addComment', (req, res) => {
 		} catch (parseError) {
 			console.error('Error parsing posts data:', parseError);
 			return res.status(500).send('An error occurred while processing post data.');
+			
+		}
+	});
+});
+app.get('/getMatch/:id', (req, res) => {
+	const { id } = req.params;
+
+	fs.readFile(matchesDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading match data:', err);
+			return res.status(500).send('An error occurred while reading match data.');
+		}
+
+		try {
+			const matchesData = JSON.parse(data);
+
+			if (!matchesData.matches || !matchesData.matches[id]) {
+				return res.status(404).json({ message: 'Match not found' });
+			}
+
+			const match = matchesData.matches[id];
+			res.status(200).json(match);
+		} catch (parseError) {
+			console.error('Error parsing match data:', parseError);
+			res.status(500).send('An error occurred while processing match data.');
+		}
+	});
+});
+
+app.get('/getMatches', (req, res) => {
+	fs.readFile(matchesDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading match data.');
+		}
+
+		try {
+			const matchesData = JSON.parse(data);
+			res.status(200).json(matchesData);
+		} catch (parseError) {
+			console.error('Error parsing match data:', parseError);
+			res.status(500).send('An error occurred while processing match data.');
 		}
 	});
 });
@@ -608,6 +651,126 @@ app.get('/playerMapStats/:username', (req, res) => {
 		res.status(200).json(player);
 	});
 });
+
+app.post('/sendFriendRequest', (req, res) => {
+	const { senderUsername, receiverUsername } = req.body;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
+		}
+
+		const usersData = JSON.parse(data);
+		const sender = usersData.users.find(user => user.username === senderUsername);
+		const receiver = usersData.users.find(user => user.username === receiverUsername);
+
+		if (!receiver) {
+			return res.status(404).send('Receiver not found.');
+		}
+
+		if (!sender) {
+			return res.status(404).send('Sender not found.');
+		}
+
+		if (receiver.friendRequests.includes(senderUsername)) {
+			return res.status(400).send('Friend request already sent.');
+		}
+
+		receiver.friendRequests.push(senderUsername);
+
+		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+			if (err) {
+				console.error('Error saving user data:', err);
+				return res.status(500).send('An error occurred while saving user data.');
+			}
+
+			res.status(200).send('Friend request sent!');
+		});
+	});
+});
+app.post('/acceptFriendRequest', (req, res) => {
+	const { username, senderUsername } = req.body;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
+		}
+
+		const usersData = JSON.parse(data);
+		const user = usersData.users.find(user => user.username === username);
+		const sender = usersData.users.find(user => user.username === senderUsername);
+
+		if (!user || !sender) {
+			return res.status(404).send('User not found.');
+		}
+
+		user.friendRequests = user.friendRequests.filter(req => req !== senderUsername);
+		user.friends.push(senderUsername);
+		sender.friends.push(username);
+
+		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+			if (err) {
+				console.error('Error saving user data:', err);
+				return res.status(500).send('An error occurred while saving user data.');
+			}
+
+			res.status(200).send('Friend request accepted!');
+		});
+	});
+});
+
+app.post('/declineFriendRequest', (req, res) => {
+	const { username, senderUsername } = req.body;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
+		}
+
+		const usersData = JSON.parse(data);
+		const user = usersData.users.find(user => user.username === username);
+
+		if (!user) {
+			return res.status(404).send('User not found.');
+		}
+
+		user.friendRequests = user.friendRequests.filter(req => req !== senderUsername);
+
+		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+			if (err) {
+				console.error('Error saving user data:', err);
+				return res.status(500).send('An error occurred while saving user data.');
+			}
+
+			res.status(200).send('Friend request declined!');
+		});
+	});
+});
+
+app.post('/getFriendRequests', (req, res) => {
+	const { username } = req.body;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
+		}
+
+		const usersData = JSON.parse(data);
+		const user = usersData.users.find(user => user.username === username);
+
+		if (!user) {
+			return res.status(404).send('User not found.');
+		}
+
+		// Returner venneanmodningerne for den fundne bruger
+		res.status(200).json(user.friendRequests);
+	});
+});
+
 
 
 

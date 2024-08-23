@@ -1,69 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import './../Css/MenuBar.css';
 
-function MenuBar({ currentUser }) {
-    const [isPersonalInfoOpen, setPersonalInfoOpen] = useState(false);
-    const [isTeamInfoOpen, setTeamInfoOpen] = useState(false);
-    const location = useLocation();
+function MenuBar() {
+    const [isTeamStatsOpen, setIsTeamStatsOpen] = useState(false);
 
-    // Reset menu state on route change
-    useEffect(() => {
-        setPersonalInfoOpen(false);
-        setTeamInfoOpen(false);
-    }, [location.pathname]);
+    const toggleTeamStats = () => {
+        setIsTeamStatsOpen(!isTeamStatsOpen);
+    };
 
-    const isUserInTeam = currentUser && currentUser.currentTeam !== 'none' && currentUser.currentTeam !== '';
-    const profileLink = currentUser ? `/profile/${currentUser.username}` : '/login';
+    // Variants for sidebar animation
+    const sidebarVariants = {
+        hidden: { x: '-100%' },
+        visible: { x: 0, transition: { duration: 0.5 } },
+    };
+
+    // Variants for the sub-menu items
+    const subMenuVariants = {
+        hidden: { opacity: 0, height: 0 },
+        visible: {
+            opacity: 1,
+            height: 'auto',
+            transition: { duration: 0.3 },
+        },
+    };
 
     return (
-        <div className="vertical-menu">
+        <motion.div
+            className="vertical-menu"
+            initial="hidden"
+            animate="visible"
+            variants={sidebarVariants}
+        >
             <div className="menu-header">
                 <img src="path-to-your-logo.png" alt="Logo" className="logo" />
-                <h3>SideBar Frame</h3>
+                <h3>Menu</h3>
             </div>
-            <Link to={profileLink} className="btn menu-btn active">Home</Link>
+            <Link to="/Feed" className="menu-btn">
+                <i className="fas fa-home"></i> Feed
+            </Link>
+            <Link to="/PlayerStats" className="menu-btn">
+                <i className="fas fa-chart-bar"></i> General Stats
+            </Link>
+            <Link to="/Matches" className="menu-btn">
+                <i className="fas fa-user"></i> Matches
+            </Link>
+            <div className="menu-btn" onClick={toggleTeamStats}>
+                <i className="fas fa-users"></i> Team
+            </div>
 
-            <div className="menu-section-title" onClick={() => setPersonalInfoOpen(!isPersonalInfoOpen)}>Personal info</div>
-            {isPersonalInfoOpen && (
-                <>
-                    <Link to="/matches" className="menu-btn">Played Matches</Link>
-                    <Link to="/playerStats" className="menu-btn">General Stats</Link>
-                    <Link to="/playerMapStats" className="menu-btn">Maps stats</Link>
-                </>
-            )}
-
-            <div className="menu-section-title" onClick={() => setTeamInfoOpen(!isTeamInfoOpen)}>Team(Needs rework)</div>
-            {isTeamInfoOpen && (
-                <>
-                    <Link to="/TeamInfo" className="menu-btn">Team Info</Link>
-                    {isUserInTeam ? (
-                        <>
-                            <Link to="/TeamStats" className="menu-btn">Team Stats</Link>
-                            <Link to="/TeamMapStats" className="menu-btn">Team Map Stats</Link>
-                            <Link to="/TeamMatches" className="menu-btn">Team Matches</Link>
-                            <Link to="/TeamCalendar" className="menu-btn">Team Calendar</Link>
-                        </>
-                    ) : (
-                        <>
-                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Stats</div>
-                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Map Stats</div>
-                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Matches</div>
-                            <div className="menu-btn disabled"><i className="fas fa-lock"></i> Team Calendar</div>
-                        </>
-                    )}
-                </>
-            )}
+            <AnimatePresence>
+                {isTeamStatsOpen && (
+                    <motion.div
+                        className="sub-menu"
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={subMenuVariants}
+                    >
+                        <Link to="/TeamInfo" className="menu-btn sub-menu-btn">
+                            Team Overview
+                        </Link>
+                        <Link to="/TeamMatches" className="menu-btn sub-menu-btn">
+                            Team Matches
+                        </Link>
+                        <Link to="/TeamStats" className="menu-btn sub-menu-btn">
+                            Team Stats
+                        </Link>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <div className="menu-footer">
-                <a href="#"><i className="fab fa-facebook"></i></a>
-                <a href="https://www.linkedin.com/in/casper-jensen-783650145/"><i className="fab fa-linkedin"></i></a>
-                <a href="#"><i className="fab fa-youtube"></i></a>
+                <a href="#"><i className="fab fa-linkedin"></i></a>
                 <a href="#"><i className="fab fa-discord"></i></a>
                 <a href="#"><i className="fas fa-envelope"></i></a>
                 <a href="#"><i className="fab fa-twitter"></i></a>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

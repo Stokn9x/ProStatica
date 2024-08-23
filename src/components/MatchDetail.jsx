@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './../Css/MatchDetail.css';
 
@@ -9,8 +9,6 @@ import de_dust2 from '/src/assets/Map-Icons/32px-De_dust2.png';
 import de_mirage from '/src/assets/Map-Icons/32px-De_mirage.png';
 import de_nuke from '/src/assets/Map-Icons/32px-De_nuke.png';
 import de_vertigo from '/src/assets/Map-Icons/32px-De_vertigo.png';
-
-import matchesData from '/src/Data/matches.json';
 
 const mapIcons = {
     anubis: de_anubis,
@@ -24,11 +22,32 @@ const mapIcons = {
 
 function MatchDetail() {
     const { id } = useParams();
+    const [match, setMatch] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const match = matchesData.matches[id];
-    if (!match) {
-        return <div>Match not found</div>;
-    }
+    useEffect(() => {
+        const fetchMatch = async () => {
+            try {
+                const response = await fetch(`http://localhost:5001/getMatch/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setMatch(data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMatch();
+    }, [id]);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (!match) return <div>Match not found</div>;
 
     const { map, result, score, time, mode, yourTeam, enemyTeam } = match;
 

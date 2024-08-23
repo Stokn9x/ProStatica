@@ -25,7 +25,7 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 import FeedComponent from './components/FeedComponent';
-
+import InboxPage from './components/InboxPage';
 
 const routesToShowContent = [
     "/profile/:username",
@@ -41,7 +41,8 @@ const routesToShowContent = [
     "/TeamMapStats",
     "/TeamMatches",
     "/TeamCalendar",
-    "/feed"
+    "/feed",
+    "/inbox"
 ];
 
 const shouldShowContent = (pathname) => {
@@ -102,6 +103,7 @@ function App() {
                         <Route path="/playerMapStats" element={isAuthenticated ? <PlayerMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/settings" element={isAuthenticated ? <SettingsPage currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/feed" element={isAuthenticated ? <FeedComponent currentUser={currentUser} /> : <Navigate to="/login" />} />"
+                        <Route path="/inbox" element={isAuthenticated ? <InboxPage currentUser={currentUser} /> : <Navigate to="/login" />} />
                         {/*All the team pages */}
                         <Route path="/TeamInfoDashboard" element={isAuthenticated ? (isUserInTeam ? <TeamInfoDashboard currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                         <Route path="/TeamCreateJoin" element={isAuthenticated ? <TeamCreateJoin currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
