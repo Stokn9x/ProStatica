@@ -152,7 +152,6 @@ app.post('/addComment', (req, res) => {
 			post.comments = post.comments || [];
 			post.comments.push(newComment);
 
-			// Gem de opdaterede posts
 			fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
 				if (err) {
 					console.error('Error saving post data:', err);
@@ -378,34 +377,48 @@ app.post('/signup', (req, res) => {
 
 
 app.post('/updateProfile', (req, res) => {
-	const updatedUser = req.body;
+	const { username, profilePic, bannerPic, name, age, role, bio, location, socialMedia } = req.body;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
-			console.error(err);
-			res.status(500).send('An error occurred while reading user data.');
-			return;
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
 		}
 
-		const usersData = JSON.parse(data);
-		const userIndex = usersData.users.findIndex(user => user.username === updatedUser.username);
+		try {
+			const usersData = JSON.parse(data);
+			const userIndex = usersData.users.findIndex(user => user.username === username);
 
-		if (userIndex === -1) {
-			res.status(404).send('User not found.');
-			return;
-		}
-
-		usersData.users[userIndex] = updatedUser;
-
-		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
-			if (err) {
-				console.error(err);
-				res.status(500).send('An error occurred while saving user data.');
-				return;
+			if (userIndex === -1) {
+				return res.status(404).send('User not found.');
 			}
 
-			res.status(200).send('Profile updated successfully!');
-		});
+			const updatedUser = {
+				...usersData.users[userIndex],
+				profilePic,
+				bannerPic,
+				name,
+				age,
+				role,
+				bio,
+				location,
+				socialMedia
+			};
+
+			usersData.users[userIndex] = updatedUser;
+
+			fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+				if (err) {
+					console.error('Error saving user data:', err);
+					return res.status(500).send('An error occurred while saving user data.');
+				}
+
+				res.status(200).json(updatedUser);
+			});
+		} catch (parseError) {
+			console.error('Error parsing user data:', parseError);
+			res.status(500).send('An error occurred while processing user data.');
+		}
 	});
 });
 

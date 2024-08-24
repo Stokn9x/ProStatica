@@ -35,7 +35,7 @@ const SettingsPage = ({ currentUser }) => {
     if (!currentUser) {
         return <div>Loading ....</div>;
     }
-
+    //Should be a useEffect to get the data from the api, but i'm lazy so i'm just gonna use the data from the currentUser.
     const [formData, setFormData] = useState({
         profilePic: currentUser.profilePic,
         bannerPic: currentUser.bannerPic,
