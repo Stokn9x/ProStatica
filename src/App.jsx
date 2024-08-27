@@ -25,6 +25,7 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 import InboxPage from './components/InboxPage';
+import FogotPassword from './components/FogotPassword';
 
 const routesToShowContent = [
     "/profile/:username",
@@ -59,7 +60,7 @@ function App() {
 
     const handleLogin = async (email, password) => {
         console.log("Handling login with", email, password);
-        const result = await authService.login(email, password); // Brug await her
+        const result = await authService.login(email, password);
         console.log("Login result:", result);
         if (result) {
             setIsAuthenticated(true);
@@ -94,6 +95,7 @@ function App() {
                         <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
                         <Route path="/about" element={<AboutPage />} />
+                        <Route path="/forgotPassword" element={<FogotPassword />} />
                         <Route path="/profile/:username" element={isAuthenticated ? <Profile currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />
