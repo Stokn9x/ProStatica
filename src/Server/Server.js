@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
-import { sendResetCode } from './../Services/emailService.js';
+import { sendResetCode, sendWelcomeEmail } from './../Services/emailService.js';
 import { dirname } from 'path';
 
 const app = express();
@@ -149,10 +149,8 @@ app.get('/getUserByEmail/:email', (req, res) => {
 				return res.status(404).json({ message: 'User not found.' });
 			}
 
-			// Generer en kode
 			const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
 
-			// Send koden til brugerens email
 			sendResetCode(email, resetCode);
 
 			res.status(200).json({ message: 'Reset code sent to email.' });
@@ -183,7 +181,6 @@ app.post('/signup', (req, res) => {
 				return;
 			}
 
-			// Læs og opdater map stats
 			fs.readFile(playerMapStatsDataPath, 'utf8', (err, data) => {
 				if (err) {
 					console.error(err);
@@ -201,7 +198,6 @@ app.post('/signup', (req, res) => {
 						return;
 					}
 
-					// Læs og opdater user stats
 					fs.readFile(playerStatsDataPath, 'utf8', (err, data) => {
 						if (err) {
 							console.error(err);
@@ -218,6 +214,8 @@ app.post('/signup', (req, res) => {
 								res.status(500).send('An error occurred while saving user stats data.');
 								return;
 							}
+
+							sendWelcomeEmail(newUser.email, newUser.username);
 
 							res.status(200).send('Signup successful!');
 						});

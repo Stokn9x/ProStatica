@@ -36,7 +36,6 @@ const PlayerStats = ({ currentUser }) => {
         return <div>Loading ....</div>;
     }
 
-    // This is for the tooltip
     const statDescriptions = {
         winrate: 'Procentdel af vundne kampe.',
         kda: 'Kill/Death/Assist forhold.',
