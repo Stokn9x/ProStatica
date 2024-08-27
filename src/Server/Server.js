@@ -19,7 +19,9 @@ const teamsDataPath = path.join(__dirname, '..', 'Data', 'teams.json');
 const usersDataPath = path.join(__dirname, '..', 'Data', 'users.json');
 const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json');
 const playerMapStatsDataPath = path.join(__dirname, '..', 'Data', 'playerMapStats.json')
+const postsDataPath = path.join(__dirname, '..', 'Data', 'posts.json');
 const matchesDataPath = path.join(__dirname, '..', 'Data', 'matches.json');
+
 
 const updateUser = (usersData, username, updateCallback) => {
 	const userIndex = usersData.users.findIndex(user => user.username === username);
@@ -28,6 +30,144 @@ const updateUser = (usersData, username, updateCallback) => {
 	}
 };
 
+app.get('/getPosts', (req, res) => {
+	const { username } = req.query; 
+
+	fs.readFile(usersDataPath, 'utf8', (err, usersData) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading users data.');
+		}
+
+		const users = JSON.parse(usersData).users;
+		const currentUser = users.find(user => user.username === username);
+
+		if (!currentUser) {
+			return res.status(404).send('User not found.');
+		}
+
+		fs.readFile(postsDataPath, 'utf8', (err, postsData) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('An error occurred while reading posts data.');
+			}
+
+			const posts = JSON.parse(postsData).posts;
+			const friendPosts = posts.filter(post => currentUser.friends.includes(post.username));
+
+			res.status(200).json(friendPosts);
+		});
+	});
+});
+
+app.post('/createPost', (req, res) => {
+	const { username, userProfilePic, createdAt, content } = req.body;
+	const newPost = {
+		id: Date.now(),
+		username,
+		userProfilePic,
+		createdAt,
+		content,
+		likes: 0,
+		comments: [],
+	};
+
+	fs.readFile(postsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading posts data.');
+		}
+
+		const postsData = JSON.parse(data);
+		postsData.posts.push(newPost);
+
+		fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('An error occurred while saving post data.');
+			}
+
+			res.status(201).json(newPost);
+		});
+	});
+});
+
+app.post('/likePost', (req, res) => {
+	const { postId } = req.body;
+
+	fs.readFile(postsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading posts data.');
+		}
+
+		const postsData = JSON.parse(data);
+		const post = postsData.posts.find(p => p.id === postId);
+
+		if (!post) {
+			return res.status(404).send('Post not found.');
+		}
+
+		post.likes += 1;
+
+		fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('An error occurred while saving post data.');
+			}
+
+			res.status(200).json(post);
+		});
+	});
+});
+
+app.post('/addComment', (req, res) => {
+	const { postId, username, userProfilePic, createdAt, comment } = req.body;
+
+	if (!postId || !username || !comment) {
+		return res.status(400).json({ error: 'Missing required fields' });
+	}
+
+	fs.readFile(postsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading posts data:', err);
+			return res.status(500).send('An error occurred while reading posts data.');
+		}
+
+		try {
+			const postsData = JSON.parse(data);
+			const post = postsData.posts.find(p => p.id === postId);
+
+			if (!post) {
+				return res.status(404).send('Post not found.');
+			}
+
+			const newComment = {
+				id: Date.now(),
+				username,
+				userProfilePic,
+				createdAt,
+				content: comment,
+			};
+
+			post.comments = post.comments || [];
+			post.comments.push(newComment);
+
+			fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
+				if (err) {
+					console.error('Error saving post data:', err);
+					return res.status(500).send('An error occurred while saving post data.');
+				}
+
+				res.status(201).json(newComment);
+			});
+		} catch (parseError) {
+			console.error('Error parsing posts data:', parseError);
+			return res.status(500).send('An error occurred while processing post data.');
+			
+		}
+	});
+});
 app.get('/getMatch/:id', (req, res) => {
 	const { id } = req.params;
 
@@ -162,13 +302,59 @@ app.get('/getUserByEmail/:email', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-	const { newUser, newMapStats, newUserStats } = req.body;
+	const { username, email, password } = req.body;
+
+	const newUser = {
+		username: username,
+		email: email,
+		password: password,
+		rank: "Unranked",
+		name: "none",
+		age: "none",
+		role: "none",
+		profilePic: "/src/assets/Logo/Placeholder.jpg",
+		bannerPic: "/src/assets/Banner/placeholder-banner.jpg",
+		bio: "none",
+		location: "none",
+		firstLogin: true,
+		friends: [],
+		friendRequests: [],
+		socialMedia: {
+			faceit: "none",
+			twitter: "none",
+			instagram: "none"
+		},
+		signupTime: new Date().toLocaleDateString(),
+		currentTeam: "none",
+		previousTeams: ["none"]
+	};
+
+	const newMapStats = {
+		playerName: username,
+		maps: {
+			inferno: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			vertigo: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			anubis: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			mirage: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			dust2: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			ancient: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] },
+			nuke: { kills: [], deaths: [], assists: [], kr: [], kd: [], adr: [], ctRounds: [], tRounds: [], entryCT: [], entryT: [], ctPistolWins: [], tPistolWins: [] }
+		}
+	};
+
+	const newUserStats = {
+		playerName: username,
+		stats: {
+			overall: { assist: [], avg_damage_round: [], avg_deaths_round: [], avg_kills_round: [], avg_utilDamage_round: [], damage_armor: [], damage_health: [], deaths: [], first_death: [], first_kill: [], first_trade_death: [], first_trade_kill: [], five_kill_count: [], four_kill_count: [], mvp: [], hs: [], hs_percentage: [], kast: [], kills: [], kd: [], one_kill_count: [], score: [], three_kill_count: [], trade_death: [], trade_kill: [], two_kill_count: [], util_damage: [], hltv2Rating: [] },
+			tSide: { tRounds: [], killR: [], gunRound: [] },
+			ctSide: { tRounds: [], killR: [], gunRound: [] }
+		}
+	};
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
 			console.error(err);
-			res.status(500).send('An error occurred while reading user data.');
-			return;
+			return res.status(500).send('An error occurred while reading user data.');
 		}
 
 		const usersData = JSON.parse(data);
@@ -177,15 +363,13 @@ app.post('/signup', (req, res) => {
 		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
 			if (err) {
 				console.error(err);
-				res.status(500).send('An error occurred while saving user data.');
-				return;
+				return res.status(500).send('An error occurred while saving user data.');
 			}
 
 			fs.readFile(playerMapStatsDataPath, 'utf8', (err, data) => {
 				if (err) {
 					console.error(err);
-					res.status(500).send('An error occurred while reading map stats data.');
-					return;
+					return res.status(500).send('An error occurred while reading map stats data.');
 				}
 
 				const mapStatsData = JSON.parse(data);
@@ -194,15 +378,13 @@ app.post('/signup', (req, res) => {
 				fs.writeFile(playerMapStatsDataPath, JSON.stringify(mapStatsData, null, 2), (err) => {
 					if (err) {
 						console.error(err);
-						res.status(500).send('An error occurred while saving map stats data.');
-						return;
+						return res.status(500).send('An error occurred while saving map stats data.');
 					}
 
 					fs.readFile(playerStatsDataPath, 'utf8', (err, data) => {
 						if (err) {
 							console.error(err);
-							res.status(500).send('An error occurred while reading user stats data.');
-							return;
+							return res.status(500).send('An error occurred while reading user stats data.');
 						}
 
 						const userStatsData = JSON.parse(data);
@@ -211,8 +393,7 @@ app.post('/signup', (req, res) => {
 						fs.writeFile(playerStatsDataPath, JSON.stringify(userStatsData, null, 2), (err) => {
 							if (err) {
 								console.error(err);
-								res.status(500).send('An error occurred while saving user stats data.');
-								return;
+								return res.status(500).send('An error occurred while saving user stats data.');
 							}
 
 							sendWelcomeEmail(newUser.email, newUser.username);
@@ -226,35 +407,50 @@ app.post('/signup', (req, res) => {
 	});
 });
 
+
 app.post('/updateProfile', (req, res) => {
-	const updatedUser = req.body;
+	const { username, profilePic, bannerPic, name, age, role, bio, location, socialMedia } = req.body;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
-			console.error(err);
-			res.status(500).send('An error occurred while reading user data.');
-			return;
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
 		}
 
-		const usersData = JSON.parse(data);
-		const userIndex = usersData.users.findIndex(user => user.username === updatedUser.username);
+		try {
+			const usersData = JSON.parse(data);
+			const userIndex = usersData.users.findIndex(user => user.username === username);
 
-		if (userIndex === -1) {
-			res.status(404).send('User not found.');
-			return;
-		}
-
-		usersData.users[userIndex] = updatedUser;
-
-		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
-			if (err) {
-				console.error(err);
-				res.status(500).send('An error occurred while saving user data.');
-				return;
+			if (userIndex === -1) {
+				return res.status(404).send('User not found.');
 			}
 
-			res.status(200).send('Profile updated successfully!');
-		});
+			const updatedUser = {
+				...usersData.users[userIndex],
+				profilePic,
+				bannerPic,
+				name,
+				age,
+				role,
+				bio,
+				location,
+				socialMedia
+			};
+
+			usersData.users[userIndex] = updatedUser;
+
+			fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+				if (err) {
+					console.error('Error saving user data:', err);
+					return res.status(500).send('An error occurred while saving user data.');
+				}
+
+				res.status(200).json(updatedUser);
+			});
+		} catch (parseError) {
+			console.error('Error parsing user data:', parseError);
+			res.status(500).send('An error occurred while processing user data.');
+		}
 	});
 });
 
@@ -270,7 +466,6 @@ app.post('/createTeam', (req, res) => {
 
 		const teamsData = JSON.parse(data);
 
-		//this is not nullable so we need to check if it is null
 		const teamExists = teamsData.teams.some(team => team.teamName.toLowerCase() === newTeam.teamName.toLowerCase());
 
 		if (teamExists) {
@@ -287,7 +482,6 @@ app.post('/createTeam', (req, res) => {
 				return;
 			}
 
-			// Update user's current team
 			fs.readFile(usersDataPath, 'utf8', (err, userData) => {
 				if (err) {
 					console.error(err);
@@ -484,7 +678,6 @@ app.get('/getTeamInfo', (req, res) => {
 			return;
 		}
 
-		// Send the entire team data
 		res.status(200).json(teamData);
 	});
 });
@@ -672,7 +865,6 @@ app.post('/getFriendRequests', (req, res) => {
 			return res.status(404).send('User not found.');
 		}
 
-		// Returner venneanmodningerne for den fundne bruger
 		res.status(200).json(user.friendRequests);
 	});
 });

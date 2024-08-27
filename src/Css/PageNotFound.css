@@ -1,0 +1,36 @@
+.404Page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: linear-gradient(135deg, #2A2B3D, #1b1b1b);
+}
+
+.404-box {
+	background-color: #2c2c2c;
+	padding: 40px 30px;
+	border-radius: 15px;
+	text-align: center;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+	.404-box:hover {
+		transform: translateY(-10px);
+		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+	}
+
+	.404-box h1 {
+		color: #7986CB;
+		margin-bottom: 20px;
+		font-size: 48px;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+	}
+
+	.404-box h2 {
+		color: #ffffff;
+		margin-bottom: 30px;
+		font-size: 24px;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
