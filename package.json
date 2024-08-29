@@ -20,8 +20,10 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.3.0",
     "react-intersection-observer": "^9.13.0",
     "react-router-dom": "^6.24.0",
+    "react-tooltip": "^5.28.0",
     "scrollreveal": "^4.0.9"
   },
   "devDependencies": {

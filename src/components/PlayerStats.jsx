@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
+import { FaEye, FaEyeSlash, FaInfoCircle } from 'react-icons/fa';
+import { Tooltip as ReactTooltip } from 'react-tooltip'; // Opdateret import
 import './../Css/PlayerStats.css';
 
 // Registrer alle nødvendige komponenter fra Chart.js
@@ -49,7 +51,10 @@ const PlayerStats = ({ currentUser }) => {
                     }
                     return response.json();
                 })
-                .then((data) => setPlayerData(data))
+                .then((data) => {
+                    console.log('Fetched player data:', data);
+                    setPlayerData(data);
+                })
                 .catch((error) => console.error('Error fetching player data:', error));
         }
     }, [currentUser]);
@@ -128,21 +133,22 @@ const PlayerStats = ({ currentUser }) => {
                 <h2>Overall Stats</h2>
                 {Object.keys(sections).map((section) => (
                     <div key={section} className="stats-section">
-                        <h3>{section}</h3>
-                        <p>{`This section covers ${section.toLowerCase()} related statistics.`}</p>
+                        <h3>{section} <FaInfoCircle id={`info-${section}`} data-tip={`This section covers ${section.toLowerCase()} related statistics.`} /></h3>
                         {sections[section].map((key) => (
                             <button key={key} onClick={() => toggleDataset(key)}>
-                                {visibleDatasets[key] ? `Hide ${key}` : `Show ${key}`}
+                                {visibleDatasets[key] ? <FaEye /> : <FaEyeSlash />} {visibleDatasets[key] ? `Hide ${key}` : `Show ${key}`}
                             </button>
                         ))}
                         <Line data={createChartData(sections[section])} options={options} />
                     </div>
                 ))}
             </div>
+            <ReactTooltip id="info-Utility" place="top" type="dark" effect="solid" />
+            <ReactTooltip id="info-Aim" place="top" type="dark" effect="solid" />
+            <ReactTooltip id="info-Trades" place="top" type="dark" effect="solid" />
+            <ReactTooltip id="info-Performance" place="top" type="dark" effect="solid" />
         </div>
     );
 };
 
 export default PlayerStats;
-
-
