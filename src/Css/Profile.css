@@ -22,56 +22,42 @@ body {
 .header-container {
     width: 100%;
     margin-bottom: 30px;
+    position: relative; /* Allows positioning of the profile picture over the background */
 }
 
 .background-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center the background image */
     align-items: center;
     background-color: #333;
-    padding: 15px;
+    padding: 100px 15px; /* Increased padding to make the background higher */
     border-radius: 10px;
     margin-bottom: 20px;
+    position: relative; /* Necessary for overlapping effect */
+    z-index: 1; /* Ensure the background is below the profile picture */
 }
 
-    .background-header h2 {
-        margin: 0;
-    }
-
-    .background-header button {
-        background-color: #555;
-        color: #e6e6e6;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-        .background-header button:hover {
-            background-color: #777;
-        }
 
 .profile-header {
     display: flex;
     align-items: center;
-    background-color: #333;
-    padding: 15px;
-    border-radius: 10px;
+    position: absolute; /* Positioning profile header to overlap with the background */
+    top: 50%; /* Adjust to align the profile picture */
+    left: 20px; /* Aligns the profile picture to the left side */
+    transform: translateY(-50%); /* Centers vertically within the background */
+    z-index: 2; /* Ensure profile picture is on top of background */
 }
 
 .profile-pic-container {
     text-align: center;
-    margin-right: 20px;
+    margin-right: 20px; /* Space between profile picture and username/stats */
 }
 
-    .profile-pic-container h2 {
-        margin-bottom: 10px;
-    }
-
 .profile-pic-stats {
-    width: 100px;
-    height: 100px;
+    width: 150px; /* Adjust size as needed */
+    height: 150px;
     border-radius: 50%;
+    border: 5px solid #2a2a33; /* Add a border to enhance separation from the background */
 }
 
 .profile-details {
@@ -81,12 +67,6 @@ body {
 .username {
     font-size: 2rem;
     margin: 0;
-}
-
-.stats-overview {
-    font-size: 1.2rem;
-    color: #999999;
-    margin-top: 10px;
 }
 
 .stats-container {

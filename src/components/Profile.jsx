@@ -79,22 +79,23 @@ const Profile = ({ updateUser, currentUser }) => {
         <div className="ProfilePage">
             {showModal && <FirstLoginModal onClose={handleCloseModal} />}
 
-            {/* Header for Profile Picture and Background */}
             <div className="header-container">
                 <div className="background-header">
-                    <h2>Background Picture</h2>
-                    <button>Upload Cover Image</button>
+                   
                 </div>
                 <div className="profile-header">
-                    <div className="profile-pic-container">                       
+                    <div className="profile-pic-container">
                         <img src={profileUser.profilePic} alt="Profile" className="profile-pic-stats" />
                     </div>
                     <div className="profile-details">
                         <h1 className="username">{profileUser.username}</h1>
-                        <div className="stats-overview">Stats Overview</div>
+                       
                     </div>
                 </div>
             </div>
+
+
+
 
             <div className="stats-container">
                 {/* Stats Box */}
