@@ -1,0 +1,136 @@
+.feedContainer {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f5f5f5;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	margin-top: 20px;
+}
+
+.createPostContainer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.userProfilePic {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.createPostContainer input {
+	flex-grow: 1;
+	padding: 10px;
+	border-radius: 20px;
+	border: 1px solid #ccc;
+}
+
+.createPostContainer button {
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+	.createPostContainer button:hover {
+		background-color: #0056b3;
+	}
+
+.filterContainer {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 20px;
+}
+
+	.filterContainer select {
+		padding: 5px 10px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+	}
+
+.postsContainer .post {
+	background-color: #21212d;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+	margin-bottom: 15px;
+}
+
+.postDiv {
+	border: solid 1px #ccc;
+	padding: 10px;
+	-moz-border-radius: inherit;
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
+}
+
+.postHeader {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.postUserProfilePic {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	cursor: pointer;
+}
+
+.commentUserProfilePic {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	cursor: pointer;
+}
+
+.commentsSection {
+	border: solid 1px #ccc;
+	padding: 10px;
+	-moz-border-radius: inherit;
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
+}
+
+.postUserInfo {
+	display: flex;
+	flex-direction: column;
+}
+
+.postUsername {
+	font-weight: bold;
+}
+
+.postTimestamp {
+	color: #888;
+	font-size: 12px;
+}
+
+.postContent {
+	margin: 10px 0;
+
+}
+
+.likeButton {
+	padding: 5px 15px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 20px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+	.likeButton:hover {
+		background-color: #0056b3;
+	}
