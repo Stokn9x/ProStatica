@@ -24,7 +24,9 @@ import TeamInfoDashboard from './components/teamComponets/TeamInfoDashboard';
 import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
+import FeedComponent from './components/FeedComponent';
 import InboxPage from './components/InboxPage';
+import PageNotFound from './components/PageNotFound';
 
 const routesToShowContent = [
     "/profile/:username",
@@ -40,6 +42,7 @@ const routesToShowContent = [
     "/TeamMapStats",
     "/TeamMatches",
     "/TeamCalendar",
+    "/feed",
     "/inbox"
 ];
 
@@ -59,7 +62,7 @@ function App() {
 
     const handleLogin = async (email, password) => {
         console.log("Handling login with", email, password);
-        const result = await authService.login(email, password); // Brug await her
+        const result = await authService.login(email, password);
         console.log("Login result:", result);
         if (result) {
             setIsAuthenticated(true);
@@ -86,7 +89,6 @@ function App() {
     return (
             <div className="App">
                 {shouldShowContent(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {/*{shouldShowContent(location.pathname) && <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />}*/}
                 {shouldShowContent(location.pathname) && <Header currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
@@ -100,6 +102,7 @@ function App() {
                         <Route path="/playerStats" element={isAuthenticated ? <PlayerStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/playerMapStats" element={isAuthenticated ? <PlayerMapStats currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/settings" element={isAuthenticated ? <SettingsPage currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/feed" element={isAuthenticated ? <FeedComponent currentUser={currentUser} /> : <Navigate to="/login" />} />"
                         <Route path="/inbox" element={isAuthenticated ? <InboxPage currentUser={currentUser} /> : <Navigate to="/login" />} />
                         {/*All the team pages */}
                         <Route path="/TeamInfoDashboard" element={isAuthenticated ? (isUserInTeam ? <TeamInfoDashboard currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
@@ -109,6 +112,7 @@ function App() {
                         <Route path="/TeamMapStats" element={isAuthenticated ? (isUserInTeam ? <TeamMapStats currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                         <Route path="/TeamMatches" element={isAuthenticated ? (isUserInTeam ? <TeamMatches currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                         <Route path="/TeamCalendar" element={isAuthenticated ? (isUserInTeam ? <TeamCalendar currentUser={currentUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
+                        <Route path="*" element={<PageNotFound />} />
                     </Routes>
                 </div>
             </div>
