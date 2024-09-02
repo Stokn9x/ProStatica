@@ -58,7 +58,7 @@ function Login({ handleLogin}) {
                     <button type="submit" className="login-button">Log in</button>
                 </form>
                 <div className="forgot-password">
-                    <Link to="/forgot-password">Forgot your password?</Link>
+                   <Link to="/forgotPassword">Forgot your password?</Link>
                 </div>
                 <div className="signup">
                    Don’t have an account? <Link to="/sign-Up">Sign up for free</Link>
