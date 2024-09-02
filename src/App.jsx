@@ -26,7 +26,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Css/App.css';
 import FeedComponent from './components/FeedComponent';
 import InboxPage from './components/InboxPage';
+import FogotPassword from './components/FogotPassword';
 import PageNotFound from './components/PageNotFound';
+
 
 const routesToShowContent = [
     "/profile/:username",
@@ -96,6 +98,7 @@ function App() {
                         <Route path="/sign-Up" element={<SignUp /> } />
                         <Route path="/" element={<Homepage />} />
                         <Route path="/about" element={<AboutPage />} />
+                        <Route path="/forgotPassword" element={<FogotPassword />} />
                         <Route path="/profile/:username" element={isAuthenticated ? <Profile currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
                         <Route path="/matches" element={isAuthenticated ? <Matches currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/match/:id" element={isAuthenticated ? <MatchDetail currentUser={currentUser} /> : <Navigate to="/login" />} />

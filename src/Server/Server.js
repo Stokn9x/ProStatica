@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
+import { sendResetCode, sendWelcomeEmail } from './../Services/emailService.js';
 import { dirname } from 'path';
 
 const app = express();
@@ -30,7 +31,7 @@ const updateUser = (usersData, username, updateCallback) => {
 };
 
 app.get('/getPosts', (req, res) => {
-	const { username } = req.query; 
+	const { username } = req.query;
 
 	fs.readFile(usersDataPath, 'utf8', (err, usersData) => {
 		if (err) {
@@ -52,9 +53,11 @@ app.get('/getPosts', (req, res) => {
 			}
 
 			const posts = JSON.parse(postsData).posts;
-			const friendPosts = posts.filter(post => currentUser.friends.includes(post.username));
+			const userAndFriendPosts = posts.filter(post =>
+				currentUser.friends.includes(post.username) || post.username === username
+			);
 
-			res.status(200).json(friendPosts);
+			res.status(200).json(userAndFriendPosts);
 		});
 	});
 });
@@ -271,6 +274,35 @@ app.get('/getUser/:username', (req, res) => {
 	});
 });
 
+app.get('/getUserByEmail/:email', (req, res) => {
+	const { email } = req.params;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).json({ message: 'An error occurred while reading user data.' });
+		}
+
+		try {
+			const usersData = JSON.parse(data);
+			const user = usersData.users.find(user => user.email === email);
+
+			if (!user) {
+				return res.status(404).json({ message: 'User not found.' });
+			}
+
+			const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+			sendResetCode(email, resetCode);
+
+			res.status(200).json({ message: 'Reset code sent to email.' });
+		} catch (parseError) {
+			console.error('Error parsing user data:', parseError);
+			res.status(500).json({ message: 'An error occurred while processing user data.' });
+		}
+	});
+});
+
 app.post('/signup', (req, res) => {
 	const { username, email, password } = req.body;
 
@@ -366,6 +398,8 @@ app.post('/signup', (req, res) => {
 								return res.status(500).send('An error occurred while saving user stats data.');
 							}
 
+							sendWelcomeEmail(newUser.email, newUser.username);
+
 							res.status(200).send('Signup successful!');
 						});
 					});
@@ -377,7 +411,7 @@ app.post('/signup', (req, res) => {
 
 
 app.post('/updateProfile', (req, res) => {
-	const { username, profilePic, bannerPic, name, age, role, bio, location, socialMedia } = req.body;
+	const { username, profilePic, bannerPic, name, age, role, bio, location, socialMedia, email, password } = req.body;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
@@ -402,7 +436,9 @@ app.post('/updateProfile', (req, res) => {
 				role,
 				bio,
 				location,
-				socialMedia
+				socialMedia,
+				email,
+				password
 			};
 
 			usersData.users[userIndex] = updatedUser;

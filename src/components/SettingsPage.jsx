@@ -45,6 +45,8 @@ const SettingsPage = ({ currentUser }) => {
         role: currentUser.role,
         bio: currentUser.bio || '',
         location: currentUser.location || '',
+        email: currentUser.email || '',
+        password: currentUser.password || '',
         socialMedia: {
             faceit: currentUser.socialMedia?.faceit || '',
             twitter: currentUser.socialMedia?.twitter || '',
@@ -84,7 +86,7 @@ const SettingsPage = ({ currentUser }) => {
             }
         };
 
-        axios.post('http://localhost:5001/updateProfile', updatedUserData)
+        axios.post('http://localhost:5001/updateProfile', updatedUserData) //Dette skal ik være en axios post,
             .then(response => {
                 alert('Profile updated successfully!');
             })
@@ -93,7 +95,7 @@ const SettingsPage = ({ currentUser }) => {
             });
     };
     
-    const { profilePic, bannerPic, username, name, age, role, bio, location, socialMedia } = formData;
+    const { profilePic, bannerPic, username, name, age, role, bio, location, socialMedia, email, password } = formData;
 
     const [selectedSection, setSelectedSection] = useState('publicProfile');
     const navigate = useNavigate();
@@ -161,26 +163,20 @@ const SettingsPage = ({ currentUser }) => {
                 );
             case 'account':
                 return (
-                    <div className="section-content">
-                        <h2>Account</h2>
-                        <div className="form-group">
-                            <label>Email</label>
-                            <input type="email" defaultValue={currentUser.email} />
+                    <form onSubmit={handleSubmit}>
+                        <div className="section-content">
+                            <h2>Account</h2>
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" value={email} onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" value={password} onChange={handleInputChange} />
+                            </div>
+                            <button type="submit">Save Changes</button>
                         </div>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input type="password" placeholder="New password" />
-                        </div>
-                        <div className="form-group">
-                            <label>Two-Factor Authentication</label>
-                            <input type="checkbox" checked={currentUser.twoFactorAuth} />
-                        </div>
-                        <div className="form-group">
-                            <label>Security Question</label>
-                            <input type="text" placeholder="Your first pet's name?" />
-                        </div>
-                        <button>Save Changes</button>
-                    </div>
+                    </form>
                 );
             case 'appearance':
                 return (

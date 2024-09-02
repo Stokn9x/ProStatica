@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash, FaInfoCircle } from 'react-icons/fa';
 import { Tooltip as ReactTooltip } from 'react-tooltip'; // Opdateret import
 import './../Css/PlayerStats.css';
 
-// Registrer alle nødvendige komponenter fra Chart.js
+// Registrer alle nÃ¸dvendige komponenter fra Chart.js
 Chart.register(...registerables);
 
 const PlayerStats = ({ currentUser }) => {
@@ -62,7 +62,6 @@ const PlayerStats = ({ currentUser }) => {
     if (!playerData) {
         return <div>Loading ....</div>;
     }
-
     const overallStats = playerData.stats.overall;
 
     // Opdel statistikkerne i sektioner

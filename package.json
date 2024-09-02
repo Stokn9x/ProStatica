@@ -15,8 +15,11 @@
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.4",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "framer-motion": "^11.3.28",
+    "googleapis": "^142.0.0",
+    "nodemailer": "^6.9.14",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
@@ -27,8 +30,8 @@
     "scrollreveal": "^4.0.9"
   },
   "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
