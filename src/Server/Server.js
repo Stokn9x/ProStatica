@@ -31,7 +31,7 @@ const updateUser = (usersData, username, updateCallback) => {
 };
 
 app.get('/getPosts', (req, res) => {
-	const { username } = req.query; 
+	const { username } = req.query;
 
 	fs.readFile(usersDataPath, 'utf8', (err, usersData) => {
 		if (err) {
@@ -53,9 +53,11 @@ app.get('/getPosts', (req, res) => {
 			}
 
 			const posts = JSON.parse(postsData).posts;
-			const friendPosts = posts.filter(post => currentUser.friends.includes(post.username));
+			const userAndFriendPosts = posts.filter(post =>
+				currentUser.friends.includes(post.username) || post.username === username
+			);
 
-			res.status(200).json(friendPosts);
+			res.status(200).json(userAndFriendPosts);
 		});
 	});
 });
