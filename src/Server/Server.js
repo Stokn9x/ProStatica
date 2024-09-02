@@ -409,7 +409,7 @@ app.post('/signup', (req, res) => {
 
 
 app.post('/updateProfile', (req, res) => {
-	const { username, profilePic, bannerPic, name, age, role, bio, location, socialMedia } = req.body;
+	const { username, profilePic, bannerPic, name, age, role, bio, location, socialMedia, email, password } = req.body;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
@@ -434,7 +434,9 @@ app.post('/updateProfile', (req, res) => {
 				role,
 				bio,
 				location,
-				socialMedia
+				socialMedia,
+				email,
+				password
 			};
 
 			usersData.users[userIndex] = updatedUser;
