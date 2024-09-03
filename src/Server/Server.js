@@ -30,6 +30,64 @@ const updateUser = (usersData, username, updateCallback) => {
 	}
 };
 
+app.delete('/deletePost', (req, res) => {
+	const { postId } = req.body;
+
+	fs.readFile(postsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading posts data.');
+		}
+
+		const postsData = JSON.parse(data);
+		const postIndex = postsData.posts.findIndex(p => p.id === postId);
+
+		if (postIndex === -1) {
+			return res.status(404).send('Post not found.');
+		}
+
+		postsData.posts.splice(postIndex, 1);
+
+		fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('An error occurred while saving post data.');
+			}
+
+			res.status(200).send('Post deleted successfully.');
+		});
+	});
+});
+
+app.put('/editPost', (req, res) => {
+	const { postId, newContent } = req.body;
+
+	fs.readFile(postsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return res.status(500).send('An error occurred while reading posts data.');
+		}
+
+		const postsData = JSON.parse(data);
+		const post = postsData.posts.find(p => p.id === postId);
+
+		if (!post) {
+			return res.status(404).send('Post not found.');
+		}
+
+		post.content = newContent;
+
+		fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
+			if (err) {
+				console.error(err);
+				return res.status(500).send('An error occurred while saving post data.');
+			}
+
+			res.status(200).json(post);
+		});
+	});
+});
+
 app.get('/getPosts', (req, res) => {
 	const { username } = req.query;
 
