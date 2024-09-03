@@ -25,6 +25,7 @@ function MatchDetail() {
     const [match, setMatch] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showRounds, setShowRounds] = useState(false);
 
     useEffect(() => {
         const fetchMatch = async () => {
@@ -49,7 +50,7 @@ function MatchDetail() {
     if (error) return <div>Error: {error}</div>;
     if (!match) return <div>Match not found</div>;
 
-    const { map, result, score, time, mode, yourTeam, enemyTeam } = match;
+    const { map, result, score, time, mode, rounds, Marchkills = [], yourTeam, enemyTeam } = match;
 
     const ensureFivePlayers = (team) => {
         const filledTeam = [...team];
@@ -64,6 +65,15 @@ function MatchDetail() {
 
     const resultClass = result.toLowerCase() === 'victory' ? 'victory' : 'defeat';
 
+    const totalRounds = parseInt(rounds, 10);
+    const roundsList = Array.from({ length: totalRounds }, (_, index) => {
+        const roundKills = Marchkills.filter(kill => kill.roundNumber[0] === index + 1);
+        return {
+            roundNumber: index + 1,
+            kills: roundKills
+        };
+    });
+
     return (
         <div className="match-detail">
             <div className="match-summary">
@@ -77,65 +87,89 @@ function MatchDetail() {
                     </div>
                 </div>
                 <div className="tabs">
-                    <button className="tab active">Overview</button>
-                    <button className="tab">Rounds</button>
+                    <button className={`tab ${!showRounds ? 'active' : ''}`} onClick={() => setShowRounds(false)}>Overview</button>
+                    <button className={`tab ${showRounds ? 'active' : ''}`} onClick={() => setShowRounds(true)}>Rounds</button>
                 </div>
             </div>
-            <div className="match-stats">
-                <div className="stat-categories">
-                    <div className="stat-category">Most Kills</div>
-                    <div className="stat-category">Most Deaths</div>
-                    <div className="stat-category">Most Headshots</div>
+            {showRounds ? (
+                <div className="rounds-list">
+                    <h2 className="rounds-title">Match Rounds</h2>
+                    <table className="rounds-table">
+                        <thead>
+                            <tr>
+                                <th>Round</th>
+                                <th>Kills</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {roundsList.map((round, index) => (
+                                <tr key={index} className="round-item">
+                                    <td className="round-number">Round {round.roundNumber}</td>
+                                    <td className="round-kills">
+                                        {round.kills.length > 0 ? `${round.kills.length} Kill(s)` : 'No Kills'}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-                <table className="team-stats">
-                    <thead>
-                        <tr>
-                            <th>Your Team - {result === 'Win' ? 'Won' : 'Lost'}</th>
-                            <th>Kills</th>
-                            <th>Deaths</th>
-                            <th>K/D</th>
-                            <th>Headshots</th>
-                            <th>ADR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {yourTeamFilled.map((player, index) => (
-                            <tr key={index}>
-                                <td><img src="/src/assets/Logo/Storm-Logo.jpg" alt="Player Icon" /> {player.name}</td>
-                                <td>{player.kills}</td>
-                                <td>{player.deaths}</td>
-                                <td>{player.kd}</td>
-                                <td>{player.headshots}</td>
-                                <td>{player.adr}</td>
+            ) : (
+                <div className="match-stats">
+                    <div className="stat-categories">
+                        <div className="stat-category">Most Kills</div>
+                        <div className="stat-category">Most Deaths</div>
+                        <div className="stat-category">Most Headshots</div>
+                    </div>
+                    <table className="team-stats">
+                        <thead>
+                            <tr>
+                                <th>Your Team - {result === 'Win' ? 'Won' : 'Lost'}</th>
+                                <th>Kills</th>
+                                <th>Deaths</th>
+                                <th>K/D</th>
+                                <th>Headshots</th>
+                                <th>ADR</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <table className="team-stats">
-                    <thead>
-                        <tr>
-                            <th>Enemy Team - {result === 'Win' ? 'Lost' : 'Won'}</th>
-                            <th>Kills</th>
-                            <th>Deaths</th>
-                            <th>K/D</th>
-                            <th>Headshots</th>
-                            <th>ADR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {enemyTeamFilled.map((player, index) => (
-                            <tr key={index}>
-                                <td><img src="/src/assets/Logo/Stokn9x-Logo.jpg" alt="Player Icon" /> {player.name}</td>
-                                <td>{player.kills}</td>
-                                <td>{player.deaths}</td>
-                                <td>{player.kd}</td>
-                                <td>{player.headshots}</td>
-                                <td>{player.adr}</td>
+                        </thead>
+                        <tbody>
+                            {yourTeamFilled.map((player, index) => (
+                                <tr key={index}>
+                                    <td><img src="/src/assets/Logo/Storm-Logo.jpg" alt="Player Icon" /> {player.name}</td>
+                                    <td>{player.kills}</td>
+                                    <td>{player.deaths}</td>
+                                    <td>{player.kd}</td>
+                                    <td>{player.headshots}</td>
+                                    <td>{player.adr}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <table className="team-stats">
+                        <thead>
+                            <tr>
+                                <th>Enemy Team - {result === 'Win' ? 'Lost' : 'Won'}</th>
+                                <th>Kills</th>
+                                <th>Deaths</th>
+                                <th>K/D</th>
+                                <th>Headshots</th>
+                                <th>ADR</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            {enemyTeamFilled.map((player, index) => (
+                                <tr key={index}>
+                                    <td><img src="/src/assets/Logo/Stokn9x-Logo.jpg" alt="Player Icon" /> {player.name}</td>
+                                    <td>{player.kills}</td>
+                                    <td>{player.deaths}</td>
+                                    <td>{player.kd}</td>
+                                    <td>{player.headshots}</td>
+                                    <td>{player.adr}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 }

@@ -10,6 +10,7 @@
     box-sizing: border-box; /* Sørg for padding og border er inkluderet i bredden */
     margin-bottom: 350px; /* Tilføjet margen nederst */
     margin-left: 260px;
+    margin-top: 40px;
 }
 
 .pagination {
