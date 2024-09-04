@@ -1,7 +1,8 @@
 .SearchField {
 	position: absolute;
 	z-index: 1;
-	margin-left: 400px;
+	margin-left: 20px; /* Move more to the left */
+	width: 300px; /* Increase width */
 }
 
 	.SearchField input {
@@ -32,18 +33,18 @@
 	flex-grow: 1;
 }
 
-	.suggestions-list li {
-		padding: 8px;
-		cursor: pointer;
-		color: black;
-		z-index: 1;
-		display: flex;
-		align-items: center;	
-	}
+.suggestions-list li {
+	padding: 8px;
+	cursor: pointer;
+	color: black;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+}
 
-		.suggestions-list li:hover {
-			background-color: #f0f0f0;
-		}
+	.suggestions-list li:hover {
+		background-color: #f0f0f0;
+	}
 
 .searchLogo {
 	height: 26px;

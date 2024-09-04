@@ -1,39 +1,44 @@
 .header {
-	position: fixed;
-	top: 0;
-	left: 220px;
-	width: calc(100% - 220px);
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: #2a2a33;
-	padding: 20px 20px;
-	z-index: 99;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
+    position: fixed;
+    top: 0;
+    left: 220px;
+    width: calc(100% - 220px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2A2B3D; /* Match menubar color */
+    padding: 30px 20px; /* Increase padding to make the header taller */
+    z-index: 99;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: background-color 0.3s, color 0.3s; /* Add transition for animation */
 }
 
 .header-content {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .right-section {
-	display: flex;
-	align-items: center;
-	gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .icons {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	right: 200px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-	.icons a img {
-		width: 24px;
-		height: 24px;
-	}
+.icons a img {
+    width: 24px;
+    height: 24px;
+    transition: background-color 0.3s, color 0.3s; /* Add transition for animation */
+}
+
+.icons a:hover img {
+    background-color: #7986CB; /* Match menubar hover color */
+}
