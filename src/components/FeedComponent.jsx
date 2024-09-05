@@ -171,6 +171,43 @@ const FeedComponent = ({ currentUser }) => {
 			});
 	};
 
+	const handleDeletePost = (postId) => {
+		if (window.confirm('Are you sure you want to delete this post?')) {
+			fetch('http://localhost:5001/deletePost', {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ postId }),
+			})
+				.then(response => {
+					if (response.ok) {
+						setPosts(posts.filter(post => post.id !== postId));
+					}
+				});
+		}
+	};
+
+	const handleEditPost = (postId, newContent) => {
+		fetch('http://localhost:5001/editPost', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ postId, newContent }),
+		})
+			.then(response => response.json())
+			.then(updatedPost => {
+				const updatedPosts = posts.map(post => {
+					if (post.id === postId) {
+						return updatedPost;
+					}
+					return post;
+				});
+				setPosts(updatedPosts);
+			});
+	};
+
 	const sortedPosts = [...posts].sort((a, b) => {
 		if (filter === 'likes') {
 			return b.likes - a.likes;
@@ -260,5 +297,4 @@ const FeedComponent = ({ currentUser }) => {
 		</div>
 	);
 };
-
 export default FeedComponent;
