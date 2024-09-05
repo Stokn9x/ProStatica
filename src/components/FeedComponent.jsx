@@ -18,7 +18,7 @@ const FeedComponent = ({ currentUser }) => {
 
 	useEffect(() => {
 		// Fetching posts
-		fetch(http://localhost:5001/getPosts?username=${currentUser.username})
+		fetch('http://localhost:5001/getPosts?username=${currentUser.username}')
 			.then(response => response.json())
 			.then(data => setPosts(data));
 
@@ -29,7 +29,6 @@ const FeedComponent = ({ currentUser }) => {
 	}, [currentUser.username]);
 
 	const handleCreatePost = () => {
-		// Post creation functionality
 		fetch('http://localhost:5001/createPost', {
 			method: 'POST',
 			headers: {
@@ -38,15 +37,15 @@ const FeedComponent = ({ currentUser }) => {
 			body: JSON.stringify({
 				username: currentUser.username,
 				userProfilePic: currentUser.profilePic,
-				createdAt: ${ year } - ${ month } - ${ day },
+				createdAt: `${year}-${month}-${day}`,
 				content: newPost
 			}),
 		})
 			.then(response => response.json())
-	.then(data => {
-		setPosts([...posts, data]);
-		setNewPost('');
-	});
+			.then(data => {
+				setPosts([...posts, data]);
+				setNewPost('');
+			});
 	};
 
 const handleFilterChange = (e) => {
@@ -78,29 +77,34 @@ const handleAddLike = (postId) => {
 		});
 };
 
-const handleAddComment = (postId) => {
-	const commentText = newComment[postId];
-	if (!commentText) return;
+	const handleAddComment = (postId) => {
+		const commentText = newComment[postId];
+		if (!commentText) return;
 
-	fetch('http://localhost:5001/addComment', {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-			postId,
-			username: currentUser.username,
-			userProfilePic: currentUser.profilePic,
-			createdAt: ${ year } - ${ month } - ${ day },
-			comment: commentText,
+		fetch('http://localhost:5001/addComment', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				postId,
+				username: currentUser.username,
+				userProfilePic: currentUser.profilePic,
+				createdAt: `${year}-${month}-${day}`,
+				comment: commentText
 			}),
 		})
 			.then(response => response.json())
-	.then(newCommentData => {
-		const updatedPosts = posts.map(post =>
-			post.id === postId ? { ...post, comments: [...post.comments, newCommentData] } : post
-		);
-		setPosts(updatedPosts);
-		setNewComment({ ...newComment, [postId]: '' });
-	});
+			.then(newCommentData => {
+				const updatedPosts = posts.map(post => {
+					if (post.id === postId) {
+						return { ...post, comments: [...post.comments, newCommentData] };
+					}
+					return post;
+				});
+				setPosts(updatedPosts);
+				setNewComment({ ...newComment, [postId]: '' });
+			});
 	};
 
 const handleFollow = (userId) => {

@@ -22,7 +22,7 @@ const ProfileMenu = ({ currentUser, handleLogout }) => {
     }
 
     const goToProfile = () => {
-        navigate(/profile/${ currentUser.username });
+        navigate(`/profile/${currentUser.username}`);
     }
 
     return (
