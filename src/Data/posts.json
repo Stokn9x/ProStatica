@@ -1,12 +1,13 @@
 {
   "posts": [
     {
-      "id": 1724142552649,
+      "id": 1725525621231,
       "username": "Stokn9x",
       "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
-      "createdAt": "2024-8-20",
-      "content": "Hejsa",
+      "createdAt": "2024-9-5",
+      "content": "dada",
       "likes": 0,
+      "likedBy": [],
       "comments": []
     }
   ]
