@@ -40,7 +40,9 @@
       "location": "none",
       "firstLogin": false,
       "friends": [],
-      "friendRequests": [],
+      "friendRequests": [
+        "Stokn9x"
+      ],
       "socialMedia": {
         "faceit": "none",
         "twitter": "none",
