@@ -51,9 +51,8 @@ const FeedComponent = ({ currentUser }) => {
 	};
 
 	const handleAddLike = (postId) => {
-		if (likedPosts.has(postId)) {
-			return;
-		}
+		const isLiked = likedPosts.has(postId);
+		const action = isLiked ? 'unlike' : 'like';
 
 		fetch('http://localhost:5001/likePost', {
 			method: 'POST',
@@ -63,23 +62,29 @@ const FeedComponent = ({ currentUser }) => {
 			body: JSON.stringify({
 				postId,
 				username: currentUser.username,
+				action
 			}),
 		})
 			.then(response => {
 				if (!response.ok) {
-					throw new Error('User has already liked this post.');
+					throw new Error(isLiked ? 'User has not liked this post.' : 'User has already liked this post.');
 				}
 				return response.json();
 			})
-			.then(likedPost => {
+			.then(updatedPost => {
 				const updatedPosts = posts.map(post => {
 					if (post.id === postId) {
-						return likedPost;
+						return updatedPost;
 					}
 					return post;
 				});
 				setPosts(updatedPosts);
-				setLikedPosts(new Set(likedPosts).add(postId));
+				if (isLiked) {
+					likedPosts.delete(postId);
+				} else {
+					likedPosts.add(postId);
+				}
+				setLikedPosts(new Set(likedPosts));
 			})
 			.catch(error => {
 				console.error(error.message);
@@ -87,9 +92,8 @@ const FeedComponent = ({ currentUser }) => {
 	};
 
 	const handleAddCommentLike = (postId, commentId) => {
-		if (likedComments.has(commentId)) {
-			return;
-		}
+		const isLiked = likedComments.has(commentId);
+		const action = isLiked ? 'unlike' : 'like';
 
 		fetch('http://localhost:5001/likeComment', {
 			method: 'POST',
@@ -100,20 +104,21 @@ const FeedComponent = ({ currentUser }) => {
 				postId,
 				commentId,
 				username: currentUser.username,
+				action
 			}),
 		})
 			.then(response => {
 				if (!response.ok) {
-					throw new Error('User has already liked this comment.');
+					throw new Error(isLiked ? 'User has not liked this comment.' : 'User has already liked this comment.');
 				}
 				return response.json();
 			})
-			.then(likedComment => {
+			.then(updatedComment => {
 				const updatedPosts = posts.map(post => {
 					if (post.id === postId) {
 						const updatedComments = post.comments.map(comment => {
 							if (comment.id === commentId) {
-								return likedComment;
+								return updatedComment;
 							}
 							return comment;
 						});
@@ -122,7 +127,12 @@ const FeedComponent = ({ currentUser }) => {
 					return post;
 				});
 				setPosts(updatedPosts);
-				setLikedComments(new Set(likedComments).add(commentId));
+				if (isLiked) {
+					likedComments.delete(commentId);
+				} else {
+					likedComments.add(commentId);
+				}
+				setLikedComments(new Set(likedComments));
 			})
 			.catch(error => {
 				console.error(error.message);
