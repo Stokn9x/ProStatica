@@ -10,10 +10,18 @@ function Header({ currentUser, handleLogout }) {
     return (
         <div className="header">
             <div className="header-content">
-                <SearchField />               
+                <SearchField />
+                <div className="icons">
+                    <a href="/friends" className="icon-button">
+                        <img src={friendIcon} alt="Friends" />
+                    </a>
+                    <a href="/notifications" className="icon-button">
+                        <img src={bellIcon} alt="Notifications" />
+                    </a>
                     <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />
                 </div>
             </div>
+        </div>
     );
 }
 

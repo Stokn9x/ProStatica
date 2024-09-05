@@ -1,8 +1,8 @@
 .header {
     position: fixed;
     top: 0;
-    left: 220px;
-    width: calc(100% - 220px);
+    left: 0; /* Set left to 0 to align the header with the left edge */
+    width: 100%; /* Ensure the header spans the full width */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,7 +10,7 @@
     padding: 30px 20px; /* Increase padding to make the header taller */
     z-index: 99;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    margin-bottom: 30px; /* Add margin-bottom to create space below the header */
     transition: background-color 0.3s, color 0.3s; /* Add transition for animation */
 }
 
@@ -33,12 +33,20 @@
     gap: 20px;
 }
 
-.icons a img {
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 24px;
     height: 24px;
-    transition: background-color 0.3s, color 0.3s; /* Add transition for animation */
 }
 
-.icons a:hover img {
-    background-color: #7986CB; /* Match menubar hover color */
-}
+    .icon-button img {
+        width: 24px;
+        height: 24px;
+        transition: background-color 0.3s, color 0.3s; /* Add transition for animation */
+    }
+
+    .icon-button:hover img {
+        background-color: #7986CB; /* Match menubar hover color */
+    }
