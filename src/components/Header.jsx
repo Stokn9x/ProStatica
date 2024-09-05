@@ -11,13 +11,15 @@ function Header({ currentUser, handleLogout }) {
         <div className="header">
             <div className="header-content">
                 <SearchField />
-                <div className="icons">
-                    <a href="/friends" className="icon-button">
-                        <img src={friendIcon} alt="Friends" />
-                    </a>
-                    <a href="/notifications" className="icon-button">
-                        <img src={bellIcon} alt="Notifications" />
-                    </a>
+                <div className="right-section">
+                    <div className="icons">
+                        <a href="#">
+                            <img src={friendIcon} alt="Friend Icon" />
+                        </a>
+                        <a href="#">
+                            <img src={bellIcon} alt="Bell Icon" />
+                        </a>
+                    </div>
                     <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />
                 </div>
             </div>

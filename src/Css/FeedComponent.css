@@ -14,7 +14,6 @@
 	align-items: center;
 	gap: 10px;
 	margin-bottom: 20px;
-	
 	padding: 15px;
 	border-radius: 8px;
 }
@@ -159,6 +158,7 @@
 		border-radius: 20px;
 		cursor: pointer;
 	}
+
 .imageUploadButton {
 	padding: 10px 20px;
 	background-color: #007bff;
@@ -175,4 +175,3 @@
 	border-radius: 8px;
 	object-fit: cover;
 }
-
