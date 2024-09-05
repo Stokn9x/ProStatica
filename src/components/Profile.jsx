@@ -7,6 +7,7 @@ import FirstLoginModal from './Modal/FirstLoginModal';
 const Profile = ({ updateUser, currentUser }) => {
     const [profileUser, setProfileUser] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [isFriendRequestPending, setIsFriendRequestPending] = useState(false);
     const { username } = useParams();
 
     useEffect(() => {
@@ -16,6 +17,7 @@ const Profile = ({ updateUser, currentUser }) => {
                 if (response.ok) {
                     const user = await response.json();
                     setProfileUser(user);
+                    setIsFriendRequestPending(user.friendRequests.includes(currentUser.username));
                 } else {
                     console.error('User not found:', response.statusText);
                 }
@@ -25,7 +27,7 @@ const Profile = ({ updateUser, currentUser }) => {
         };
 
         fetchUser();
-    }, [username]);
+    }, [username, currentUser.username]);
 
     useEffect(() => {
         if (profileUser && profileUser.firstLogin && profileUser.username === currentUser.username) {
@@ -69,6 +71,7 @@ const Profile = ({ updateUser, currentUser }) => {
 
             if (response.ok) {
                 console.log('Friend request sent!');
+                setIsFriendRequestPending(true);
             } else {
                 console.error('Failed to send friend request:', response.statusText);
             }
@@ -151,9 +154,14 @@ const Profile = ({ updateUser, currentUser }) => {
             <div className="team-info">
                 <p>Looking for a team? <span>Yes</span> <span>No</span></p>
             </div>
-            {!isOwnProfile && (
+            {!isOwnProfile && !isFriendRequestPending && (
                 <button onClick={sendFriendRequest} className="send-friend-request-button">
                     Send Friend Request
+                </button>
+            )}
+            {!isOwnProfile && isFriendRequestPending && (
+                <button className="send-friend-request-button" disabled>
+                    Friend Request Pending
                 </button>
             )}
         </div>

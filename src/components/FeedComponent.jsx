@@ -8,6 +8,7 @@ const FeedComponent = ({ currentUser }) => {
 	const [filter, setFilter] = useState('newest');
 	const [newComment, setNewComment] = useState({});
 	const [likedPosts, setLikedPosts] = useState(new Set());
+	const [likedComments, setLikedComments] = useState(new Set());
 	const navigate = useNavigate();
 
 	const date = new Date();
@@ -50,9 +51,8 @@ const FeedComponent = ({ currentUser }) => {
 	};
 
 	const handleAddLike = (postId) => {
-		if (likedPosts.has(postId)) {
-			return; // User has already liked this post
-		}
+		const isLiked = likedPosts.has(postId);
+		const action = isLiked ? 'unlike' : 'like';
 
 		fetch('http://localhost:5001/likePost', {
 			method: 'POST',
@@ -61,18 +61,81 @@ const FeedComponent = ({ currentUser }) => {
 			},
 			body: JSON.stringify({
 				postId,
+				username: currentUser.username,
+				action
 			}),
 		})
-			.then(response => response.json())
-			.then(likedPost => {
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(isLiked ? 'User has not liked this post.' : 'User has already liked this post.');
+				}
+				return response.json();
+			})
+			.then(updatedPost => {
 				const updatedPosts = posts.map(post => {
 					if (post.id === postId) {
-						return likedPost;
+						return updatedPost;
 					}
 					return post;
 				});
 				setPosts(updatedPosts);
-				setLikedPosts(new Set(likedPosts).add(postId)); // Add postId to likedPosts
+				if (isLiked) {
+					likedPosts.delete(postId);
+				} else {
+					likedPosts.add(postId);
+				}
+				setLikedPosts(new Set(likedPosts));
+			})
+			.catch(error => {
+				console.error(error.message);
+			});
+	};
+
+	const handleAddCommentLike = (postId, commentId) => {
+		const isLiked = likedComments.has(commentId);
+		const action = isLiked ? 'unlike' : 'like';
+
+		fetch('http://localhost:5001/likeComment', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				postId,
+				commentId,
+				username: currentUser.username,
+				action
+			}),
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(isLiked ? 'User has not liked this comment.' : 'User has already liked this comment.');
+				}
+				return response.json();
+			})
+			.then(updatedComment => {
+				const updatedPosts = posts.map(post => {
+					if (post.id === postId) {
+						const updatedComments = post.comments.map(comment => {
+							if (comment.id === commentId) {
+								return updatedComment;
+							}
+							return comment;
+						});
+						return { ...post, comments: updatedComments };
+					}
+					return post;
+				});
+				setPosts(updatedPosts);
+				if (isLiked) {
+					likedComments.delete(commentId);
+				} else {
+					likedComments.add(commentId);
+				}
+				setLikedComments(new Set(likedComments));
+			})
+			.catch(error => {
+				console.error(error.message);
 			});
 	};
 
@@ -90,7 +153,9 @@ const FeedComponent = ({ currentUser }) => {
 				username: currentUser.username,
 				userProfilePic: currentUser.profilePic,
 				createdAt: `${year}-${month}-${day}`,
-				comment: commentText
+				comment: commentText,
+				likes: 0,
+				likedBy: []
 			}),
 		})
 			.then(response => response.json())
@@ -152,6 +217,17 @@ const FeedComponent = ({ currentUser }) => {
 							<button className="likeButton" onClick={() => handleAddLike(post.id)}>
 								Like ({post.likes})
 							</button>
+							{post.username === currentUser.username && (
+								<div className="postActions">
+									<button onClick={() => handleDeletePost(post.id)}>Delete</button>
+									<button onClick={() => {
+										const newContent = prompt('Edit your post:', post.content);
+										if (newContent) {
+											handleEditPost(post.id, newContent);
+										}
+									}}>Edit</button>
+								</div>
+							)}
 						</div>
 						{/* Kommentarsektion */}
 						<div className="commentsSection">
@@ -163,8 +239,8 @@ const FeedComponent = ({ currentUser }) => {
 										<p className="commentContent">{comment.content}</p>
 										<p className="commentTimestamp">{comment.createdAt}</p>
 									</div>
-									<button className="likeButton">
-										Like (0)
+									<button className="likeButton" onClick={() => handleAddCommentLike(post.id, comment.id)}>
+										Like ({comment.likes})
 									</button>
 								</div>
 							))}
