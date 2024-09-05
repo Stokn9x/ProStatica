@@ -42,6 +42,7 @@ const FeedComponent = ({ currentUser }) => {
 			});
 	};
 
+
 	const handleFilterChange = (e) => {
 		setFilter(e.target.value);
 	};
