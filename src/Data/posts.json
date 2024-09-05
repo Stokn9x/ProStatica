@@ -9,6 +9,88 @@
       "likes": 0,
       "likedBy": [],
       "comments": []
+    },
+    {
+      "id": 1725525099486,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "Hej",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525109721,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "test",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525112248,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "test",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525114184,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "test",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525116139,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "test",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525520036,
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525555659,
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525576433,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "hello",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525580191,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "jaer okay",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 1725525595769,
+      "username": "Storm",
+      "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "lir",
+      "likes": 0,
+      "comments": []
     }
   ]
 }
