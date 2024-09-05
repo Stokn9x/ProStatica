@@ -6,21 +6,32 @@
       "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
       "createdAt": "2024-8-20",
       "content": "test",
-      "likes": 52,
+      "likes": 1,
+      "likedBy": [
+        "Stokn9x"
+      ],
       "comments": [
         {
           "id": 1724142071308,
           "username": "Stokn9x",
           "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
           "createdAt": "2024-8-20",
-          "content": "test"
+          "content": "test",
+          "likes": 1,
+          "likedBy": [
+            "Stokn9x"
+          ]
         },
         {
           "id": 1724142140866,
           "username": "Stokn9x",
           "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
           "createdAt": "2024-8-20",
-          "content": "hejsa"
+          "content": "hejsa",
+          "likes": 1,
+          "likedBy": [
+            "Stokn9x"
+          ]
         }
       ]
     },
@@ -30,7 +41,22 @@
       "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
       "createdAt": "2024-8-20",
       "content": "Hvem er du",
-      "likes": 0,
+      "likes": 1,
+      "likedBy": [
+        "Stokn9x"
+      ],
+      "comments": []
+    },
+    {
+      "id": 1725523451392,
+      "username": "Stokn9x",
+      "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
+      "createdAt": "2024-9-5",
+      "content": "test",
+      "likes": 1,
+      "likedBy": [
+        "Stokn9x"
+      ],
       "comments": []
     }
   ]

@@ -8,6 +8,7 @@ const FeedComponent = ({ currentUser }) => {
 	const [filter, setFilter] = useState('newest');
 	const [newComment, setNewComment] = useState({});
 	const [likedPosts, setLikedPosts] = useState(new Set());
+	const [likedComments, setLikedComments] = useState(new Set());
 	const navigate = useNavigate();
 
 	const date = new Date();
@@ -51,7 +52,7 @@ const FeedComponent = ({ currentUser }) => {
 
 	const handleAddLike = (postId) => {
 		if (likedPosts.has(postId)) {
-			return; // User has already liked this post
+			return;
 		}
 
 		fetch('http://localhost:5001/likePost', {
@@ -61,9 +62,15 @@ const FeedComponent = ({ currentUser }) => {
 			},
 			body: JSON.stringify({
 				postId,
+				username: currentUser.username,
 			}),
 		})
-			.then(response => response.json())
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('User has already liked this post.');
+				}
+				return response.json();
+			})
 			.then(likedPost => {
 				const updatedPosts = posts.map(post => {
 					if (post.id === postId) {
@@ -72,7 +79,53 @@ const FeedComponent = ({ currentUser }) => {
 					return post;
 				});
 				setPosts(updatedPosts);
-				setLikedPosts(new Set(likedPosts).add(postId)); // Add postId to likedPosts
+				setLikedPosts(new Set(likedPosts).add(postId));
+			})
+			.catch(error => {
+				console.error(error.message);
+			});
+	};
+
+	const handleAddCommentLike = (postId, commentId) => {
+		if (likedComments.has(commentId)) {
+			return;
+		}
+
+		fetch('http://localhost:5001/likeComment', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				postId,
+				commentId,
+				username: currentUser.username,
+			}),
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('User has already liked this comment.');
+				}
+				return response.json();
+			})
+			.then(likedComment => {
+				const updatedPosts = posts.map(post => {
+					if (post.id === postId) {
+						const updatedComments = post.comments.map(comment => {
+							if (comment.id === commentId) {
+								return likedComment;
+							}
+							return comment;
+						});
+						return { ...post, comments: updatedComments };
+					}
+					return post;
+				});
+				setPosts(updatedPosts);
+				setLikedComments(new Set(likedComments).add(commentId));
+			})
+			.catch(error => {
+				console.error(error.message);
 			});
 	};
 
@@ -90,7 +143,9 @@ const FeedComponent = ({ currentUser }) => {
 				username: currentUser.username,
 				userProfilePic: currentUser.profilePic,
 				createdAt: `${year}-${month}-${day}`,
-				comment: commentText
+				comment: commentText,
+				likes: 0,
+				likedBy: []
 			}),
 		})
 			.then(response => response.json())
@@ -152,6 +207,17 @@ const FeedComponent = ({ currentUser }) => {
 							<button className="likeButton" onClick={() => handleAddLike(post.id)}>
 								Like ({post.likes})
 							</button>
+							{post.username === currentUser.username && (
+								<div className="postActions">
+									<button onClick={() => handleDeletePost(post.id)}>Delete</button>
+									<button onClick={() => {
+										const newContent = prompt('Edit your post:', post.content);
+										if (newContent) {
+											handleEditPost(post.id, newContent);
+										}
+									}}>Edit</button>
+								</div>
+							)}
 						</div>
 						{/* Kommentarsektion */}
 						<div className="commentsSection">
@@ -163,8 +229,8 @@ const FeedComponent = ({ currentUser }) => {
 										<p className="commentContent">{comment.content}</p>
 										<p className="commentTimestamp">{comment.createdAt}</p>
 									</div>
-									<button className="likeButton">
-										Like (0)
+									<button className="likeButton" onClick={() => handleAddCommentLike(post.id, comment.id)}>
+										Like ({comment.likes})
 									</button>
 								</div>
 							))}

@@ -71,6 +71,7 @@ app.post('/createPost', (req, res) => {
 		createdAt,
 		content,
 		likes: 0,
+		likedBy: [],
 		comments: [],
 	};
 
@@ -95,33 +96,48 @@ app.post('/createPost', (req, res) => {
 });
 
 app.post('/likePost', (req, res) => {
-	const { postId } = req.body;
+	const { postId, username } = req.body;
+
+	if (!postId || !username) {
+		return res.status(400).json({ error: 'Missing required fields' });
+	}
 
 	fs.readFile(postsDataPath, 'utf8', (err, data) => {
 		if (err) {
-			console.error(err);
+			console.error('Error reading posts data:', err);
 			return res.status(500).send('An error occurred while reading posts data.');
 		}
 
-		const postsData = JSON.parse(data);
-		const post = postsData.posts.find(p => p.id === postId);
+		try {
+			const postsData = JSON.parse(data);
+			const post = postsData.posts.find(p => p.id === postId);
 
-		if (!post) {
-			return res.status(404).send('Post not found.');
-		}
-
-		post.likes += 1;
-
-		fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
-			if (err) {
-				console.error(err);
-				return res.status(500).send('An error occurred while saving post data.');
+			if (!post) {
+				return res.status(404).send('Post not found.');
 			}
 
-			res.status(200).json(post);
-		});
+			if (post.likedBy.includes(username)) {
+				return res.status(400).send('User has already liked this post.');
+			}
+
+			post.likes += 1;
+			post.likedBy.push(username);
+
+			fs.writeFile(postsDataPath, JSON.stringify(postsData, null, 2), (err) => {
+				if (err) {
+					console.error('Error saving post data:', err);
+					return res.status(500).send('An error occurred while saving post data.');
+				}
+
+				res.status(200).json(post);
+			});
+		} catch (parseError) {
+			console.error('Error parsing posts data:', parseError);
+			return res.status(500).send('An error occurred while processing post data.');
+		}
 	});
 });
+
 
 app.post('/addComment', (req, res) => {
 	const { postId, username, userProfilePic, createdAt, comment } = req.body;
@@ -150,6 +166,8 @@ app.post('/addComment', (req, res) => {
 				userProfilePic,
 				createdAt,
 				content: comment,
+				likes: 0,
+				likedBy: [] 
 			};
 
 			post.comments = post.comments || [];
@@ -166,10 +184,10 @@ app.post('/addComment', (req, res) => {
 		} catch (parseError) {
 			console.error('Error parsing posts data:', parseError);
 			return res.status(500).send('An error occurred while processing post data.');
-			
 		}
 	});
 });
+
 app.get('/getMatch/:id', (req, res) => {
 	const { id } = req.params;
 
