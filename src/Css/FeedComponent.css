@@ -1,12 +1,12 @@
 .feedContainer {
 	width: 100%;
-	max-width: 600px;
+	max-width: 700px;
 	margin: 0 auto;
 	padding: 20px;
-	background-color: #f5f5f5;
+	background-color: #1E1E2F;
 	border-radius: 8px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	margin-top: 20px;
+	height: 100vh; /* Full height of the screen */
+	overflow-y: auto; /* Enables vertical scrolling */
 }
 
 .createPostContainer {
@@ -14,6 +14,9 @@
 	align-items: center;
 	gap: 10px;
 	margin-bottom: 20px;
+	
+	padding: 15px;
+	border-radius: 8px;
 }
 
 .userProfilePic {
@@ -27,7 +30,9 @@
 	flex-grow: 1;
 	padding: 10px;
 	border-radius: 20px;
-	border: 1px solid #ccc;
+	border: 1px solid #333;
+	background-color: #333;
+	color: white;
 }
 
 .createPostContainer button {
@@ -39,98 +44,135 @@
 	cursor: pointer;
 }
 
-	.createPostContainer button:hover {
-		background-color: #0056b3;
-	}
-
-.filterContainer {
-	display: flex;
-	justify-content: flex-end;
-	margin-bottom: 20px;
-}
-
-	.filterContainer select {
-		padding: 5px 10px;
-		border-radius: 5px;
-		border: 1px solid #ccc;
-	}
-
-.postsContainer .post {
-	background-color: #21212d;
+.whoToFollowContainer {
+	margin-top: 20px;
+	background-color: #2a2a2a;
 	padding: 15px;
-	border-radius: 10px;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-	margin-bottom: 15px;
+	border-radius: 8px;
 }
 
-.postDiv {
-	border: solid 1px #ccc;
-	padding: 10px;
-	-moz-border-radius: inherit;
-	-webkit-border-radius: inherit;
-	border-radius: inherit;
-}
-
-.postHeader {
+.followSuggestion {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	margin-bottom: 10px;
 }
 
-.postUserProfilePic {
-	width: 35px;
-	height: 35px;
+.followProfilePic {
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	object-fit: cover;
-	cursor: pointer;
 }
 
-.commentUserProfilePic {
-	width: 35px;
-	height: 35px;
-	border-radius: 50%;
-	object-fit: cover;
-	cursor: pointer;
-}
-
-.commentsSection {
-	border: solid 1px #ccc;
-	padding: 10px;
-	-moz-border-radius: inherit;
-	-webkit-border-radius: inherit;
-	border-radius: inherit;
-}
-
-.postUserInfo {
+.filterContainer {
 	display: flex;
-	flex-direction: column;
+	justify-content: flex-end;
+	margin-top: 20px;
 }
 
-.postUsername {
-	font-weight: bold;
+	.filterContainer select {
+		padding: 5px 10px;
+		border-radius: 5px;
+		background-color: #333;
+		color: white;
+		border: 1px solid #555;
+	}
+
+.postsContainer {
+	margin-top: 20px;
 }
 
-.postTimestamp {
-	color: #888;
-	font-size: 12px;
+.post {
+	margin-bottom: 20px;
+	padding: 15px;
+	background-color: #2a2a2a;
+	border-radius: 8px;
+}
+
+.postHeader {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.postUserProfilePic {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.postUserInfo p {
+	margin: 0;
 }
 
 .postContent {
 	margin: 10px 0;
-
+	color: white;
 }
 
 .likeButton {
-	padding: 5px 15px;
+	background-color: transparent;
+	border: none;
+	color: #007bff;
+	cursor: pointer;
+}
+
+.commentsSection {
+	margin-top: 10px;
+}
+
+.comment {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.commentUserProfilePic {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.addCommentSection {
+	display: flex;
+	gap: 10px;
+}
+
+	.addCommentSection input {
+		flex-grow: 1;
+		padding: 10px;
+		border-radius: 20px;
+		border: 1px solid #333;
+		background-color: #333;
+		color: white;
+	}
+
+	.addCommentSection button {
+		padding: 10px 20px;
+		background-color: #007bff;
+		color: white;
+		border: none;
+		border-radius: 20px;
+		cursor: pointer;
+	}
+.imageUploadButton {
+	padding: 10px 20px;
 	background-color: #007bff;
 	color: white;
 	border: none;
 	border-radius: 20px;
 	cursor: pointer;
-	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
-	.likeButton:hover {
-		background-color: #0056b3;
-	}
+.postImage {
+	width: 100%;
+	margin-top: 10px;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
