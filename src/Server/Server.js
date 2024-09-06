@@ -30,6 +30,33 @@ const updateUser = (usersData, username, updateCallback) => {
 	}
 };
 
+app.get('/getFriends/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).json({ message: 'An error occurred while reading user data.' });
+		}
+
+		try {
+			const usersData = JSON.parse(data);
+			const user = usersData.users.find(user => user.username === username);
+
+			if (!user) {
+				return res.status(404).json({ message: 'User not found.' });
+			}
+
+			const friends = usersData.users.filter(u => user.friends.includes(u.username));
+			res.status(200).json(friends);
+		} catch (parseError) {
+			console.error('Error parsing user data:', parseError);
+			res.status(500).send('An error occurred while processing user data.');
+		}
+	});
+});
+
+
 app.delete('/deletePost', (req, res) => {
 	const { postId } = req.body;
 

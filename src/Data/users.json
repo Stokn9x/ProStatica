@@ -13,7 +13,9 @@
       "bio": "Erfaren FPS-spiller med en passion for konkurrencepræget gaming. Jeg nyder at finpudse mine færdigheder og lære nye taktikker. I min fritid kan jeg godt lide at programmere og se esport.",
       "location": "Denmark",
       "firstLogin": false,
-      "friends": [],
+      "friends": [
+        "Storm"
+      ],
       "friendRequests": [],
       "socialMedia": {
         "faceit": "https://www.faceit.com/en/players/Stokn9x",
@@ -39,10 +41,10 @@
       "bio": "none",
       "location": "none",
       "firstLogin": false,
-      "friends": [],
-      "friendRequests": [
+      "friends": [
         "Stokn9x"
       ],
+      "friendRequests": [],
       "socialMedia": {
         "faceit": "none",
         "twitter": "none",
