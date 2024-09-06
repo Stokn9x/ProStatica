@@ -42,7 +42,6 @@ const FeedComponent = ({ currentUser }) => {
 			});
 	};
 
-
 	const handleFilterChange = (e) => {
 		setFilter(e.target.value);
 	};
@@ -169,6 +168,53 @@ const FeedComponent = ({ currentUser }) => {
 				});
 				setPosts(updatedPosts);
 				setNewComment({ ...newComment, [postId]: '' });
+			});
+	};
+
+	const handleDeletePost = (postId) => {
+		fetch('http://localhost:5001/deletePost', {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ postId }),
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Failed to delete post.');
+				}
+				setPosts(posts.filter(post => post.id !== postId));
+			})
+			.catch(error => {
+				console.error(error.message);
+			});
+	};
+
+	const handleEditPost = (postId, newContent) => {
+		fetch('http://localhost:5001/editPost', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ postId, newContent }),
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Failed to edit post.');
+				}
+				return response.json();
+			})
+			.then(updatedPost => {
+				const updatedPosts = posts.map(post => {
+					if (post.id === postId) {
+						return updatedPost;
+					}
+					return post;
+				});
+				setPosts(updatedPosts);
+			})
+			.catch(error => {
+				console.error(error.message);
 			});
 	};
 
