@@ -73,7 +73,7 @@ const Homepage = () => {
         <div className="frontpage">
             <nav className="navbar">
                 <div className="navdiv">
-                    <div className="logo"><a href="#">GameStatsHub</a></div>
+                    <div className="logo"><a href="#">ProStatica</a></div>
                     <ul className="navbar-list">
                         <li><Link to="/profile">Home</Link></li>
                         <li><Link to="/About">About</Link></li>

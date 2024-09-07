@@ -176,8 +176,8 @@ section {
 }
 
 body {
-    background: rgb(23,23,75);
-    background: linear-gradient(0deg, rgba(23,23,75,1) 19%, rgba(0,0,111,1) 91%);
+    background: rgb(30,30,47);
+    background: linear-gradient(0deg, rgba(30,30,47,1) 0%, rgba(30,30,47,1) 91%);
     margin: 0;
     padding: 0;
     min-height: 100vh;
