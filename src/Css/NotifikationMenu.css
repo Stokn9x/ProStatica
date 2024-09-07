@@ -1,0 +1,17 @@
+.NotifikationMenu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background-color: #2a2a33;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	width: 200px;
+	height: 500px;
+	overflow-y: auto;
+	z-index: 99;
+}
+
+.menu-header {
+	font-size: 20px;
+	font-weight: 600;
+}

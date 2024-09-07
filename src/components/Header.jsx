@@ -5,16 +5,20 @@ import ProfileMenu from './ProfileMenu.jsx';
 import friendIcon from '/src/assets/Icon/friend-icon.svg';
 import bellIcon from '/src/assets/Icon/bell-icon.svg';
 import FriendsMenu from './FriendsMenu.jsx';
+import NotifikationMenu from './NotifikationMenu.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function Header({ currentUser, handleLogout }) {
     const [isFriendsMenuOpen, setIsFriendsMenuOpen] = useState(false);
+    const [isNotifikationMenuOpen, setIsNotifikationMenuOpen] = useState(false);
 
     const toggleFriendsMenu = () => {
         setIsFriendsMenuOpen(!isFriendsMenuOpen);
     };
 
-    console.log(currentUser);
+    const toggleNotifikationMenu = () => {
+        setIsNotifikationMenuOpen(!isNotifikationMenuOpen);
+	}
 
     return (
         <div className="header">
@@ -25,10 +29,11 @@ function Header({ currentUser, handleLogout }) {
                         <button onClick={toggleFriendsMenu}>
                             <img src={friendIcon} alt="Friend Icon" />
                         </button>
-                        <a href="#">
+                        <button onClick={toggleNotifikationMenu}>
                             <img src={bellIcon} alt="Bell Icon" />
-                        </a>
+                        </button>
                     </div>
+                    <NotifikationMenu currentUser={currentUser} isOpen={isFriendsMenuOpen} />
                     <FriendsMenu currentUser={currentUser} isOpen={isFriendsMenuOpen} />
                     <ProfileMenu currentUser={currentUser} handleLogout={handleLogout} />
                 </div>

@@ -43,6 +43,7 @@ function FriendsMenu({ currentUser, isOpen }) {
 
     return (
         <div className="friends-list">
+        <h1 className="menu-header">Friends</h1>
             {friends.length > 0 ? (
                 friends.map(friend => (
                     <div key={friend.username} className="friend-item" onClick={() => handlePlayerClick(friend.username)}>

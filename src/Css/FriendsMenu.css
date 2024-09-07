@@ -6,9 +6,9 @@
 	border: 1px solid #ccc;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	width: 200px;
-	height: 300px;
+	height: 500px;
 	overflow-y: auto;
-	z-index: 1000;
+	z-index: 99;
 }
 
 .friend-item {
@@ -19,9 +19,14 @@
 	cursor: pointer;
 }
 
-	.friend-item:hover {
-		background-color: #3a3a44;
-	}
+.menu-header {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.friend-item:hover {
+	background-color: #3a3a44;
+}
 
 	.friend-item img {
 		width: 30px;
