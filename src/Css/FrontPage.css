@@ -6,6 +6,44 @@
     box-sizing: border-box;
 }
 
+.transparent-image {
+    opacity: 0.5; /* Adjust the value as needed (0.0 to 1.0) */
+}
+
+.background{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+    .background::before {
+        content: '';
+        background-image: url("C:\Users\Alissa\source\repos\Esport_UI\src\assets\Frontpage\counter-strike2.jpg");
+        position: absolute;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        /*background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b');  */
+        /*z-index: -1;*/
+    }
+
+h1{
+    font-size: 80px;
+    font-family: sans-serif;
+    text-align: center;
+    position: relative;
+   
+
+}
+
 .frontpage {
     margin-top: -34px;
 }
@@ -175,14 +213,25 @@ section {
     margin-bottom: 100px;
 }
 
-body {
+/* Apply the gradient background only to the front page */
+.frontpage {
     background: rgb(30,30,47);
     background: linear-gradient(0deg, rgba(30,30,47,1) 0%, rgba(30,30,47,1) 91%);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: Calibri, sans-serif;
+}
+
+/* Ensure the body has a default white background */
+body {
+    background-color: white;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     font-family: Calibri, sans-serif;
 }
+
 
 /* Keep the navbar styles intact */
 .navbar {

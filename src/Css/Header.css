@@ -1,23 +1,24 @@
 .header {
     position: fixed;
     top: 0;
-    left: 220px;
-    width: calc(100% - 220px);
+    left: 0; /* Align with the left edge */
+    width: 100%; /* Full width */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #2a2a33;
+    background-color: #1E1E2F; /* Same background color as menu bar */
     padding: 20px 20px;
     z-index: 99;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    margin-bottom: 0; /* Remove margin */
 }
 
 .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: calc(100% - 220px); /* Adjust width to account for menu bar */
+    margin-left: 220px; /* Offset by the width of the menu bar */
 }
 
 .right-section {
