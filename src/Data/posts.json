@@ -1,16 +1,6 @@
 {
   "posts": [
     {
-      "id": 1725525621231,
-      "username": "Stokn9x",
-      "userProfilePic": "/src/assets/Logo/Stokn9x-Logo.jpg",
-      "createdAt": "2024-9-5",
-      "content": "dada",
-      "likes": 0,
-      "likedBy": [],
-      "comments": []
-    },
-    {
       "id": 1725525099486,
       "username": "Storm",
       "userProfilePic": "/src/assets/Logo/Storm-Logo.jpg",
