@@ -91,7 +91,7 @@ function App() {
     return (
             <div className="App">
                 {shouldShowContent(location.pathname) && <MenuBar currentUser={currentUser} />}
-                {shouldShowContent(location.pathname) && <Header currentUser={currentUser} handleLogout={handleLogout} />}
+            {shouldShowContent(location.pathname) && <Header currentUser={currentUser} handleLogout={handleLogout} />}
                 <div className="content">
                     <Routes>
                     <Route path="/login" element={<Login handleLogin={handleLogin} />} /> {/*Det her skal laves om login skal ik tage imod en currentUser*/}

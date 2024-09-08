@@ -1,0 +1,12 @@
+{
+  "notifications": [
+    {
+      "id": 1725805514557,
+      "type": "Friend Request",
+      "content": "Storm has sent you a friend request.",
+      "sender": "Storm",
+      "receiver": "Stokn9x",
+      "createdAt": "2024-09-08T14:25:14.557Z"
+    }
+  ]
+}
