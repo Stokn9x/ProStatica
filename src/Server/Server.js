@@ -148,7 +148,7 @@ app.post('/createPost', (req, res) => {
 				return res.status(500).send('An error occurred while saving post data.');
 			}
 
-			res.status(201).json(newPost);
+			res.status(200).json(newPost);
 		});
 	});
 });
