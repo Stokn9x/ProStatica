@@ -21,6 +21,7 @@ const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json
 const playerMapStatsDataPath = path.join(__dirname, '..', 'Data', 'playerMapStats.json')
 const postsDataPath = path.join(__dirname, '..', 'Data', 'posts.json');
 const matchesDataPath = path.join(__dirname, '..', 'Data', 'matches.json');
+const notificationsDataPath = path.join(__dirname, '..', 'Data', 'notifications.json');
 
 
 const updateUser = (usersData, username, updateCallback) => {
@@ -29,6 +30,124 @@ const updateUser = (usersData, username, updateCallback) => {
 		updateCallback(usersData.users[userIndex]);
 	}
 };
+
+app.delete('/deleteNotificationBySenderReceiver', (req, res) => {
+	const { sender, receiver } = req.body;
+
+	if (!sender || !receiver) {
+		return res.status(400).json({ error: 'Missing required fields' });
+	}
+
+	fs.readFile(notificationsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading notifications data:', err);
+			return res.status(500).send('An error occurred while reading notifications data.');
+		}
+
+		try {
+			const notificationsData = JSON.parse(data);
+			const notificationIndex = notificationsData.notifications.findIndex(
+				n => n.sender === sender && n.receiver === receiver
+			);
+
+			if (notificationIndex === -1) {
+				return res.status(404).send('Notification not found.');
+			}
+
+			notificationsData.notifications.splice(notificationIndex, 1);
+
+			fs.writeFile(notificationsDataPath, JSON.stringify(notificationsData, null, 2), (err) => {
+				if (err) {
+					console.error('Error saving notifications data:', err);
+					return res.status(500).send('An error occurred while saving notifications data.');
+				}
+
+				res.status(200).send('Notification deleted successfully.');
+			});
+		} catch (parseError) {
+			console.error('Error parsing notifications data:', parseError);
+			res.status(500).send('An error occurred while processing notifications data.');
+		}
+	});
+});
+
+app.get('/getNotifications/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(notificationsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading notifications data:', err);
+			return res.status(500).json({ message: 'An error occurred while reading notifications data.' });
+		}
+
+		try {
+			const notificationsData = JSON.parse(data);
+			const userNotifications = notificationsData.notifications.filter(notification => notification.receiver === username);
+			res.status(200).json(userNotifications);
+		} catch (parseError) {
+			console.error('Error parsing notifications data:', parseError);
+			res.status(500).send('An error occurred while processing notifications data.');
+		}
+	});
+});
+
+app.post('/createNotification', (req, res) => {
+	const { type, content, sender, receiver } = req.body;
+	const newNotification = {
+		id: Date.now(),
+		type,
+		content,
+		sender,
+		receiver,
+		createdAt: new Date().toISOString()
+	};
+
+	fs.readFile(notificationsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading notifications data:', err);
+			return res.status(500).send('An error occurred while reading notifications data.');
+		}
+
+		const notificationsData = JSON.parse(data);
+		notificationsData.notifications.push(newNotification);
+
+		fs.writeFile(notificationsDataPath, JSON.stringify(notificationsData, null, 2), (err) => {
+			if (err) {
+				console.error('Error saving notifications data:', err);
+				return res.status(500).send('An error occurred while saving notifications data.');
+			}
+
+			res.status(201).json(newNotification);
+		});
+	});
+});
+
+app.get('/getFriends/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).json({ message: 'An error occurred while reading user data.' });
+		}
+
+		try {
+			const usersData = JSON.parse(data);
+			const user = usersData.users.find(user => user.username === username);
+
+			if (!user) {
+				return res.status(404).json({ message: 'User not found.' });
+			}
+
+			const friends = usersData.users.filter(u => user.friends.includes(u.username));
+			res.status(200).json(friends);
+		} catch (parseError) {
+			console.error('Error parsing user data:', parseError);
+			res.status(500).send('An error occurred while processing user data.');
+		}
+	});
+});
+
 
 app.delete('/deletePost', (req, res) => {
 	const { postId } = req.body;
