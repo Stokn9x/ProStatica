@@ -28,7 +28,7 @@ import FeedComponent from './components/FeedComponent';
 import InboxPage from './components/InboxPage';
 import FogotPassword from './components/FogotPassword';
 import PageNotFound from './components/PageNotFound';
-
+import PlayerCV from './components/PlayerCV';
 
 const routesToShowContent = [
     "/profile/:username",
@@ -45,7 +45,8 @@ const routesToShowContent = [
     "/TeamMatches",
     "/TeamCalendar",
     "/feed",
-    "/inbox"
+    "/inbox",
+    "/playerCV"
 ];
 
 const shouldShowContent = (pathname) => {
@@ -107,6 +108,7 @@ function App() {
                         <Route path="/settings" element={isAuthenticated ? <SettingsPage currentUser={currentUser} /> : <Navigate to="/login" />} />
                         <Route path="/feed" element={isAuthenticated ? <FeedComponent currentUser={currentUser} /> : <Navigate to="/login" />} />"
                         <Route path="/inbox" element={isAuthenticated ? <InboxPage currentUser={currentUser} /> : <Navigate to="/login" />} />
+                        <Route path="/playerCV" element={isAuthenticated ? <PlayerCV currentUser={currentUser} /> : <Navigate to="/login" />} />
                         {/*All the team pages */}
                         <Route path="/TeamInfoDashboard" element={isAuthenticated ? (isUserInTeam ? <TeamInfoDashboard currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/TeamCreateJoin" />) : <Navigate to="/login" />} />
                         <Route path="/TeamCreateJoin" element={isAuthenticated ? <TeamCreateJoin currentUser={currentUser} updateUser={updateUser} /> : <Navigate to="/login" />} />
