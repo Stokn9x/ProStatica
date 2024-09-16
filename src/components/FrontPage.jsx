@@ -79,7 +79,7 @@ const Homepage = () => {
                         <li><Link to="/About">About</Link></li>
                         <li><Link to="#">Contact</Link></li>
                         <li><button><Link to="/login">Login</Link></button></li>
-                        <li><button><Link to="/Signup">Sign Up</Link></button></li>
+                        <li><button><Link to="/sign-Up">Sign Up</Link></button></li>
                     </ul>
                 </div>
             </nav>
