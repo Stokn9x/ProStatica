@@ -1207,6 +1207,47 @@ app.post('/getFriendRequests', (req, res) => {
 	});
 });
 
+app.post('/unfriend', (req, res) => {
+	const { senderUsername, receiverUsername } = req.body;
+
+	if (!senderUsername || !receiverUsername) {
+		return res.status(400).json({ error: 'Missing required fields' });
+	}
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
+		}
+
+		try {
+			const usersData = JSON.parse(data);
+			const sender = usersData.users.find(user => user.username === senderUsername);
+			const receiver = usersData.users.find(user => user.username === receiverUsername);
+
+			if (!sender || !receiver) {
+				return res.status(404).send('User not found.');
+			}
+
+			sender.friends = sender.friends.filter(friend => friend !== receiverUsername);
+			receiver.friends = receiver.friends.filter(friend => friend !== senderUsername);
+
+			fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+				if (err) {
+					console.error('Error saving user data:', err);
+					return res.status(500).send('An error occurred while saving user data.');
+				}
+
+				res.status(200).send('Unfriended successfully.');
+			});
+		} catch (parseError) {
+			console.error('Error parsing user data:', parseError);
+			res.status(500).send('An error occurred while processing user data.');
+		}
+	});
+});
+
+
 
 
 
