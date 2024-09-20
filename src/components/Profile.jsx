@@ -72,6 +72,25 @@ const Profile = ({ updateUser, currentUser }) => {
             if (response.ok) {
                 console.log('Friend request sent!');
                 setIsFriendRequestPending(true);
+
+                const notificationResponse = await fetch('http://localhost:5001/createNotification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type: 'Friend Request',
+                        content: `${currentUser.username} has sent you a friend request.`,
+                        sender: currentUser.username,
+                        receiver: profileUser.username,
+                    }),
+                });
+
+                if (notificationResponse.ok) {
+                    console.log('Notification created!');
+                } else {
+                    console.error('Failed to create notification:', notificationResponse.statusText);
+                }
             } else {
                 console.error('Failed to send friend request:', response.statusText);
             }

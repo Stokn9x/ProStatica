@@ -46,6 +46,14 @@ const InboxPage = ({ currentUser }) => {
                     prevRequests.filter(req => req !== senderUsername)
                 );
                 setFriends(prevFriends => [...prevFriends, senderUsername]);
+
+                await fetch('http://localhost:5001/deleteNotificationBySenderReceiver', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ sender: senderUsername, receiver: username }),
+                });
             } else {
                 console.error('Failed to accept friend request');
             }
@@ -68,6 +76,14 @@ const InboxPage = ({ currentUser }) => {
                 setFriendRequests(prevRequests =>
                     prevRequests.filter(req => req !== senderUsername)
                 );
+
+                await fetch('http://localhost:5001/deleteNotificationBySenderReceiver', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ sender: senderUsername, receiver: username }),
+                });
             } else {
                 console.error('Failed to decline friend request');
             }

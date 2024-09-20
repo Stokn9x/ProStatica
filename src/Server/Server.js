@@ -5,6 +5,7 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { sendResetCode, sendWelcomeEmail } from './../Services/emailService.js';
 import { dirname } from 'path';
+import { randomBytes } from 'crypto';
 
 const app = express();
 const PORT = 5001;
@@ -21,7 +22,9 @@ const playerStatsDataPath = path.join(__dirname, '..', 'Data', 'playerStats.json
 const playerMapStatsDataPath = path.join(__dirname, '..', 'Data', 'playerMapStats.json')
 const postsDataPath = path.join(__dirname, '..', 'Data', 'posts.json');
 const matchesDataPath = path.join(__dirname, '..', 'Data', 'matches.json');
+const notificationsDataPath = path.join(__dirname, '..', 'Data', 'notifications.json');
 
+const resetCodes = {};
 
 const updateUser = (usersData, username, updateCallback) => {
 	const userIndex = usersData.users.findIndex(user => user.username === username);
@@ -29,6 +32,123 @@ const updateUser = (usersData, username, updateCallback) => {
 		updateCallback(usersData.users[userIndex]);
 	}
 };
+
+app.delete('/deleteNotificationBySenderReceiver', (req, res) => { //rename this
+	const { sender, receiver } = req.body;
+
+	if (!sender || !receiver) {
+		return res.status(400).json({ error: 'Missing required fields' });
+	}
+
+	fs.readFile(notificationsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading notifications data:', err);
+			return res.status(500).send('An error occurred while reading notifications data.');
+		}
+
+		try {
+			const notificationsData = JSON.parse(data);
+			const notificationIndex = notificationsData.notifications.findIndex(
+				n => n.sender === sender && n.receiver === receiver
+			);
+
+			if (notificationIndex === -1) {
+				return res.status(404).send('Notification not found.');
+			}
+
+			notificationsData.notifications.splice(notificationIndex, 1);
+
+			fs.writeFile(notificationsDataPath, JSON.stringify(notificationsData, null, 2), (err) => {
+				if (err) {
+					console.error('Error saving notifications data:', err);
+					return res.status(500).send('An error occurred while saving notifications data.');
+				}
+
+				res.status(200).send('Notification deleted successfully.');
+			});
+		} catch (parseError) {
+			console.error('Error parsing notifications data:', parseError);
+			res.status(500).send('An error occurred while processing notifications data.');
+		}
+	});
+});
+
+app.get('/getNotifications/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(notificationsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading notifications data:', err);
+			return res.status(500).json({ message: 'An error occurred while reading notifications data.' });
+		}
+
+		try {
+			const notificationsData = JSON.parse(data);
+			const userNotifications = notificationsData.notifications.filter(notification => notification.receiver === username);
+			res.status(200).json(userNotifications);
+		} catch (parseError) {
+			console.error('Error parsing notifications data:', parseError);
+			res.status(500).send('An error occurred while processing notifications data.');
+		}
+	});
+});
+
+app.post('/createNotification', (req, res) => {
+	const { type, content, sender, receiver } = req.body;
+	const newNotification = {
+		id: Date.now(),
+		type,
+		content,
+		sender,
+		receiver,
+		createdAt: new Date().toISOString()
+	};
+
+	fs.readFile(notificationsDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading notifications data:', err);
+			return res.status(500).send('An error occurred while reading notifications data.');
+		}
+
+		const notificationsData = JSON.parse(data);
+		notificationsData.notifications.push(newNotification);
+
+		fs.writeFile(notificationsDataPath, JSON.stringify(notificationsData, null, 2), (err) => {
+			if (err) {
+				console.error('Error saving notifications data:', err);
+				return res.status(500).send('An error occurred while saving notifications data.');
+			}
+
+			res.status(201).json(newNotification);
+		});
+	});
+});
+
+app.get('/getFriends/:username', (req, res) => {
+	const { username } = req.params;
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).json({ message: 'An error occurred while reading user data.' });
+		}
+
+		try {
+			const usersData = JSON.parse(data);
+			const user = usersData.users.find(user => user.username === username);
+
+			if (!user) {
+				return res.status(404).json({ message: 'User not found.' });
+			}
+
+			const friends = usersData.users.filter(u => user.friends.includes(u.username));
+			res.status(200).json(friends);
+		} catch (parseError) {
+			console.error('Error parsing user data:', parseError);
+			res.status(500).send('An error occurred while processing user data.');
+		}
+	});
+});
 
 app.delete('/deletePost', (req, res) => {
 	const { postId } = req.body;
@@ -266,7 +386,6 @@ app.post('/likePost', (req, res) => {
 	});
 });
 
-
 app.post('/addComment', (req, res) => {
 	const { postId, username, userProfilePic, createdAt, comment } = req.body;
 
@@ -420,34 +539,103 @@ app.get('/getUser/:username', (req, res) => {
 	});
 });
 
-app.get('/getUserByEmail/:email', (req, res) => {
-	const { email } = req.params;
+app.post('/requestPasswordReset', (req, res) => {
+	const { email } = req.body;
 
 	fs.readFile(usersDataPath, 'utf8', (err, data) => {
 		if (err) {
 			console.error('Error reading user data:', err);
-			return res.status(500).json({ message: 'An error occurred while reading user data.' });
+			return res.status(500).send('An error occurred while reading user data.');
 		}
 
-		try {
-			const usersData = JSON.parse(data);
-			const user = usersData.users.find(user => user.email === email);
+		const usersData = JSON.parse(data);
+		const user = usersData.users.find(user => user.email === email);
 
-			if (!user) {
-				return res.status(404).json({ message: 'User not found.' });
-			}
-
-			const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-			sendResetCode(email, resetCode);
-
-			res.status(200).json({ message: 'Reset code sent to email.' });
-		} catch (parseError) {
-			console.error('Error parsing user data:', parseError);
-			res.status(500).json({ message: 'An error occurred while processing user data.' });
+		if (!user) {
+			return res.status(404).send('User not found.');
 		}
+
+		const resetCode = randomBytes(3).toString('hex');
+		const timestamp = Date.now();
+		resetCodes[email] = { code: resetCode, timestamp };
+
+		sendResetCode(email, resetCode);
+		res.status(200).send('Reset code sent.');
 	});
 });
+
+app.post('/verifyResetCode', (req, res) => {
+	const { email, code } = req.body;
+
+	const resetData = resetCodes[email];
+	if (!resetData) {
+		return res.status(400).send('Invalid code.');
+	}
+
+	const { code: storedCode, timestamp } = resetData;
+	const currentTime = Date.now();
+	const expirationTime = 15 * 60 * 1000; // 15 min
+
+	if (currentTime - timestamp > expirationTime) {
+		delete resetCodes[email];
+		return res.status(400).send('Reset code has expired.');
+	}
+
+	if (storedCode === code) {
+		return res.status(200).send('Code verified.');
+	} else {
+		return res.status(400).send('Invalid code.');
+	}
+});
+
+app.post('/resetPassword', (req, res) => {
+	const { email, code, newPassword } = req.body;
+
+	const resetData = resetCodes[email];
+	if (!resetData) {
+		return res.status(400).send('Invalid or expired reset code.');
+	}
+
+	const { code: storedCode, timestamp } = resetData;
+	const currentTime = Date.now();
+	const expirationTime = 15 * 60 * 1000; // 15 min
+
+	if (currentTime - timestamp > expirationTime) {
+		delete resetCodes[email];
+		return res.status(400).send('Reset code has expired.');
+	}
+
+	if (storedCode !== code) {
+		return res.status(400).send('Invalid or expired reset code.');
+	}
+
+	fs.readFile(usersDataPath, 'utf8', (err, data) => {
+		if (err) {
+			console.error('Error reading user data:', err);
+			return res.status(500).send('An error occurred while reading user data.');
+		}
+
+		const usersData = JSON.parse(data);
+		const user = usersData.users.find(user => user.email === email);
+
+		if (!user) {
+			return res.status(404).send('User not found.');
+		}
+
+		user.password = newPassword; //hash the password
+
+		fs.writeFile(usersDataPath, JSON.stringify(usersData, null, 2), (err) => {
+			if (err) {
+				console.error('Error saving user data:', err);
+				return res.status(500).send('An error occurred while saving user data.');
+			}
+
+			delete resetCodes[email];
+			res.status(200).send('Password reset successfully.');
+		});
+	});
+});
+
 
 app.post('/signup', (req, res) => {
 	const { username, email, password } = req.body;

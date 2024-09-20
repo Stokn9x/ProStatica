@@ -14,7 +14,9 @@
       "location": "Denmark",
       "firstLogin": false,
       "friends": [],
-      "friendRequests": [],
+      "friendRequests": [
+        "Storm"
+      ],
       "socialMedia": {
         "faceit": "https://www.faceit.com/en/players/Stokn9x",
         "twitter": "https://x.com/Stokn9x",
@@ -40,9 +42,7 @@
       "location": "none",
       "firstLogin": false,
       "friends": [],
-      "friendRequests": [
-        "Stokn9x"
-      ],
+      "friendRequests": [],
       "socialMedia": {
         "faceit": "none",
         "twitter": "none",
