@@ -3,8 +3,8 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import '/src/Css/PlayerCV.css';
 
-// Sæt workerSrc til den korrekte sti
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// Sæt workerSrc til den korrekte version
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.min.js`;
 
 const PlayerCV = () => {
     const [numPages, setNumPages] = useState(null);
