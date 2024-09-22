@@ -76,7 +76,7 @@ const Homepage = () => {
                     <div className="logo"><a href="#">ProStatica</a></div>
                     <ul className="navbar-list">
                         <li><Link to="/profile">Home</Link></li>
-                        <li><Link to="/About">About</Link></li>
+                        <li><Link to="/about">About</Link></li>
                         <li><Link to="#">Contact</Link></li>
                         <li><button><Link to="/login">Login</Link></button></li>
                         <li><button><Link to="/Signup">Sign Up</Link></button></li>
