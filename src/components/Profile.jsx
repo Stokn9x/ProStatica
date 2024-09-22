@@ -8,6 +8,7 @@ const Profile = ({ updateUser, currentUser }) => {
     const [profileUser, setProfileUser] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [isFriendRequestPending, setIsFriendRequestPending] = useState(false);
+    const [isFriend, setIsFriend] = useState(false);
     const { username } = useParams();
 
     useEffect(() => {
@@ -18,6 +19,7 @@ const Profile = ({ updateUser, currentUser }) => {
                     const user = await response.json();
                     setProfileUser(user);
                     setIsFriendRequestPending(user.friendRequests.includes(currentUser.username));
+                    setIsFriend(user.friends.includes(currentUser.username));
                 } else {
                     console.error('User not found:', response.statusText);
                 }
@@ -99,6 +101,27 @@ const Profile = ({ updateUser, currentUser }) => {
         }
     };
 
+    const unfriend = async () => {
+        try {
+            const response = await fetch('http://localhost:5001/unfriend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ senderUsername: currentUser.username, receiverUsername: profileUser.username }),
+            });
+
+            if (response.ok) {
+                console.log('Unfriended successfully!');
+                setIsFriend(false);
+            } else {
+                console.error('Failed to unfriend:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Failed to unfriend:', error);
+        }
+    };
+
     if (!profileUser) {
         return <div>Loading ....</div>;
     }
@@ -173,7 +196,7 @@ const Profile = ({ updateUser, currentUser }) => {
             <div className="team-info">
                 <p>Looking for a team? <span>Yes</span> <span>No</span></p>
             </div>
-            {!isOwnProfile && !isFriendRequestPending && (
+            {!isOwnProfile && !isFriend && !isFriendRequestPending && (
                 <button onClick={sendFriendRequest} className="send-friend-request-button">
                     Send Friend Request
                 </button>
@@ -181,6 +204,11 @@ const Profile = ({ updateUser, currentUser }) => {
             {!isOwnProfile && isFriendRequestPending && (
                 <button className="send-friend-request-button" disabled>
                     Friend Request Pending
+                </button>
+            )}
+            {!isOwnProfile && isFriend && (
+                <button onClick={unfriend} className="send-friend-request-button">
+                    Unfriend
                 </button>
             )}
         </div>
