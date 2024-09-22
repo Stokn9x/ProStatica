@@ -84,9 +84,9 @@ const Homepage = () => {
                 </div>
             </nav>
 
-            {/*<div className="background">*/}
-            {/*    <h1>transparent background</h1>*/}
-            {/*</div>*/}
+            <div className="background">
+                <h1>transparent background</h1>
+            </div>
 
             <div className="content-wrapper">
                 <div className="content-desc">
