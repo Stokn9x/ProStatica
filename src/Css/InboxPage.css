@@ -8,7 +8,7 @@
 	min-height: 100vh;
 	width: 86%;
 	margin-left: 260px;
-	margin-top: 20px;
+	margin-top: 60px;
 	border-radius: 15px;
 }
 
@@ -19,12 +19,39 @@
 .friendRequest {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	margin-bottom: 10px;
 	padding: 10px;
 	background-color: #3a3a3f;
 	border-radius: 10px;
 }
 
+
+	.friendRequest h1 {
+		font-size: 18px;
+		font-weight: 600;
+		margin-right: 8px;
+		margin-top: 15px;
+	}
+
+	.friendRequest p {
+		margin-right: 80px;
+		margin-top: 15px;
+	}
+
 	.friendRequest button {
 		margin-left: 10px;
+		transition: 0.2s;
+	}
+
+	.friendRequest button.accept {
+		background-color: #288214;
+	}
+
+	.friendRequest button.decline {
+		background-color: #821414;
+	}
+
+	.friendRequest button:hover {
+		filter: brightness(1.2);
 	}
