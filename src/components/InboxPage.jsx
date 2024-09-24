@@ -99,7 +99,7 @@ const InboxPage = ({ currentUser }) => {
                 {friendRequests.length > 0 ? (
                     friendRequests.map((request, index) => (
                         <div key={index} className="friendRequest">
-                            <img src={request.profilePic} alt="" className='profile-pic'/>
+                            <img src={request.profilePic} alt="" className='profile-pic' />
                             <h1>{request.username}</h1>
                             <p>wants to be your friend!</p>
                             <button onClick={() => acceptFriendRequest(request.username)} className="accept">Accept</button>
