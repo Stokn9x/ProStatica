@@ -43,7 +43,7 @@ const InboxPage = ({ currentUser }) => {
 
             if (response.ok) {
                 setFriendRequests(prevRequests =>
-                    prevRequests.filter(req => req !== senderUsername)
+                    prevRequests.filter(req => req.username !== senderUsername)
                 );
                 setFriends(prevFriends => [...prevFriends, senderUsername]);
 
@@ -74,7 +74,7 @@ const InboxPage = ({ currentUser }) => {
 
             if (response.ok) {
                 setFriendRequests(prevRequests =>
-                    prevRequests.filter(req => req !== senderUsername)
+                    prevRequests.filter(req => req.username !== senderUsername)
                 );
 
                 await fetch('http://localhost:5001/deleteNotificationBySenderReceiver', {
@@ -99,10 +99,11 @@ const InboxPage = ({ currentUser }) => {
                 {friendRequests.length > 0 ? (
                     friendRequests.map((request, index) => (
                         <div key={index} className="friendRequest">
-                            <h1>{request}</h1>
+                            <img src={request.profilePic} alt="" className='profile-pic' />
+                            <h1>{request.username}</h1>
                             <p>wants to be your friend!</p>
-                            <button onClick={() => acceptFriendRequest(request)}>Accept</button>
-                            <button onClick={() => declineFriendRequest(request)}>Decline</button>
+                            <button onClick={() => acceptFriendRequest(request.username)} className="accept">Accept</button>
+                            <button onClick={() => declineFriendRequest(request.username)} className="decline">Decline</button>
                         </div>
                     ))
                 ) : (
