@@ -1203,14 +1203,7 @@ app.post('/getFriendRequests', (req, res) => {
 			return res.status(404).send('User not found.');
 		}
 
-		const friendRequests = user.friendRequests.map(friendRequest => { 
-			return {
-				username: friendRequest, 
-				profilePic: usersData.users.find(user => user.username === friendRequest).profilePic
-			}
-		});
-
-		res.status(200).json(friendRequests);
+		res.status(200).json(user.friendRequests);
 	});
 });
 
